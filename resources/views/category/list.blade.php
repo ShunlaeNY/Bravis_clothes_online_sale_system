@@ -1,6 +1,6 @@
 @extends('layouts.adminlayout')
 @section('title')
-    Bravis | Product List
+    Bravis | Category List
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{asset('css/admin/pages/product/product.css')}}">
@@ -8,8 +8,8 @@
 @section('main')
         <div class="main">
             <div class="session1 flex_row">
-                <h3>Products</h3>
-                <a href="{{route('ProductCreate')}}">+ Add Product</a>
+                <h3>Category</h3>
+                <a href="{{route('ProductCreate')}}">+ Add Category</a>
             </div>
             <div class="session2">
                 <div class="grid">

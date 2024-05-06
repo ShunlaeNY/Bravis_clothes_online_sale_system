@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('documentTitle')</title>
+    <title>@yield('title')</title>
     <link rel="stylesheet" href="{{asset('css/admin/global/style.css')}}">
     @yield('css')
 
@@ -28,25 +28,31 @@
                     <p class="nav_text">Product</p>
                 </div>
             </a>
-            <a href="/pages/customer/index.html" target="_self">
+            <a href="{{route('CategoryList')}}" target="_self">
+                <div class="flex_row">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <p class="nav_text">Category</p>
+                </div>
+            </a>
+            <a href="{{route('CustomerList')}}" target="_self">
                 <div class="flex_row">
                     <i class="fa-solid fa-users"></i>
                     <p class="nav_text">Customer</p>
                 </div>
             </a>
-            <a href="/pages/order/index.html" target="_self">
+            <a href="{{route('OrderList')}}" target="_self">
                 <div class="flex_row">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <p class="nav_text">Order</p>
                 </div>
             </a>
-            <a href="/pages/staff/index.html" target="_self">
+            <a href="{{route('StaffList')}}" target="_self">
                 <div class="flex_row">
                     <i class="fa-solid fa-user"></i>
                     <p class="nav_text">Staff</p>
                 </div>
             </a>
-            <a href="/pages/supplier/index.html" target="_self">
+            <a href="{{route('SupplierList')}}" target="_self">
                 <div class="flex_row">
                     <i class="fa-solid fa-user"></i>
                     <p class="nav_text">Supplier</p>
@@ -66,7 +72,7 @@
         <!-- user Profile Info -->
         <div class="user_profile_info">
                <a href=""><i class="fa-solid fa-gear"></i>Edit Profile</a><br>
-               <a href="{{asset('css/admin/account/login/index.html')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i>Log out</a>
+               <a href="{{route('AdminLogout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i>Log out</a>
         </div>
 
         {{-- main --}}
@@ -78,7 +84,7 @@
 
     
     <!-- script-->
-    <script src="/js/user_profile_info_popup.js"></script>
+    <script src="{{asset('js/admin/user_profile_info_popup.js')}}"></script>
     @yield('js')
 </body>
 </html>

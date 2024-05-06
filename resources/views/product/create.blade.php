@@ -1,7 +1,7 @@
 @extends('layouts.adminlayout')
 
 @section('title')
-    Product List
+     Bravis | Product List
 @endsection
 
 @section('css')
@@ -14,15 +14,15 @@
         <p>Add your product and necessary information here</p>
         <div class="add_product_form">
             <h3>Basic Information</h3>
-            <form class="add_product_grid grid" action="" method="">
+            <form class="add_product_grid grid" action="" method="post">
                 <label>Product Title/Name</label>
                 <input type="text" placeholder="Product Title/Name">
 
                 <label>Product Description</label>
-                <img src="/image/summbernote.png" alt="" style="width: 100%; height: 150px;">
+                <textarea name="" id="" cols="30" rows="10"></textarea>
 
                 <label>Product image</label>
-                <img src="/image/file_drag.png" alt="" style="width: 100%; height: 150px;">
+                <input type="file">
 
                 <label>Category</label>
                 <div>

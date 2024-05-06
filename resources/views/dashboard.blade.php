@@ -1,7 +1,7 @@
 @extends('layouts.adminlayout')
 
 @section('title')
-    Dashboard
+   Bravis | Dashboard
 @endsection
 
 @section('css')

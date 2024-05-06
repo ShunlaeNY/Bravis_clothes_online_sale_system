@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminCheck
+class CustomerCheck
 {
     /**
      * Handle an incoming request.
@@ -19,16 +19,10 @@ class AdminCheck
         if(Auth::check())
         {
 
-            if (auth('admin')->user()->usertype == 'admin')
+            if (auth('customer')->user()->usertype == 'customer')
             {
-                return redirect()-> route('Dashboard');
+                return redirect()-> route('Home');
                 return $next($request);
-            }
-            else
-            {
-               // return redirect('home')->with('error', 'You don\'tave admin access'); ->with so session send
-
-                return redirect('/')->with('error','You don\'t have Admin Access!');
             }
         }
         return $next($request);

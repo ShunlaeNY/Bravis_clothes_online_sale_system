@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <!-- css files -->
-    <link rel="stylesheet" href="css/global/style.css">
+    <link rel="stylesheet" href="{{asset('css/customer/global/style.css')}}">
+    <link rel="stylesheet" href="{{asset('css/customer/component/add_to_card.css')}}">
     @yield('css')
     <!-- font awesome link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -21,14 +22,17 @@
                 <div class="link">
                     <a href="">FAQ</a>|
                     <a href="">orders and returns</a>|
-                    <a href="account/login/index.html">Sign In</a>
+                    <a href="{{route('CustomerLogin')}}">Log In</a>
                 </div>
             </div>
             <div class="nav_bar flex_row">
                 <div class="logo">
-                    Bravis
+                    <a href="{{route('Home')}}">Bravis</a>
                 </div>
                 <div class="menu flex_row">
+                    <div class="home">
+                        <a href="{{route('Home')}}">Home</a>
+                    </div>
                     <div class="women drop_down">
                         <a href="" >Women</a>
                         <div class="women_drop_down_content">
@@ -59,10 +63,10 @@
                         </div>
                     </div>
                     <div class="contact">
-                        <a href="/pages/contact/index.html" >Contact</a>
+                        <a href="{{route('ContactUs')}}" >Contact</a>
                     </div>
                     <div class="about_us">
-                        <a href="pages/about/index.html" >About Us</a>
+                        <a href="{{route('AboutUs')}}" >About Us</a>
                     </div>
                 </div>
                 <div class="extra_icon flex_row">
@@ -89,14 +93,25 @@
             </div>
         </div>
     </div>
+    <div class="shopping_cart_box">
+        <div class="flex_row">
+            <h1>Cart</h1>
+            <i class="fa-regular fa-circle-xmark close_button"></i>
+        </div>
+        <hr>    
+    </div>
+
     @yield('content')
+
+    {{-- footer --}}
     <div class="footer grid">
         <div class="flex_col">
             <h3>Product</h3>
             <ul>
-                <li>Clothing</li>
-                <li>Shoes</li>
-                <li>Accessories</li>
+                <li><a href="">All product</a></li>
+                <li><a href="">Clothing</a></li>
+                <li><a href="">Shoes</a></li>
+                <li><a href="">Accessories</a></li>
             </ul>
         </div>
         <div class="flex_col">
@@ -106,15 +121,15 @@
                 <li>Shipping</li>
                 <li>Track Order</li>
                 <li>Return & Exchange</li>
-                <li><a href="/pages/contact/index.html">Contact</a></li>
+                <li><a href="{{route('ContactUs')}}">Contact</a></li>
             </ul>
         </div>
         <div class="flex_col">
             <h3>Company</h3>
             <ul>
-                <li>About Us</li>
-                <li>Privacy Policy</li>
-                <li>Terms & Condition</li>
+                <li><a href="{{route('AboutUs')}}">About Us</a></li>
+                <li><a href="{{route('PrivacyPolicy')}}">Privacy Policy</a></li>
+                <li><a href="{{route('PrivacyPolicy')}}">Terms & Condition</a></li>
             </ul>
         </div>
         <div class="flex_col">
@@ -126,8 +141,10 @@
             </ul>
         </div>
     </div>
-    
-    <!-- scripts -->
+
+    {{-- scripts --}}
+    <script src="{{asset("js/customer/add_to_card.js")}}" defer></script>
+    <script src="{{asset('js/customer/hamburger_menu.js')}}"></script>
     @yield('js')
     
 </body>
