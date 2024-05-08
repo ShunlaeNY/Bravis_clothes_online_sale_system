@@ -66,7 +66,8 @@
                 {{-- <img src="/image/icon/msg.svg" alt=""> --}}
             </div>
             <div class="user_profile">
-                <img src="" alt="image of admin user">
+                <img src="{{auth('admin')->user()->image}}" alt="image of {{auth('admin')->user()->name}}">
+                
             </div>     
         </div>
         <!-- user Profile Info -->

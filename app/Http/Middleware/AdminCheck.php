@@ -31,6 +31,10 @@ class AdminCheck
                 return redirect('/')->with('error','You don\'t have Admin Access!');
             }
         }
+        // else
+        // {
+        //     return redirect('/admin')->with('error','You don\'t have Admin Access!');
+        // }
         return $next($request);
     }
 }

@@ -16,6 +16,7 @@ use App\Http\Controllers\SupplierController;
 //////////////////////////////////////////////////////////////////////////////////////////
 //admin panel
 Route::get('/admin',[AdminController::class,'adminlogin'])->name('AdminLogin');
+Route::post('/admin/loginprocess',[LoginController::class,'login'])->name('AdminLoginProcess');
 Route::get('/admin/logout',[LoginController::class,'adminlogout'])->name('AdminLogout');
 Route::middleware(['admin'])->group(function(){
     Route::prefix('admin/dashboard')->group(function(){
@@ -27,10 +28,17 @@ Route::middleware(['admin'])->group(function(){
         Route::get('/categorylist',[CategoryController::class,'categorylist'])->name('CategoryList');
         // customer
         Route::get('/customerlist',[CustomerController::class,'customerlist'])->name('CustomerList');
+        Route::post('/customerlist/register/process',[CustomerController::class,'store'])->name('CustomerRegisterProcess');
         //order
         Route::get('/orderlist',[OrderController::class,'orderlist'])->name('OrderList');
         //staff
         Route::get('/stafflist',[StaffController::class,'stafflist'])->name('StaffList');
+        Route::get('/stafflist/create',[StaffController::class,'staffcreate'])->name('StaffCreate');
+        Route::post('/stafflist/create/process',[StaffController::class,'store'])->name('StaffCreateProcess');
+        Route::get('/stafflist/edit/{id}',[StaffController::class,'staffedit'])->name('StaffEdit');
+        Route::patch('/stafflist/edit/process',[StaffController::class,'staffupdate'])->name('StaffUpdateProcess');
+        Route::get('/stafflist/delete/{id}',[StaffController::class,'staffdelete'])->name('StaffDelete');
+
         //supplier
         Route::get('/supplierlist',[SupplierController::class,'supplierlist'])->name('SupplierList');
     });

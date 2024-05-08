@@ -13,7 +13,8 @@
     <div class="container">
         <h1>Create Account</h1>
         <div class="flex_row">
-            <form action="">
+            <form action="{{route('CustomerRegisterProcess')}}" method="post">
+                @csrf
                 <label for="name">Full Name</label>
                 <br>
                 <div class="flex_row">
@@ -21,32 +22,32 @@
                     <input type="text" id="lname" placeholder="Last Name" required>
                 </div>
                 <br>
-                <label for="birthday">Date of Birth</label>
+                <label for="dob">Date of Birth</label>
                 <br>
-                <input type="date">
+                <input type="date" name="dob">
                 <br>
                 <label for="email">Email</label>
                 <br>
-                <input type="email" placeholder="Email" required>
+                <input type="email" name="email" placeholder="Email" required>
                 <br>
                 <label for="password">Password</label>
                 <br>
                 <p>Tip: Use upper case, lower case and numbers</p>
                 <div class="password_container">
-                    <input type="password" id="password" placeholder="Password" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
                     <i class="fa-solid fa-eye-slash hide_password"></i>
                     <i class="fa-solid fa-eye show_password"></i>
                 </div>
                 <br>
-                <label for="location">Location</label>
+                <label for="address">Location</label>
                 <br>
-                <input type="text" placeholder="Address"><br>
+                <textarea name="address" id="address" cols="30" rows="10"></textarea><br>
                 <div class="flex_row">
-                    <input type="text" placeholder="State/Region"><input type="text" placeholder="Zip Code (Eg. 1111)">
+                    <input type="text" name="state" placeholder="State/Region"><input type="text" name="zipcode" placeholder="Zip Code (Eg. 1111)">
                 </div>
                 <br>
                 <div class="sign_up flex_row">
-                    <button class="button2">Sign Up</button>
+                    <button type="submit" class="button2">Sign Up</button>
                 </div>
     
             </form>

@@ -12,7 +12,7 @@
     <div class="main">
         <div class="session1 flex_row">
             <h3>All Staffs</h3>
-            <a href="/pages/staff/add_staff.html">+ Add Staff</a>
+            <a href="{{route('StaffCreate')}}">+ Add Staff</a>
         </div>
         <div class="session2">
             <div class="grid">
@@ -29,54 +29,27 @@
                     <tr>
                         <th class="first_title">Name</th>
                         <th>Email</th>
+                        <th>Address</th>
                         <th>Phone Number</th>
-                        <th>Role</th>
+                        <th>Position</th>
+                        <th>Profile Photo</th>
                         <th class="last_title">Action</th>
                     </tr>
-                    <tr>
-                        <td>Staff1</td>
-                        <td>staff001@gmail.com</td>
-                        <td>09-123-456-789</td>
-                        <td>Admin</td>
-                        <td>
-                            <a href="/pages/staff/update_staff.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <i class="fa-regular fa-trash-can"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Staff1</td>
-                        <td>staff001@gmail.com</td>
-                        <td>09-123-456-789</td>
-                        <td>Admin</td>
-                        <td>
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-regular fa-trash-can"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Staff1</td>
-                        <td>staff001@gmail.com</td>
-                        <td>09-123-456-789</td>
-                        <td>Admin</td>
-                        <td>
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-regular fa-trash-can"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="last_row_left">
-                            <div class="page_info">
-                                Showing 1-3 of 30
-                            </div>
-                        </td>
-                        <td colspan="3" class="last_row_right">
-                            <div class="pagination">
-                                <a href="#">&laquo;</a>
-                                <a class="active" href="#">1</a>
-                                <a href="#">&raquo;</a>
-                            </div>
-                        </td>
-                    </tr>
+
+                        @foreach ($stafflists as $stafflist)
+                            <tr>
+                                <td>{{$stafflist->name}}</td>
+                                <td>{{$stafflist->email}}</td>
+                                <td>{{$stafflist->address}}</td>
+                                <td>{{$stafflist->phonenumber}}</td>
+                                <td>{{$stafflist->rolename}}</td>
+                                <td>{{$stafflist->image}}</td>
+                                <td>
+                                    <a href="{{url('admin/dashboard/stafflist/edit/'.$stafflist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="{{url('admin/dashboard/stafflist/delete/'.$stafflist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
                 </table>
             </div>
         </div>

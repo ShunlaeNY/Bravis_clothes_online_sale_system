@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -48,9 +48,11 @@ class LoginController extends Controller
             'email.required' => 'Email field is required.',
             'password.required' => 'Password field is required.',
         ]);
+        // dd($request->all());
         $validateData['password'] = bcrypt($validateData['password']);
         $input = $request->all();
         $userdata = array('email' => $input['email'], 'password' => $input['password']);
+        // dd('reach!!');
 
         if($input['usertype'] == 'admin'){
             if(auth('admin')->attempt($userdata)){

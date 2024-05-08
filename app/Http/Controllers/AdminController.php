@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -12,10 +13,13 @@ class AdminController extends Controller
     //     // Your controller logic here
     // }
     public function adminlogin(){
+        // echo "hello";dd();
         return view('login.adminlogin');
     }
 
     public function index(){
+        // $admin = DB::table('admins')->get();
+        // dd($admin);
         return view('dashboard');
     }
     /**

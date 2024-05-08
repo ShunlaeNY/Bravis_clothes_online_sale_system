@@ -30,80 +30,19 @@
                         <th>Phone Number</th>
                         <th class="last_title">Action</th>
                     </tr>
-                    <tr>
-                        <td>Staff001</td>
-                        <td>Staff1</td>
-                        <td>staff001@gmail.com</td>
-                        <td>09-123-456-789</td>
-                        <td>
-                            <a href="/pages/customer/edit_customer.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <i class="fa-regular fa-trash-can"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Staff001</td>
-                        <td>Staff1</td>
-                        <td>staff001@gmail.com</td>
-                        <td>09-123-456-789</td>
-                        <td>
-                            <a href="/pages/customer/edit_customer.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <i class="fa-regular fa-trash-can"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Staff001</td>
-                        <td>Staff1</td>
-                        <td>staff001@gmail.com</td>
-                        <td>09-123-456-789</td>
-                        <td>
-                            <a href="/pages/customer/edit_customer.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <i class="fa-regular fa-trash-can"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Staff001</td>
-                        <td>Staff1</td>
-                        <td>staff001@gmail.com</td>
-                        <td>09-123-456-789</td>
-                        <td>
-                            <a href="/pages/customer/edit_customer.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <i class="fa-regular fa-trash-can"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Staff001</td>
-                        <td>Staff1</td>
-                        <td>staff001@gmail.com</td>
-                        <td>09-123-456-789</td>
-                        <td>
-                            <a href="/pages/customer/edit_customer.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <i class="fa-regular fa-trash-can"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Staff001</td>
-                        <td>Staff1</td>
-                        <td>staff001@gmail.com</td>
-                        <td>09-123-456-789</td>
-                        <td>
-                            <a href="/pages/customer/edit_customer.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <i class="fa-regular fa-trash-can"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="last_row_left">
-                            <div class="page_info">
-                                Showing 1-3 of 30
-                            </div>
-                        </td>
-                        <td colspan="3" class="last_row_right">
-                            <div class="pagination">
-                                <a href="#">&laquo;</a>
-                                <a class="active" href="#">1</a>
-                                <a href="#">&raquo;</a>
-                            </div>
-                        </td>
-                    </tr>
+
+                    @foreach ($customerlists as $customerlist)
+                        <tr>
+                            <td>{{$customerlist->name}}</td>
+                            <td>{{$customerlist->email}}</td>
+                            <td>{{$customerlist->address}}</td>
+                            <td>{{$customerlist->state}}</td>
+                            <td>{{$customerlist->zipcode}}</td>
+                            <td>{{$customerlist->phonenumber}}</td>
+                            <td>{{$customerlist->dob}}</td>
+                            <td>{{$customerlist->image}}</td>
+                        </tr>
+                    @endforeach
                 </table>
             </div>
         </div>

@@ -208,7 +208,19 @@ td .sizes{
 .pagination a:hover:not(.active) {
     background-color: #ddd;
 }
-
+.btn{
+    padding: 5px;
+}
+.btn:hover{
+    /* border: 1px solid var(--primary-color); */
+    border-radius: 3px;
+    background-color: var(--box-blue-color);color:white;
+}
+.btn:hover .btn i{
+    color: white;
+    background-color: #000000;
+    
+}
 @media (max-width:1000px) and (min-width:768px) {
     .session{
         margin: 20px 20px;
