@@ -23,12 +23,6 @@ class RoleSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ],[
-            'name' => 'Manager',
-            'uuid' => Str::uuid()->toString(),
-            'status' => 'Active',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
-        ],[
             'name' => 'Staff',
             'uuid' => Str::uuid()->toString(),
             'status' => 'Active',

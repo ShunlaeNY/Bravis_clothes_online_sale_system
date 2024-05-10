@@ -15,11 +15,13 @@
             <h1>Welcome Back!</h1>
             <p>Sign In and Get 25% on selected items</p>
             <div class="flex_row">
-                <form action="">
+                <form action="{{route('CustomerLoginProcess')}}" method="post">
+                    @csrf
+                    <input type="hidden" name="usertype" value="customer">
                     <h1>Sign In Here</h1>
-                    <input type="Email" placeholder="Email Address"><br>
-                    <input type="password" placeholder="Password"><br>
-                    <a href="{{route('Home')}}" class="login_button button2">Login</a>
+                    <input type="Email" name="email" placeholder="Email Address"><br>
+                    <input type="password" name="password" placeholder="Password"><br>
+                    <button type="submit" class="login_button button2">Login</button>
                     <p>Don’t have an account? <a href="{{route('CustomerRegister')}}">Sign Up</a></p>
                 </form>
             </div>

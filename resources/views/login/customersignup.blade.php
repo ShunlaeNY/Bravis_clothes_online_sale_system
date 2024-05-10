@@ -13,13 +13,13 @@
     <div class="container">
         <h1>Create Account</h1>
         <div class="flex_row">
-            <form action="{{route('CustomerRegisterProcess')}}" method="post">
+            <form action="{{route('CustomerRegisterProcess')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <label for="name">Full Name</label>
                 <br>
                 <div class="flex_row">
-                    <input type="text" id="fname" placeholder="First Name" required>
-                    <input type="text" id="lname" placeholder="Last Name" required>
+                    <input type="text" name="fname" id="fname" placeholder="First Name" required>
+                    <input type="text" name="lname" id="lname" placeholder="Last Name" required>
                 </div>
                 <br>
                 <label for="dob">Date of Birth</label>
@@ -29,6 +29,10 @@
                 <label for="email">Email</label>
                 <br>
                 <input type="email" name="email" placeholder="Email" required>
+                <br>
+                <label for="phonenumber">Phone Number</label>
+                <br>
+                <input type="text" name="phonenumber" placeholder="phonenumber" required>
                 <br>
                 <label for="password">Password</label>
                 <br>
@@ -45,6 +49,10 @@
                 <div class="flex_row">
                     <input type="text" name="state" placeholder="State/Region"><input type="text" name="zipcode" placeholder="Zip Code (Eg. 1111)">
                 </div>
+                <label for="image">Upload Photo</label>
+                <br>
+                <input type="file" name="image">
+                <br>
                 <br>
                 <div class="sign_up flex_row">
                     <button type="submit" class="button2">Sign Up</button>

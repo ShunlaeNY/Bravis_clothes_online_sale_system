@@ -19,10 +19,22 @@
                 <div class="flash_sale">
                     Flash Sales : Sign in and Get Extra  25%  off on Selected Items
                 </div>
+                <div>
+                    Welcome
+                    @if ( auth('customer')->user() != null)
+                        {{auth('customer')->user()->name}}!
+                    @else
+                        Guest!
+                    @endif
+                </div>
                 <div class="link">
                     <a href="">FAQ</a>|
                     <a href="">orders and returns</a>|
-                    <a href="{{route('CustomerLogin')}}">Log In</a>
+                    @if (auth('customer')->user() != null)
+                        <a href="{{route('CustomerLogout')}}">Log Out</a>
+                    @else
+                        <a href="{{route('CustomerLogin')}}">Log In</a>
+                    @endif
                 </div>
             </div>
             <div class="nav_bar flex_row">
@@ -106,39 +118,16 @@
     {{-- footer --}}
     <div class="footer grid">
         <div class="flex_col">
-            <h3>Product</h3>
-            <ul>
-                <li><a href="">All product</a></li>
-                <li><a href="">Clothing</a></li>
-                <li><a href="">Shoes</a></li>
-                <li><a href="">Accessories</a></li>
-            </ul>
+            <a href="{{route('Home')}}">Home</a>
         </div>
         <div class="flex_col">
-            <h3>Customer Support</h3>
-            <ul>
-                <li>FAQ</li>
-                <li>Shipping</li>
-                <li>Track Order</li>
-                <li>Return & Exchange</li>
-                <li><a href="{{route('ContactUs')}}">Contact</a></li>
-            </ul>
+            <a href="{{route('AboutUs')}}">About Us</a> 
         </div>
         <div class="flex_col">
-            <h3>Company</h3>
-            <ul>
-                <li><a href="{{route('AboutUs')}}">About Us</a></li>
-                <li><a href="{{route('PrivacyPolicy')}}">Privacy Policy</a></li>
-                <li><a href="{{route('PrivacyPolicy')}}">Terms & Condition</a></li>
-            </ul>
+            <a href="{{route('ContactUs')}}">Contact Us</a>
         </div>
         <div class="flex_col">
-            <h3>Get Your Latest Update !</h3>
-            <ul>
-                <li>Subscribe to get our latest news  about special discount</li>
-                <li><input type="email" placeholder="Enter your email"></li>
-                <li><button class="button1">Subscribe</button></li>
-            </ul>
+            <a href="">All Products</a>
         </div>
     </div>
 

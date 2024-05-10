@@ -50,13 +50,15 @@ class LoginController extends Controller
         ]);
         // dd($request->all());
         $validateData['password'] = bcrypt($validateData['password']);
+        // dd($validateData['password']);
         $input = $request->all();
         $userdata = array('email' => $input['email'], 'password' => $input['password']);
-        // dd('reach!!');
-
+        // dd($userdata);
         if($input['usertype'] == 'admin'){
+            // dd('reach');
             if(auth('admin')->attempt($userdata)){
                 $user = auth('admin')->user();
+                // dd($user);
                 if($user->status == "Active"){
                     return redirect()->route('Dashboard');
 

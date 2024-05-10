@@ -99,6 +99,7 @@ class StaffController extends Controller
         $staffupdate->name = $request->name;
         $staffupdate->email = $request->email;
         $staffupdate->address = $request->address;
+        $staffupdate->uuid = $uuid;
         $staffupdate->phonenumber = $request->phonenumber;
         $staffupdate->password = bcrypt($request->password);
         if($request->image == null){

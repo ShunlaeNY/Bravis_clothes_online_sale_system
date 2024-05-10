@@ -21,16 +21,25 @@ Route::get('/admin/logout',[LoginController::class,'adminlogout'])->name('AdminL
 Route::middleware(['admin'])->group(function(){
     Route::prefix('admin/dashboard')->group(function(){
         Route::get('/',[AdminController::class,'index'])->name('Dashboard');
+
         // product
         Route::get('/productlist',[ProductController::class,'productlist'])->name('ProductList');
         Route::get('/productlist/create',[ProductController::class,'productcreate'])->name('ProductCreate');
+
         //category
         Route::get('/categorylist',[CategoryController::class,'categorylist'])->name('CategoryList');
+        Route::get('/categorylist/create',[CategoryController::class,'categorycreate'])->name('CategoryCreate');
+        Route::post('/categorylist/create/process',[CategoryController::class,'store'])->name('CategoryCreateProcess');
+        Route::get('/categorylist/edit/{id}',[CategoryController::class,'categoryedit'])->name('CategoryEdit');
+        Route::patch('/categorylist/edit/process',[CategoryController::class,'categoryupdate'])->name('CategoryUpdateProcess');
+        Route::get('/categorylist/delete/{id}',[CategoryController::class,'categorydelete'])->name('CategoryDelete');
+
         // customer
         Route::get('/customerlist',[CustomerController::class,'customerlist'])->name('CustomerList');
         Route::post('/customerlist/register/process',[CustomerController::class,'store'])->name('CustomerRegisterProcess');
         //order
         Route::get('/orderlist',[OrderController::class,'orderlist'])->name('OrderList');
+
         //staff
         Route::get('/stafflist',[StaffController::class,'stafflist'])->name('StaffList');
         Route::get('/stafflist/create',[StaffController::class,'staffcreate'])->name('StaffCreate');
@@ -41,6 +50,11 @@ Route::middleware(['admin'])->group(function(){
 
         //supplier
         Route::get('/supplierlist',[SupplierController::class,'supplierlist'])->name('SupplierList');
+        Route::get('/supplierlist/create',[SupplierController::class,'suppliercreate'])->name('SupplierCreate');
+        Route::post('/supplierlist/create/process',[SupplierController::class,'store'])->name('SupplierCreateProcess');
+        Route::get('/supplierlist/edit/{id}',[SupplierController::class,'supplieredit'])->name('SupplierEdit');
+        Route::patch('/supplierlist/edit/process',[SupplierController::class,'supplierupdate'])->name('SupplierUpdateProcess');
+        Route::get('/supplierlist/delete/{id}',[SupplierController::class,'supplierdelete'])->name('SupplierDelete');
     });
 });
 
@@ -52,6 +66,7 @@ Route::middleware(['admin'])->group(function(){
 //homepage
 Route::get('/',[CustomerpageController::class,'index'])->name('Home');
 Route::get('/customer/login',[CustomerController::class,'customerlogin'])->name('CustomerLogin');
+Route::post('/customer/loginprocess',[LoginController::class,'login'])->name('CustomerLoginProcess');
 Route::get('/customer/logout',[LoginController::class,'customerlogout'])->name('CustomerLogout');
 Route::get('/customer/register',[CustomerController::class,'customerregister'])->name('CustomerRegister');
 Route::get('/about',[CustomerpageController::class,'about'])->name('AboutUs');

@@ -27,20 +27,23 @@
                         <th class="first_title">ID</th>
                         <th>Customer's Name</th>
                         <th>Email</th>
+                        <th>Address</th>
                         <th>Phone Number</th>
                         <th class="last_title">Action</th>
                     </tr>
 
                     @foreach ($customerlists as $customerlist)
                         <tr>
+                            <td>{{$customerlist->id}}</td>
                             <td>{{$customerlist->name}}</td>
                             <td>{{$customerlist->email}}</td>
                             <td>{{$customerlist->address}}</td>
-                            <td>{{$customerlist->state}}</td>
-                            <td>{{$customerlist->zipcode}}</td>
+                            {{-- <td>{{$customerlist->state}}</td> --}}
+                            {{-- <td>{{$customerlist->zipcode}}</td> --}}
                             <td>{{$customerlist->phonenumber}}</td>
-                            <td>{{$customerlist->dob}}</td>
-                            <td>{{$customerlist->image}}</td>
+                            <td>{{$customerlist->status}}</td>
+                            {{-- <td>{{$customerlist->dob}}</td> --}}
+                            {{-- <td>{{$customerlist->image}}</td> --}}
                         </tr>
                     @endforeach
                 </table>

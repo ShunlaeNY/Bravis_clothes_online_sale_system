@@ -22,7 +22,7 @@ class AdminCheck
             if (auth('admin')->user()->usertype == 'admin')
             {
                 return redirect()-> route('Dashboard');
-                return $next($request);
+                // return $next($request);
             }
             else
             {
