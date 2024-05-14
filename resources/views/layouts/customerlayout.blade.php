@@ -46,8 +46,8 @@
                         <a href="{{route('Home')}}">Home</a>
                     </div>
                     <div class="women drop_down">
-                        <a href="" >Women</a>
-                        <div class="women_drop_down_content">
+                        <a>Women Fashion</a>
+                        {{-- <div class="women_drop_down_content">
                             <h3>Women Clothing</h3>
                             <div class="women_clothing_list flex_row">
                                 <div class="flex_col">
@@ -58,11 +58,11 @@
                                     <a href="pages/category/women/skirt.html">Women's Skirts</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="men drop_down">
-                        <a href="" >Men</a>
-                        <div class="men_drop_down_content">
+                        <a href="" >Men Fashion</a>
+                        {{-- <div class="men_drop_down_content">
                             <h3>Men Clothing</h3>
                             <div class="men_clothing_list flex_row">
                                 <div class="flex_col">
@@ -72,17 +72,16 @@
                                     <a href="pages/category/men/pant.html">Men’s Pants</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
-                    <div class="contact">
-                        <a href="{{route('ContactUs')}}" >Contact</a>
+                    <div class="Accessories">
+                        <a href="">Accessories</a>
                     </div>
-                    <div class="about_us">
-                        <a href="{{route('AboutUs')}}" >About Us</a>
+                    <div class="sport_wears">
+                        <a href="">Sport Wears</a>
                     </div>
                 </div>
                 <div class="extra_icon flex_row">
-                    <i class="fa-solid fa-magnifying-glass"></i>
                     <div class="add_to_cart_icon">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </div>
@@ -117,18 +116,11 @@
 
     {{-- footer --}}
     <div class="footer grid">
-        <div class="flex_col">
-            <a href="{{route('Home')}}">Home</a>
-        </div>
-        <div class="flex_col">
-            <a href="{{route('AboutUs')}}">About Us</a> 
-        </div>
-        <div class="flex_col">
-            <a href="{{route('ContactUs')}}">Contact Us</a>
-        </div>
-        <div class="flex_col">
-            <a href="">All Products</a>
-        </div>
+        <a href="{{route('Home')}}">Home</a>
+        <a href="{{route('AboutUs')}}">About Us</a> 
+        <a href="{{route('ContactUs')}}">Contact Us</a>
+        <a href="{{route('CustomerSideProductList')}}">All Products</a>
+
     </div>
 
     {{-- scripts --}}

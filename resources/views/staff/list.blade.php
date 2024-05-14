@@ -12,7 +12,11 @@
     <div class="main">
         <div class="session1 flex_row">
             <h3>All Staffs</h3>
-            <a href="{{route('StaffCreate')}}">+ Add Staff</a>
+            @if (auth('admin')->user()->role_id === 1)
+                <a href="{{route('StaffCreate')}}">+ Add Staff</a>
+            {{-- @else --}}
+                {{-- <a href="{{route('StaffCreate')}}" disabled='true'>+ Add Staff</a> --}}
+            @endif
         </div>
         <div class="session2">
             <div class="grid">
@@ -24,33 +28,39 @@
             </div>
         </div>
         <div class="session3">
-            <div style="overflow-x: auto;">
-                <table>
-                    <tr>
-                        <th class="first_title">Name</th>
-                        <th>Email</th>
-                        <th>Address</th>
-                        <th>Phone Number</th>
-                        <th>Position</th>
-                        <th>Profile Photo</th>
-                        <th class="last_title">Action</th>
-                    </tr>
+            <table>
+                <tr>
+                    <th class="first_title">Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Phone Number</th>
+                    <th>Position</th>
+                    <th>Profile Photo</th>
+                    <th class="last_title">Action</th>
+                </tr>
 
-                        @foreach ($stafflists as $stafflist)
-                            <tr>
-                                <td>{{$stafflist->name}}</td>
-                                <td>{{$stafflist->email}}</td>
-                                <td>{{$stafflist->address}}</td>
-                                <td>{{$stafflist->phonenumber}}</td>
-                                <td>{{$stafflist->rolename}}</td>
-                                <td>{{$stafflist->image}}</td>
-                                <td>
+                    @foreach ($stafflists as $stafflist)
+                        <tr>
+                            <td>{{$stafflist->name}}</td>
+                            <td>{{$stafflist->email}}</td>
+                            <td>{{$stafflist->address}}</td>
+                            <td>{{$stafflist->phonenumber}}</td>
+                            <td>{{$stafflist->rolename}}</td>
+                            <td>{{$stafflist->image}}</td>
+                            <td>
+                                @if (auth('admin')->user()->role_id === 1)
                                     <a href="{{url('admin/dashboard/stafflist/edit/'.$stafflist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
                                     <a href="{{url('admin/dashboard/stafflist/delete/'.$stafflist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
-                </table>
+
+                                @else
+                                    <p>-</p>
+                                 @endif
+                            </td>
+                        </tr>
+                    @endforeach
+            </table>
+            <div class="pagination">
+
             </div>
         </div>
     </div>

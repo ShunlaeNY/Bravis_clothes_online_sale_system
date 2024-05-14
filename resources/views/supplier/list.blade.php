@@ -12,7 +12,9 @@
     <div class="main">
         <div class="session1 flex_row">
             <h3>All Suppliers</h3>
-            <a href="{{route('SupplierCreate')}}">+ Add Supplier</a>
+            @if (auth('admin')->user()->role_id === 1)
+                <a href="{{route('SupplierCreate')}}">+ Add Supplier</a>
+            @endif
         </div>
         <div class="session2">
             <div class="grid">
@@ -36,8 +38,12 @@
                                 <td>{{$supplierlist->name}}</td>
                                 <td>{{$supplierlist->brand_name}}</td>
                                 <td>
-                                    <a href="{{url('admin/dashboard/supplierlist/edit/'.$supplierlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <a href="{{url('admin/dashboard/supplierlist/delete/'.$supplierlist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
+                                    @if (auth('admin')->user()->role_id === 1)
+                                        <a href="{{url('admin/dashboard/supplierlist/edit/'.$supplierlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{url('admin/dashboard/supplierlist/delete/'.$supplierlist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
+                                    @else
+                                        <p>-</p>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

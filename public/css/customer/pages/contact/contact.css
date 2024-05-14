@@ -7,9 +7,9 @@
     grid-template-columns: repeat(2,1fr);
 }
 .contact_session .left{
-    padding-top: 100px;
-    padding-right:50px;
-    line-height: 30px;
+    /* padding-top: 100px; */
+    /* padding-right:50px; */
+    line-height: 22px;
 }
 .contact_session .left div{
     font-size: 25px;

@@ -9,7 +9,9 @@
         <div class="main">
             <div class="session1 flex_row">
                 <h3>Category</h3>
-                <a href="{{route('CategoryCreate')}}">+ Add Category</a>
+                @if (auth('admin')->user()->role_id === 1)
+                    <a href="{{route('CategoryCreate')}}">+ Add Category</a>
+                @endif
             </div>
             <div class="session2">
                 <div class="grid">
@@ -37,8 +39,12 @@
                                 <td>{{$categorylist->name}}</td>
                                 <td>{{$categorylist->admin_name}}</td>
                                 <td>
-                                    <a href="{{url('admin/dashboard/categorylist/edit/'.$categorylist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <a href="{{url('admin/dashboard/categorylist/delete/'.$categorylist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
+                                    @if (auth('admin')->user()->role_id === 1)
+                                        <a href="{{url('admin/dashboard/categorylist/edit/'.$categorylist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{url('admin/dashboard/categorylist/delete/'.$categorylist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
+                                    @else
+                                        <p>-</p>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

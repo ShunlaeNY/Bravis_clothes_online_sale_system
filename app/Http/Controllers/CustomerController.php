@@ -64,29 +64,60 @@ class CustomerController extends Controller
     public function show(string $id)
     {
         //
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+    // public function customeredit($id)
+    // {
+    //     //
+    //     $customerdata = Customer::find($id);
+    //     return view('login.customersignup',compact('customerdata'));
+
+    // }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    // public function customerupdate(Request $request){
+    //     //
+    //     $uuid = Str::uuid()->toString();
+    //     $image = $uuid . '.' . $request->image->extension(); //change image name
+    //     $request->image->move(public_path('image/customer/customers_info'), $image);//move img under this dir
+    //     $name = $request->fname . ' '. $request->lname;
+    //     $fname='aaaaa';
+    //     $lname='fffffff';
+    //     // dd($name);
+    //     $customer = new Customer();
+    //     $customer->name = $name;
+    //     $customer->email = $request->email;
+    //     $customer->address = $request->address;
+    //     $customer->dob = $request->dob;
+    //     $customer->joining_date = Carbon::now();
+    //     $customer->phonenumber = $request->phonenumber;
+    //     $customer->state = $request->state;
+    //     $customer->zipcode = $request->zipcode;
+    //     $customer->password = bcrypt($request->password);
+    //     $customer->image = $image;
+    //     $customer->uuid = $uuid;
+    //     $customer->status = 'Active';
+    //     $customer->update();
+    //     return redirect()->route('CustomerList',compact(['fname','lname']))->with('success','Customer Updated Successfully');
+
+    // }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function customerdelete($id)
     {
         //
+        $customerdel = Customer::find($id);
+        $customerdel->status = 'Inactive';
+        $customerdel->update();
+        return redirect()->route('CustomerList')->with('success','Customer Deleted Successfully');
+
     }
 }

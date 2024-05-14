@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,9 +20,9 @@ class AdminController extends Controller
     }
 
     public function index(){
-        // $admin = DB::table('admins')->get();
-        // dd($admin);
-        return view('dashboard');
+        $supplierCount = count(Supplier::where('status' ,'=', 'Active')->get());
+        $userCount = count(Customer::where('status' ,'=', 'Active')->get());
+        return view('dashboard',compact('userCount','supplierCount'));
     }
     /**
      * Display a listing of the resource.

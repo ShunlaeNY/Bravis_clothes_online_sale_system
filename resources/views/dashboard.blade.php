@@ -13,22 +13,22 @@
         <div class="session1 grid">
             <div class="total_earnings">
                 <p>Total Earnings</p>
-                <p>K 45900000</p>
+                <p>K </p>
             </div>
             <div class="total_expenses">
                 <p>Total Expenses</p>
-                <p>K 1520000</p>
+                <p>K </p>
             </div>
             <div class="clients">
                 <p>Clients</p>
-                <p>8925</p>
+                <p>{{$supplierCount}}</p>
             </div>
             <div class="page_visitors">
                 <p>Page Visitors</p>
-                <p>135000</p>
+                <p>{{$userCount}}</p>
             </div>
         </div>
-        <div class="session2 flex_row">
+        {{-- <div class="session2 flex_row">
             <div class=" date flex_row">
                 <div class="today">
                     Today
@@ -44,34 +44,34 @@
                     <i class="fa-solid fa-filter"></i>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="session3 grid">
             <div class="total_order flex_row">
                 <img src="/image/icon/Total Order.svg" alt="">
                 <div>
                     <p>Total Order</p>
-                    <p>500</p>
+                    <p></p>
                 </div>
             </div>
             <div class="order_pending flex_row">
                 <img src="/image/icon/Pending.svg" alt="">
                 <div>
                     <p>Order_pending</p>
-                    <p>125</p>
+                    <p></p>
                 </div>
             </div>
             <div class="order_processing flex_row">
                 <img src="/image/icon/Processing.svg" alt="">
                 <div>
                     <p>Order Processing</p>
-                    <p>65</p>
+                    <p></p>
                 </div>
             </div>
             <div class="order_delivered flex_row">
                 <img src="/image/icon/Delivered.svg" alt="">
                 <div>
                     <p>Order Delivered</p>
-                    <p>310</p>
+                    <p></p>
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
                 
             </div>
         </div>
-        <div class="session5">
+        {{-- <div class="session5">
             <p>Recent Transitions</p>
             <div class="filter_entry flex_row">
                 <div>
@@ -182,7 +182,7 @@
                     </tr>
                 </table>
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection
 

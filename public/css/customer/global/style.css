@@ -4,7 +4,7 @@
 /* color */
 :root{
     --primary-color:#000000;
-    --secondary-color:rgba(226, 234, 252, 0.93);
+    --secondary-color:rgb(226, 234, 252);
     --third-color:#ffffff;
     --fourth_color:#E7E7E7;
     --button_blue_color:#0079FF;
@@ -60,7 +60,7 @@ a:visited{
     display: flex;
     flex-direction: column;
 }
-.button1{
+.follow_us .button1{
     margin: 30px;
     padding: 10px 20px;
     font-size: 20px;
@@ -124,6 +124,9 @@ a:visited{
     align-items: baseline;
     justify-content: space-between;
 }
+.navigation{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+}
 .section1 .nav_bar .logo{
     font-size: 50px;
 }
@@ -170,6 +173,8 @@ a:visited{
     padding: 20px 100px;
     background-color: var(--secondary-color);
     grid-template-columns: repeat(4,1fr);
+    justify-content: space-between;
+    text-align: center;
 }
 .footer div ul{
     line-height: 30px;

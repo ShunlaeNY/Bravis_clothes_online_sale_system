@@ -8,6 +8,19 @@
 @endsection
 
 @section('content')
+    <div class="section1_body flex_row">
+        <div class="image">
+            <img src="{{ asset('image/customer/man-black-sweater-black-bucket-hat-youth-apparel-shoot.png') }}"
+                alt="" >
+        </div>
+        <div class="text">
+            <h1>
+                Express Your Unique Style
+            </h1>
+            <p>Timeless Classics</p>
+            <a href=""><button>Shop Now<i class="fa-solid fa-arrow-right-long"></i></button></a>
+        </div>
+    </div>
     <div class="section2">
         <div class="fast_icons_list flex_row">
             <div class="fast_icons flex_row">
@@ -40,76 +53,19 @@
                 <div class="slider-wrapper">
                     <button id="prev_slide" class="slide-button"><i class="fa-solid fa-chevron-left"></i></button>
                     <div class="card-list grid">
-                        <div class="flex_col">
-                            <img src="images/comfortable-jogger-pants-gray-studio-apparel.jpg" alt="">
-                            <div>
-                                <p>Men’s Gray Jogger Pants</p>
-                                <p>40000MMK</p>
-                            </div>
-                        </div>
-                        <div class="flex_col">
-                            <img src="images/woman-green-hoodie-jacket-winter-apparel-shoot.jpg" alt="">
-                            <div>
-                                <p>Women’s Sweat Shirt</p>
-                                <p>35000MMK</p>
-                            </div>
-                        </div>
-                        <div class="flex_col">
-                            <img src="images/man-wearing-blank-shirt.jpg" alt="">
-                            <div>
-                                <p>Men’s Back Polo Shirt</p>
-                                <p>45000MMK</p>
-                            </div>
-                        </div>
-                        <div class="flex_col">
-                            <img src="images/shirt-3737407_1280.jpg" alt="">
-                            <div>
-                                <p>Men’s Gray Coat</p>
-                                <p>25000MMK</p>
-                            </div>
-                        </div>
-                        <div class="flex_col">
-                            <img src="images/comfortable-jogger-pants-gray-studio-apparel.jpg" alt="">
-                            <div>
-                                <p>Men’s Gray Jogger Pants</p>
-                                <p>40000MMK</p>
-                            </div>
-                        </div>
-                        <div class="flex_col">
-                            <img src="images/comfortable-jogger-pants-gray-studio-apparel.jpg" alt="">
-                            <div>
-                                <p>Men’s Gray Jogger Pants</p>
-                                <p>40000MMK</p>
-                            </div>
-                        </div>
-                        <div class="flex_col">
-                            <img src="images/comfortable-jogger-pants-gray-studio-apparel.jpg" alt="">
-                            <div>
-                                <p>Men’s Gray Jogger Pants</p>
-                                <p>40000MMK</p>
-                            </div>
-                        </div>
-                        <div class="flex_col">
-                            <img src="images/comfortable-jogger-pants-gray-studio-apparel.jpg" alt="">
-                            <div>
-                                <p>Men’s Gray Jogger Pants</p>
-                                <p>40000MMK</p>
-                            </div>
-                        </div>
-                        <div class="flex_col">
-                            <img src="images/comfortable-jogger-pants-gray-studio-apparel.jpg" alt="">
-                            <div>
-                                <p>Men’s Gray Jogger Pants</p>
-                                <p>40000MMK</p>
-                            </div>
-                        </div>
-                        <div class="flex_col">
-                            <img src="images/comfortable-jogger-pants-gray-studio-apparel.jpg" alt="">
-                            <div>
-                                <p>Men’s Gray Jogger Pants</p>
-                                <p>40000MMK</p>
-                            </div>
-                        </div>
+                        
+                            @foreach ($productlists as $productlist)
+                                <a href="{{url('/productdetails/'.$productlist->id)}}">
+                                    <div class="flex_col">
+                                        <img src="{{asset('image/admin/products_info/'.$productlist->image)}}" alt="image of {{$productlist->image}}">
+                                        <div>
+                                            <p>{{$productlist->name}}</p>
+                                            <p>{{$productlist->price}}MMK</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach 
+                        
                     </div>
                     <button id="next_slide" class="slide-button"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
@@ -118,25 +74,23 @@
                         <div class="scrollbar-thumb"></div>
                     </div>
                 </div>
-
-
             </div>
         </div>
         <div class="ready2Wear">
             <h1>Ready To Wear Perfection</h1>
             <div class="ready2Wear_item grid">
-                <div class="men">
+                <a href="" class="men flex_col">
                     Men Clothing
-                </div>
-                <div class="women">
+                </a>
+                <a href="" class="women flex_col">
                     Women Clothing
-                </div>
-                <div class="accessories">
+                </a>
+                <a href="" class="accessories flex_col">
                     Accessories
-                </div>                
-                <div class="sport_wear">
+                </a>                
+                <a href="" class="sport_wear flex_col">
                     Sport Wear
-                </div>
+                </a>
             </div>
         </div>
         <div class="follow_us">
@@ -153,7 +107,7 @@
                     <img src="image/customer/portrait-stylish-lady-sunglasses-wide-brimmed-hat-cool-young-woman-black-jacket-pants-poses-smiles-isolated-background 1.png" alt="">
                 </div>  
             </div>
-            <button class="button1">Follow Us</button>
+            <a href="{{route('ContactUs')}}" class="button1">Follow Us</a>
         </div>
     </div>
 @endsection

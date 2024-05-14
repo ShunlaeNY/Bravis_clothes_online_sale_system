@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="session3">
-            <div style="overflow-x: auto;">
+            <div>
                 <table>
                     <tr>
                         <th class="first_title">ID</th>
@@ -29,6 +29,7 @@
                         <th>Email</th>
                         <th>Address</th>
                         <th>Phone Number</th>
+                        <th>Status</th>
                         <th class="last_title">Action</th>
                     </tr>
 
@@ -44,6 +45,14 @@
                             <td>{{$customerlist->status}}</td>
                             {{-- <td>{{$customerlist->dob}}</td> --}}
                             {{-- <td>{{$customerlist->image}}</td> --}}
+                            <td>
+                                @if (auth('admin')->user()->role_id === 1)
+                                        {{-- <a href="{{url('admin/dashboard/customerlist/edit/'.$customerlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a> --}}
+                                        <a href="{{url('admin/dashboard/customerlist/delete/'.$customerlist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
+                                    @else
+                                        <p>-</p>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </table>

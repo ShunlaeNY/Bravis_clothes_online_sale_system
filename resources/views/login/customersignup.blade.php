@@ -1,3 +1,5 @@
+
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +30,7 @@
                 <br>
                 <label for="email">Email</label>
                 <br>
-                <input type="email" name="email" placeholder="Email" required>
+                <input type="email" name="email" placeholder="Email" required >
                 <br>
                 <label for="phonenumber">Phone Number</label>
                 <br>

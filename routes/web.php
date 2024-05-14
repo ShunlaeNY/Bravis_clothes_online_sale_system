@@ -18,13 +18,18 @@ use App\Http\Controllers\SupplierController;
 Route::get('/admin',[AdminController::class,'adminlogin'])->name('AdminLogin');
 Route::post('/admin/loginprocess',[LoginController::class,'login'])->name('AdminLoginProcess');
 Route::get('/admin/logout',[LoginController::class,'adminlogout'])->name('AdminLogout');
-Route::middleware(['admin'])->group(function(){
+Route::middleware('admin')->group(function(){
     Route::prefix('admin/dashboard')->group(function(){
         Route::get('/',[AdminController::class,'index'])->name('Dashboard');
 
         // product
         Route::get('/productlist',[ProductController::class,'productlist'])->name('ProductList');
         Route::get('/productlist/create',[ProductController::class,'productcreate'])->name('ProductCreate');
+        Route::post('/productlist/create/process',[ProductController::class,'store'])->name('ProductCreateProcess');
+        Route::get('/productlist/edit/{id}',[ProductController::class,'productedit'])->name('ProductEdit');
+        Route::get('/productlist/details/{id}',[ProductController::class,'productdetails'])->name('ProductDetails');
+        Route::patch('/productlist/edit/process',[ProductController::class,'productupdate'])->name('ProductUpdateProcess');
+        Route::get('/productlist/delete/{id}',[ProductController::class,'productdelete'])->name('ProductDelete');
 
         //category
         Route::get('/categorylist',[CategoryController::class,'categorylist'])->name('CategoryList');
@@ -37,6 +42,9 @@ Route::middleware(['admin'])->group(function(){
         // customer
         Route::get('/customerlist',[CustomerController::class,'customerlist'])->name('CustomerList');
         Route::post('/customerlist/register/process',[CustomerController::class,'store'])->name('CustomerRegisterProcess');
+        // Route::get('/customerlist/edit/{id}',[CustomerController::class,'customeredit'])->name('CustomerEdit');
+        // Route::patch('/customerlist/edit/process',[CustomerController::class,'customerupdate'])->name('CustomerUpdateProcess');
+        Route::get('/customerlist/delete/{id}',[CustomerController::class,'customerdelete'])->name('CustomerDelete');
         //order
         Route::get('/orderlist',[OrderController::class,'orderlist'])->name('OrderList');
 
@@ -74,6 +82,8 @@ Route::get('/contact',[CustomerpageController::class,'contact'])->name('ContactU
 Route::get('/policy',[CustomerpageController::class,'policy'])->name('PrivacyPolicy');
 Route::get('/checkout',[CustomerpageController::class,'checkout'])->name('Checkout');
 Route::get('/checkout/successful',[CustomerpageController::class,'successful'])->name('Successful');
+Route::get('/productlist', [ CustomerPageController::class , 'alllist' ])->name('CustomerSideProductList');
+Route::get('/productdetails/{id}',[CustomerpageController::class,'productdetailspage'])->name('ProductDetailsPage');
 
 
 

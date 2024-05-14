@@ -9,7 +9,9 @@
         <div class="main">
             <div class="session1 flex_row">
                 <h3>Products</h3>
-                <a href="{{route('ProductCreate')}}">+ Add Product</a>
+                @if (auth('admin')->user()->role_id === 1)
+                    <a href="{{route('ProductCreate')}}">+ Add Product</a>
+                @endif
             </div>
             <div class="session2">
                 <div class="grid">
@@ -25,187 +27,54 @@
                 </div>
             </div>
             <div class="session3">
-                <div style="overflow-x: auto;">
+                {{-- <div style="overflow-x: auto;"> --}}
                     <table>
                         <tr>
-                            <th class="first_title">Product</th>
+                            <th class="first_title">Product Name</th>
                             <th>Category</th>
+                            <th>Brand</th>
                             <th>Price</th>
-                            <th>Size</th>
+                            <th>Sizes</th>
                             <th class="last_title">Action</th>
                         </tr>
-                        <tr>
-                            <td>
-                                <div class="item_flex_row flex_row">
-                                    <div class="product_img"></div>
-                                    <div>Polo Brown</div>
-                                </div>
-                            </td>
-                            <td>Men Shirt</td>
-                            <td>53,900MMK</td>
-                            <td>
-                                <div class="sizes flex_row">
-                                    <div class="box_green">S - 5/30</div>
-                                    <div class="box_green">M - 15/30</div>
-                                    <div class="box_green">L - 25/30</div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="/pages/product/edit_product.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <i class="fa-regular fa-trash-can"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="item_flex_row flex_row">
-                                    <div class="product_img"></div>
-                                    <div>Polo Brown</div>
-                                </div>
-                            </td>
-                            <td>Men Shirt</td>
-                            <td>53,900MMK</td>
-                            <td>
-                                <div class="sizes flex_row">
-                                    <div class="box_green">S - 5/30</div>
-                                    <div class="box_green">M - 15/30</div>
-                                    <div class="box_green">L - 25/30</div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="/pages/product/edit_product.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <i class="fa-regular fa-trash-can"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="item_flex_row flex_row">
-                                    <div class="product_img"></div>
-                                    <div>Polo Brown</div>
-                                </div>
-                            </td>
-                            <td>Men Shirt</td>
-                            <td>53,900MMK</td>
-                            <td>
-                                <div class="sizes flex_row">
-                                    <div class="box_green">S - 5/30</div>
-                                    <div class="box_green">M - 15/30</div>
-                                    <div class="box_green">L - 25/30</div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="/pages/product/edit_product.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <i class="fa-regular fa-trash-can"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="item_flex_row flex_row">
-                                    <div class="product_img"></div>
-                                    <div>Polo Brown</div>
-                                </div>
-                            </td>
-                            <td>Men Shirt</td>
-                            <td>53,900MMK</td>
-                            <td>
-                                <div class="sizes flex_row">
-                                    <div class="box_green">S - 5/30</div>
-                                    <div class="box_green">M - 15/30</div>
-                                    <div class="box_green">L - 25/30</div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="/pages/product/edit_product.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <i class="fa-regular fa-trash-can"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="item_flex_row flex_row">
-                                    <div class="product_img"></div>
-                                    <div>Polo Brown</div>
-                                </div>
-                            </td>
-                            <td>Men Shirt</td>
-                            <td>53,900MMK</td>
-                            <td>
-                                <div class="sizes flex_row">
-                                    <div class="box_green">S - 5/30</div>
-                                    <div class="box_green">M - 15/30</div>
-                                    <div class="box_green">L - 25/30</div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="/pages/product/edit_product.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <i class="fa-regular fa-trash-can"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="item_flex_row flex_row">
-                                    <div class="product_img"></div>
-                                    <div>Polo Brown</div>
-                                </div>
-                            </td>
-                            <td>Men Shirt</td>
-                            <td>53,900MMK</td>
-                            <td>
-                                <div class="sizes flex_row">
-                                    <div class="box_green">S - 5/30</div>
-                                    <div class="box_green">M - 15/30</div>
-                                    <div class="box_green">L - 25/30</div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="/pages/product/edit_product.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <i class="fa-regular fa-trash-can"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="item_flex_row flex_row">
-                                    <div class="product_img"></div>
-                                    <div>Polo Brown</div>
-                                </div>
-                            </td>
-                            <td>Men Shirt</td>
-                            <td>53,900MMK</td>
-                            <td>
-                                <div class="sizes flex_row">
-                                    <div class="box_green">S - 5/30</div>
-                                    <div class="box_green">M - 15/30</div>
-                                    <div class="box_green">L - 25/30</div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="/pages/product/edit_product.html"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <i class="fa-regular fa-trash-can"></i>
-                            </td>
-                        </tr>
-    
+                        @foreach ($productlists as $productlist)
+                            <tr>
+                                <td>
+                                    <div class="flex_row product_image">
+                                        <img src="{{asset('image/admin/products_info/'.$productlist->image)}}" alt="photo of {{$productlist->name}}" width="35px" height="35px">
+                                        <p>{{$productlist->name}}</p>
+                                    </div>
+                                </td>
+                                <td>{{$productlist->categoryname}}</td>
+                                <td>{{$productlist->brand}}</td>
+                                <td>{{$productlist->price}}</td>
+                                <td>
+                                    <div class="flex_row sizes">
+                                        <div class="qty_box">
+                                            <p>S-{{$productlist->small_qty}}/{{$productlist->small_qty+$productlist->medium_qty+$productlist->large_qty}}</p>
+                                        </div>
+                                        <div class="qty_box">
+                                            <p>M-{{$productlist->medium_qty}}/{{$productlist->small_qty+$productlist->medium_qty+$productlist->large_qty}}</p>
+                                        </div>
+                                        <div class="qty_box">
+                                            <p>L-{{$productlist->large_qty}}/{{$productlist->small_qty+$productlist->medium_qty+$productlist->large_qty}}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="{{url('admin/dashboard/productlist/details/'.$productlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-circle-info"></i></a>
+                                    @if (auth('admin')->user()->role_id === 1)
+                                        <a href="{{url('admin/dashboard/productlist/edit/'.$productlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{url('admin/dashboard/productlist/delete/'.$productlist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
+                                    @endif
+                                    
+                                </td>
+                            </tr>
+                        @endforeach
                         
-                        <!-- last -->
-                        <tr>
-                            <td colspan="2" class="last_row_left">
-                                <div class="page_info">
-                                    Showing 1-7 of 50
-                                </div>
-                            </td>
-                            <td colspan="3" class="last_row_right">
-                                <div class="pagination">
-                                    <a href="#">&laquo;</a>
-                                    <a class="active" href="#">1</a>
-                                    <a href="#">2</a>
-                                    <a href="#">3</a>
-                                    <a href="#">4</a>
-                                    <a href="#">5</a>
-                                    <a href="#">6</a>
-                                    <a href="#">7</a>
-                                    <a href="#">&raquo;</a>
-                                </div>
-                            </td>
-                        </tr>
+    
                     </table>
-                </div>
+                {{-- </div> --}}
 
             </div>
         </div>

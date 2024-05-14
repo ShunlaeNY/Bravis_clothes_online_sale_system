@@ -40,7 +40,29 @@
 .reset_button{
     background-color: var(--text-title-gray-color);
 }
-  
+.sizes{
+    justify-content: center;
+}
+.product_image{
+    align-items: center;
+    padding: 5px 0px 5px 20px;
+}
+.qty_box
+{
+    border: 1px solid #6DD4B1;
+    background-color: #6DD4B1;
+    color: var(--secondary-color);
+    padding:  3px 10px;
+    border-radius: 20px;
+}
+.qty_box p{
+    margin: 0;
+    padding: 0;
+}
+.product_details tr{
+    background-color: #fff;
+    text-align: left;
+}
 @media (max-width:1000px) and (min-width:768px){
     .main .session2 .grid{
         grid-template-columns: repeat(3,1fr);
@@ -63,7 +85,7 @@
     .main .session3 table .sizes {
         gap: 5px;
     }
-    .box_green{
+    .qty_box p{
         font-size: 10px;
     }
 }

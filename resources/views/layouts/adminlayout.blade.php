@@ -8,7 +8,6 @@
     @yield('css')
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
@@ -66,8 +65,7 @@
                 {{-- <img src="/image/icon/msg.svg" alt=""> --}}
             </div>
             <div class="user_profile">
-                <img src="{{auth('admin')->user()->image}}" alt="image of {{auth('admin')->user()->name}}">
-                
+                <img src="{{asset('image/admin/staffs_info/'.auth('admin')->user()->image)}}" alt="image of {{auth('admin')->user()->name}}" width="60" height="60" style="border-radius: 50%">
             </div>     
         </div>
         <!-- user Profile Info -->
@@ -78,6 +76,18 @@
 
         {{-- main --}}
         @yield('main')
+
+        {{-- pop up model
+        <div class="pop_up_model_box">
+            <div>@yield('model name')</div>
+            <div class="pop_up_content">
+                @yield('model content')
+            </div>
+            <div class="flex_row">
+                <a href="@yield('no')">No</a>
+                <a href="@yield('yes')">Yes</a>
+            </div>
+        </div> --}}
         
     </div>
 

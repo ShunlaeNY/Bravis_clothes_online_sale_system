@@ -86,6 +86,12 @@
     align-items: center;
     text-align: center;
 }
+.section2 .ready2Wear .ready2Wear_item .flex_col{
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
 .section2 .ready2Wear .ready2Wear_item .men{
     grid-row: span 2;
     background-image: url(../../image/customer/portrait-young-handsome-male.jpg);

@@ -15,6 +15,7 @@ body{
     border: none;
 }
 .intro_session{
+    background-image: url(/public/image/customer/10.jpg);
     background-position: center;
     background-repeat: no-repeat;
     height: 500px;
