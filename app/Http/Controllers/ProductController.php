@@ -27,7 +27,8 @@ class ProductController extends Controller
                         ->join('suppliers','suppliers.id','=','products.supplier_id')
                         ->select('products.*','categories.name as categoryname','admins.name as adminname','suppliers.name as suppliername','suppliers.brand_name as brand')
                         ->where('products.status','=','Active')
-                        ->get();
+                        ->paginate(5);
+                        // ->get();
         return view('product.list',compact('productlists'));
 
     }
@@ -89,7 +90,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function productedit($id)
     {
         //
         $categories = DB::table('categories')
@@ -117,9 +118,9 @@ class ProductController extends Controller
         $productupdate->supplier_id = $request->supplier_id;
         $productupdate->gender = $request->gender;
         $productupdate->price = $request->price;
-        $productupdate->small_qty = $request->small_qty;
-        $productupdate->medium_qty = $request->medium_qty;
-        $productupdate->large_qty = $request->large_qty;
+        $productupdate->small_qty = $request->small;
+        $productupdate->medium_qty = $request->medium;
+        $productupdate->large_qty = $request->large;
         $productupdate->uuid =$uuid;
         $productupdate->status = "Active";
         if($request->image == null){

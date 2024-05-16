@@ -3,7 +3,7 @@
     grid-template-columns: repeat(2,1fr);
     justify-content: center;
     align-items: center;
-    text-align: center;
+    text-align: center;height: 100vh;
 }
 .text>p,.text form p >a{
     color: var(--button_blue_color);
@@ -38,7 +38,55 @@
 .container .text form .login_button:hover{
     color: var(--button_blue_color);
 }
-.image img{
+.image{
     width: 100%;
     height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-image: url(/image/customer/Background-image.png);
+}
+@media (max-width:1200px) and (min-width:768px){
+    .container{
+        grid-template-columns: 1fr;
+    }
+    .container .image{
+        display: none;
+    }
+    .container .text{
+        width: 100%;
+        height: 100vh;
+        background-position: center;
+        background-size: cover;
+        background-image: url(/image/customer/Background-image.png);
+    }
+    .container .text .text_white{
+        color: white;
+        text-shadow: 1px 1px 2px grey, 0 0 1em black, 0 0 0.2em black;
+    }
+}
+@media (max-width:767px) and (min-width:320px){
+    .container{
+        grid-template-columns: 1fr;
+    }
+    .container .image{
+        display: none;
+    }
+    .container .text{
+        width: 100%;
+        height: 100vh;
+        background-position: center;
+        background-size: cover;
+        background-image: url(/image/customer/Background-image.png);
+    }
+    .container .text .text_white{
+        color: white;
+        text-shadow: 1px 1px 2px grey, 0 0 1em black, 0 0 0.2em black;
+    }
+    .text form{
+        background-color: rgba(255, 255, 255, 0.679);
+        padding: 20px 0px;
+        width: 100%;
+        height: auto;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    }
 }

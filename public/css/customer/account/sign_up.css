@@ -8,7 +8,7 @@ body{
     justify-content: center;
 }
 .container .flex_row form{
-    width: 800px;
+    width: 700px;
     padding: 50px;
     background-color: var(--third-color);
     margin: 50px 0px;
@@ -78,4 +78,49 @@ color: var(--third-color);
 }
 .container .flex_row form .sign_up a:hover{
     color: var(--button_blue_color);
+}
+@media (max-width:1200px) and (min-width:768px){
+    .container .flex_row form{
+        width: 100%;
+        padding: 50px;
+        margin: 30px 50px;
+        background-color: var(--third-color);
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    
+    }
+}
+@media (max-width:767px) and (min-width:320px){
+    .container .flex_row form{
+        width: 100%;
+        padding: 30px;
+        margin: 30px 30px;
+        background-color: var(--third-color);
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    
+    }
+    .container .flex_row form .flex_row {
+        flex-direction: column;
+        gap: 0px;
+    }
+    .container .flex_row form input, .container .flex_row form .flex_row div input, .container .flex_row form .flex_row div select {
+        width: 100%;
+        height: 30px;
+        font-size: 12px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 5px 0px;
+        border-radius: 8px;
+        border: none;
+        background-color: var(--fourth_color);
+    }
+    .password_container i {
+        position: absolute;
+        right: 15px;
+        top: 14px;
+    }
+    .sign_up .button2{
+        font-size: 13px;
+    }
 }

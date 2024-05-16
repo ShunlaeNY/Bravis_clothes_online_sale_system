@@ -36,7 +36,7 @@
                     @foreach ($customerlists as $customerlist)
                         <tr>
                             <td>{{$customerlist->id}}</td>
-                            <td>{{$customerlist->name}}</td>
+                            <td>{{$customerlist->fname}} {{$customerlist->lname}}</td>
                             <td>{{$customerlist->email}}</td>
                             <td>{{$customerlist->address}}</td>
                             {{-- <td>{{$customerlist->state}}</td> --}}
@@ -47,10 +47,10 @@
                             {{-- <td>{{$customerlist->image}}</td> --}}
                             <td>
                                 @if (auth('admin')->user()->role_id === 1)
-                                        {{-- <a href="{{url('admin/dashboard/customerlist/edit/'.$customerlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a> --}}
+                                        <a href="{{url('admin/dashboard/customerlist/edit/'.$customerlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <a href="{{url('admin/dashboard/customerlist/delete/'.$customerlist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
                                     @else
-                                        <p>-</p>
+                                        <a href="{{url('admin/dashboard/customerlist/delete/'.$customerlist->id)}}" class="btn edit-btn disable_btn"><i class="fa-regular fa-trash-can"></i></a>
                                 @endif
                             </td>
                         </tr>
@@ -58,5 +58,77 @@
                 </table>
             </div>
         </div>
+        {{-- <div class="session4">
+            <div>
+                <table>
+                    <tr>
+                        <th class="first_title">ID</th>
+                        <th>Customer's Name</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Phone Number</th>
+                        <th>Status</th>
+                        <th class="last_title">Action</th>
+                    </tr>
+
+                    @foreach ($customerlists as $customerlist)
+                        <tr>
+                            <td>{{$customerlist->id}}</td>
+                            <td>{{$customerlist->fname}} {{$customerlist->lname}}</td>
+                            <td>{{$customerlist->email}}</td>
+                            <td>{{$customerlist->address}}</td>
+                           
+                            <td>{{$customerlist->phonenumber}}</td>
+                            <td>{{$customerlist->status}}</td>
+                            
+                            <td>
+                                @if (auth('admin')->user()->role_id === 1)
+                                        <a href="{{url('admin/dashboard/customerlist/edit/'.$customerlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{url('admin/dashboard/customerlist/delete/'.$customerlist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
+                                    @else
+                                        <a href="{{url('admin/dashboard/customerlist/delete/'.$customerlist->id)}}" class="btn edit-btn disable_btn"><i class="fa-regular fa-trash-can"></i></a>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
+        </div>
+        <div class="session5">
+            <div>
+                <table>
+                    <tr>
+                        <th class="first_title">ID</th>
+                        <th>Customer's Name</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Phone Number</th>
+                        <th>Status</th>
+                        <th class="last_title">Action</th>
+                    </tr>
+
+                    @foreach ($customerlists as $customerlist)
+                        <tr>
+                            <td>{{$customerlist->id}}</td>
+                            <td>{{$customerlist->fname}} {{$customerlist->lname}}</td>
+                            <td>{{$customerlist->email}}</td>
+                            <td>{{$customerlist->address}}</td>
+                           
+                            <td>{{$customerlist->phonenumber}}</td>
+                            <td>{{$customerlist->status}}</td>
+                       
+                            <td>
+                                @if (auth('admin')->user()->role_id === 1)
+                                        <a href="{{url('admin/dashboard/customerlist/edit/'.$customerlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{url('admin/dashboard/customerlist/delete/'.$customerlist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
+                                    @else
+                                        <a href="{{url('admin/dashboard/customerlist/delete/'.$customerlist->id)}}" class="btn edit-btn disable_btn"><i class="fa-regular fa-trash-can"></i></a>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
+        </div>  --}}
     </div>
 @endsection

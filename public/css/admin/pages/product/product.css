@@ -63,15 +63,33 @@
     background-color: #fff;
     text-align: left;
 }
-@media (max-width:1000px) and (min-width:768px){
+.session4,.session5{
+    display: none;
+    width: 100%;
+
+}
+.session4 table tr td{
+    font-size:12px;
+    text-align: left;
+}
+.session4 table tr td a,.session5 table tr td a{
+    font-size:10px;
+    padding: 0px !important;
+
+}
+
+@media (max-width:1300px) and (min-width:768px){
     .main .session2 .grid{
         grid-template-columns: repeat(3,1fr);
     }
-    .main .session3{
-        font-size: 14px;
+    .session3{
+        display: none;
     }
-    .main .session3 table .sizes {
-        gap: 5px;
+    .session4{
+        display: inline-block;
+    }
+    .session5{
+        display: none;
     }
 }
 
@@ -79,13 +97,20 @@
     .main .session2 .grid{
         grid-template-columns: 1fr;
     }
-    .main .session3{
-        font-size: 10px;
+    .session3{
+        display: none;
     }
-    .main .session3 table .sizes {
-        gap: 5px;
+    .session4{
+        display: none;
     }
-    .qty_box p{
-        font-size: 10px;
+    .session5{
+        display: inline-block;
+    }
+    .session5 table tr th{
+        font-size:13px;
+    }
+    .session5 table tr td{
+        font-size:12px;
+        text-align: left;
     }
 }

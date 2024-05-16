@@ -1,5 +1,4 @@
 
-@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +19,7 @@
                 <label for="name">Full Name</label>
                 <br>
                 <div class="flex_row">
-                    <input type="text" name="fname" id="fname" placeholder="First Name" required>
+                    <input type="text" name="fname" id="fname" placeholder="First Name" required >
                     <input type="text" name="lname" id="lname" placeholder="Last Name" required>
                 </div>
                 <br>
@@ -34,11 +33,11 @@
                 <br>
                 <label for="phonenumber">Phone Number</label>
                 <br>
-                <input type="text" name="phonenumber" placeholder="phonenumber" required>
+                <input type="text" name="phonenumber" placeholder="phonenumber" required >
                 <br>
                 <label for="password">Password</label>
                 <br>
-                <p>Tip: Use upper case, lower case and numbers</p>
+                <small>Tip: Use upper case, lower case and numbers</small>
                 <div class="password_container">
                     <input type="password" id="password" name="password" placeholder="Password" required>
                     <i class="fa-solid fa-eye-slash hide_password"></i>
@@ -49,7 +48,8 @@
                 <br>
                 <textarea name="address" id="address" cols="30" rows="10"></textarea><br>
                 <div class="flex_row">
-                    <input type="text" name="state" placeholder="State/Region"><input type="text" name="zipcode" placeholder="Zip Code (Eg. 1111)">
+                    <input type="text" name="state" placeholder="State/Region">
+                    <input type="text" name="zipcode" placeholder="Zip Code (Eg. 1111)">
                 </div>
                 <label for="image">Upload Photo</label>
                 <br>

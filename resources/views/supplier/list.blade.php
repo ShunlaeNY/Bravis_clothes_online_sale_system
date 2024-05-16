@@ -14,6 +14,8 @@
             <h3>All Suppliers</h3>
             @if (auth('admin')->user()->role_id === 1)
                 <a href="{{route('SupplierCreate')}}">+ Add Supplier</a>
+            @else
+                <a href="{{route('SupplierCreate')}}" class="disable_btn">+ Add Supplier</a>
             @endif
         </div>
         <div class="session2">
@@ -42,7 +44,8 @@
                                         <a href="{{url('admin/dashboard/supplierlist/edit/'.$supplierlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <a href="{{url('admin/dashboard/supplierlist/delete/'.$supplierlist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
                                     @else
-                                        <p>-</p>
+                                        <a href="{{url('admin/dashboard/supplierlist/edit/'.$supplierlist->id)}}" class="btn edit-btn disable_btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{url('admin/dashboard/supplierlist/delete/'.$supplierlist->id)}}" class="btn edit-btn disable_btn"><i class="fa-regular fa-trash-can"></i></a>
                                     @endif
                                 </td>
                             </tr>

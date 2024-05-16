@@ -66,7 +66,7 @@
     padding: 0px 10px;
 }
 .session3{
-    /* padding: 20px 0px; */
+    padding: 20px 0px;
     grid-template-columns: repeat(4,1fr);
     gap: 10px;
 }
@@ -87,7 +87,7 @@
     font-weight: bold;
 }
 .session4{
-    margin: 20px 0px;
+    margin: 0px 0px 20px 0px;
     gap: 10px;
 }
 .session4 .flex_col{

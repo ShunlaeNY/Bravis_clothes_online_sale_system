@@ -1,37 +1,31 @@
-@extends('layouts.customerlayout')
-
-@section('style')
-
-    <link rel="stylesheet" href="{{ asset('css/customer/pages/category/category_sort.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/customer/pages/category/men/men_tee.css') }}">
+@extends('layouts.masterproduct')
+@section('categoryname')
+    @if ($categoryname == null)
+        All products
+    @else
+        {{$categoryname}}
+    @endif
 @endsection
 
-@section('content')
-    <div class="intro_session flex_row">
-        Men's Tees
-    </div>
-    <div class="filter">
-        <div class="link">
-            <a href="/index.html">Home</a>/
-            <a href="../men/tee.html">Tees</a>
-        </div>
-        <div class="flex_row">
-            <div class="search">
-                <input type="text" class="input" placeholder="Search...">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <div class="sort_by flex_row">
+@section('category_link')
+    @if ($categoryname == null)
+        <a href="{{route('CustomerSideProductList')}}">All Products</a>
+    @else
+        <a href="{{route('CustomerSideProductList')}}">{{$categoryname}}</a>
+    @endif
+@endsection
+@section('product_list')
+    <div class="men_tee_list grid">
+        @foreach ($products as $product)
+            <a href=" {{ route('ProductDetailsPage' , $product->id ) }} ">
                 <div>
-                    <span>Sort By:</span>
-                    <select name="" id="" class="input">
-                    <option value="low_to_high_price">Price, Low Price to High</option>
-                    <option value="high_to_low_price">Price, High Price to Low</option>
-                </select>
+                    <img src=" {{asset('image/admin/products_info/'.$product->image)}} " alt="">
+                    <p><b>{{ $product->name }}</b></p>
+                    <p>Gender : {{ $product->gender }} </p>
+                    <p>Category : {{ $product->categoryname }} </p>
+                    <p>Price :  {{ number_format(floatval($product->price)) }} MMK </p>
                 </div>
-                <!-- <img src=".././images/icons/icons8-sort-down-30.png" alt=""> -->
-            </div>
-            
-
-        </div>
+            </a>
+        @endforeach
     </div>
 @endsection

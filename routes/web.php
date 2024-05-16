@@ -17,8 +17,9 @@ use App\Http\Controllers\SupplierController;
 //admin panel
 Route::get('/admin',[AdminController::class,'adminlogin'])->name('AdminLogin');
 Route::post('/admin/loginprocess',[LoginController::class,'login'])->name('AdminLoginProcess');
-Route::get('/admin/logout',[LoginController::class,'adminlogout'])->name('AdminLogout');
 Route::middleware('admin')->group(function(){
+
+    Route::get('/admin/logout',[LoginController::class,'adminlogout'])->name('AdminLogout');
     Route::prefix('admin/dashboard')->group(function(){
         Route::get('/',[AdminController::class,'index'])->name('Dashboard');
 
@@ -42,8 +43,8 @@ Route::middleware('admin')->group(function(){
         // customer
         Route::get('/customerlist',[CustomerController::class,'customerlist'])->name('CustomerList');
         Route::post('/customerlist/register/process',[CustomerController::class,'store'])->name('CustomerRegisterProcess');
-        // Route::get('/customerlist/edit/{id}',[CustomerController::class,'customeredit'])->name('CustomerEdit');
-        // Route::patch('/customerlist/edit/process',[CustomerController::class,'customerupdate'])->name('CustomerUpdateProcess');
+        Route::get('/customerlist/edit/{id}',[CustomerController::class,'customeredit'])->name('CustomerEdit');
+        Route::post('/customerlist/edit/process',[CustomerController::class,'customerupdate'])->name('CustomerUpdateProcess');
         Route::get('/customerlist/delete/{id}',[CustomerController::class,'customerdelete'])->name('CustomerDelete');
         //order
         Route::get('/orderlist',[OrderController::class,'orderlist'])->name('OrderList');

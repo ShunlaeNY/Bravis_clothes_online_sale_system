@@ -62,7 +62,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function categoryedit(string $id)
+    public function categoryedit($id)
     {
         //
         $categorydata = Category::find($id);

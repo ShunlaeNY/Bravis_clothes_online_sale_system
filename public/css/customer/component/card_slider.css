@@ -31,7 +31,7 @@
     right: 10px;
 }
 .slider-wrapper .card-list{
-    gap: 20px;
+    gap: 30px;
     overflow-y: hidden;
     overflow-x: auto;
     scrollbar-width: none;
@@ -42,7 +42,7 @@
     display: none;
 }
 .slider-wrapper .card-list .flex_col{
-    width: 250px;
+    /* width: 250px; */
     height:auto;
     object-fit: cover;
 }

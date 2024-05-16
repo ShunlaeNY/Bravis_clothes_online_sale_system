@@ -14,8 +14,8 @@
             <h3>All Staffs</h3>
             @if (auth('admin')->user()->role_id === 1)
                 <a href="{{route('StaffCreate')}}">+ Add Staff</a>
-            {{-- @else --}}
-                {{-- <a href="{{route('StaffCreate')}}" disabled='true'>+ Add Staff</a> --}}
+            @else 
+                 <a href="{{route('StaffCreate')}}" class="disable_btn" >+ Add Staff</a>
             @endif
         </div>
         <div class="session2">
@@ -53,7 +53,8 @@
                                     <a href="{{url('admin/dashboard/stafflist/delete/'.$stafflist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
 
                                 @else
-                                    <p>-</p>
+                                    <a href="{{url('admin/dashboard/stafflist/edit/'.$stafflist->id)}}" class="btn edit-btn disable_btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="{{url('admin/dashboard/stafflist/delete/'.$stafflist->id)}}" class="btn edit-btn disable_btn"><i class="fa-regular fa-trash-can"></i></a>
                                  @endif
                             </td>
                         </tr>

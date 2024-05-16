@@ -42,7 +42,8 @@ class CustomerController extends Controller
         $name = $request->fname . ' '. $request->lname;
         // dd($name);
         $customer = new Customer();
-        $customer->name = $name;
+        $customer->fname = $request->fname;
+        $customer->lname = $request->lname;
         $customer->email = $request->email;
         $customer->address = $request->address;
         $customer->dob = $request->dob;
@@ -70,43 +71,40 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    // public function customeredit($id)
-    // {
-    //     //
-    //     $customerdata = Customer::find($id);
-    //     return view('login.customersignup',compact('customerdata'));
+    public function customeredit($id)
+    {
+        //
+        $customerdata = Customer::find($id);
+        // dd($customerdata);
+        return view('customer.update',compact('customerdata'));
 
-    // }
+    }
 
     /**
      * Update the specified resource in storage.
      */
-    // public function customerupdate(Request $request){
-    //     //
-    //     $uuid = Str::uuid()->toString();
-    //     $image = $uuid . '.' . $request->image->extension(); //change image name
-    //     $request->image->move(public_path('image/customer/customers_info'), $image);//move img under this dir
-    //     $name = $request->fname . ' '. $request->lname;
-    //     $fname='aaaaa';
-    //     $lname='fffffff';
-    //     // dd($name);
-    //     $customer = new Customer();
-    //     $customer->name = $name;
-    //     $customer->email = $request->email;
-    //     $customer->address = $request->address;
-    //     $customer->dob = $request->dob;
-    //     $customer->joining_date = Carbon::now();
-    //     $customer->phonenumber = $request->phonenumber;
-    //     $customer->state = $request->state;
-    //     $customer->zipcode = $request->zipcode;
-    //     $customer->password = bcrypt($request->password);
-    //     $customer->image = $image;
-    //     $customer->uuid = $uuid;
-    //     $customer->status = 'Active';
-    //     $customer->update();
-    //     return redirect()->route('CustomerList',compact(['fname','lname']))->with('success','Customer Updated Successfully');
+    public function customerupdate(Request $request){
+        //
+        // dd($request);
+        $uuid = Str::uuid()->toString(); //uuid to string
+        $customerupdate = Customer::find($request->id);
+        // $customerupdate->fname = $request->fname;
+        // $customerupdate->lname = $request->lname;
+        // $customerupdate->email = $request->email;
+        // $customerupdate->uuid = $request->$uuid;
+        $customerupdate->status = $request->status;
+        if($request->password == null || $customerupdate->fname == null || $customerupdate->lname == null){
+            
+            $customerupdate->update();
+        }
+        else{
+            $customerupdate->password = bcrypt($request->password);
+            $customerupdate->update();
+        }
 
-    // }
+        return redirect()->route('CustomerList')->with('success','Customer Updated Successfully');
+
+    }
 
     /**
      * Remove the specified resource from storage.

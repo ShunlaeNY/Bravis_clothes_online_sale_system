@@ -17,19 +17,19 @@
         <div class="navigation flex_col">
             <div class="flash_sale_bar flex_row">
                 <div class="flash_sale">
-                    Flash Sales : Sign in and Get Extra  25%  off on Selected Items
+                    "Find your fashion flair with Bravis's handpicked collection of stylish essentials and statement pieces."
                 </div>
                 <div>
-                    Welcome
+                    Welcome!
                     @if ( auth('customer')->user() != null)
-                        {{auth('customer')->user()->name}}!
+                        {{auth('customer')->user()->fname}} &#128512; |
                     @else
-                        Guest!
+                        Guest &#128512; |
                     @endif
                 </div>
                 <div class="link">
-                    <a href="">FAQ</a>|
-                    <a href="">orders and returns</a>|
+                    {{-- <a href="">FAQ</a>|
+                    <a href="">orders and returns</a>| --}}
                     @if (auth('customer')->user() != null)
                         <a href="{{route('CustomerLogout')}}">Log Out</a>
                     @else
@@ -46,39 +46,16 @@
                         <a href="{{route('Home')}}">Home</a>
                     </div>
                     <div class="women drop_down">
-                        <a>Women Fashion</a>
-                        {{-- <div class="women_drop_down_content">
-                            <h3>Women Clothing</h3>
-                            <div class="women_clothing_list flex_row">
-                                <div class="flex_col">
-                                    <a href="pages/category/women/dress.html">Women's Dresses</a>
-                                    <a href="pages/category/women/blouse.html">Women's Tops, Tees & Blouses</a>
-                                    <a href="pages/category/women/hoodie.html">Women's Fashion Hoodies & Sweat shirts</a>
-                                    <a href="pages/category/women/pant.html">Women's Pants</a>
-                                    <a href="pages/category/women/skirt.html">Women's Skirts</a>
-                                </div>
-                            </div>
-                        </div> --}}
+                        <a href="{{ route('CustomerSideProductList', ['category' => 'Women Fashion']) }}">Women Fashion</a>
                     </div>
                     <div class="men drop_down">
-                        <a href="" >Men Fashion</a>
-                        {{-- <div class="men_drop_down_content">
-                            <h3>Men Clothing</h3>
-                            <div class="men_clothing_list flex_row">
-                                <div class="flex_col">
-                                    <a href="pages/category/men/tee.html">Men's Tee</a>
-                                    <a href="pages/category/men/men_t_shirt.html">Men's T-Shirts</a>
-                                    <a href="pages/category/men/hoodie.html">Men's Hoodies & Sweat Shirts</a>
-                                    <a href="pages/category/men/pant.html">Men’s Pants</a>
-                                </div>
-                            </div>
-                        </div> --}}
+                        <a href="{{ route('CustomerSideProductList', ['category' => 'Men Fashion']) }}" >Men Fashion</a>
                     </div>
                     <div class="Accessories">
-                        <a href="">Accessories</a>
+                        <a href="{{ route('CustomerSideProductList', ['category' => 'Accessories']) }}">Accessories</a>
                     </div>
                     <div class="sport_wears">
-                        <a href="">Sport Wears</a>
+                        <a href="{{ route('CustomerSideProductList', ['category' => 'Sport Wears']) }}">Sport Wears</a>
                     </div>
                 </div>
                 <div class="extra_icon flex_row">

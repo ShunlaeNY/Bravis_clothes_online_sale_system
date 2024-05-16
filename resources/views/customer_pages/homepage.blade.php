@@ -14,13 +14,82 @@
                 alt="" >
         </div>
         <div class="text">
-            <h1>
+            <h1 class="text_title">
                 Express Your Unique Style
             </h1>
             <p>Timeless Classics</p>
-            <a href=""><button>Shop Now<i class="fa-solid fa-arrow-right-long"></i></button></a>
+            <a href="{{route('CustomerSideProductList')}}"><button>Shop Now<i class="fa-solid fa-arrow-right-long"></i></button></a>
         </div>
     </div>
+
+    {{-- cart --}}
+    {{-- @if (session()->has('cartdata'))
+        <div class="shopping_cart_box">
+            <form action="" method="get" class="form">
+                <div class="flex_row">
+                    <h1>Cart</h1>
+                    <i class="fa-regular fa-circle-xmark close_button"></i>
+                </div>
+                <hr>
+                @php
+                    $arr = [];
+                @endphp
+                <div class="item-container">
+                    @forelse ($cartarray as $cartdata)
+                        <div class="tee1_pick flex_row">
+                            @foreach ($productlists as $item)
+                            <div class="image">
+                                <img src="{{asset('image/admin/products_info/'.$item->image)}}" alt="">
+                            </div>
+                            <div class="pick_detail">
+                                <p>{{$item->name}}</p>
+                                <p>{{$item->price}}MMK per one</p>
+                                <div class="add_or_remove_quantity grid">
+                                    <div class="minus">
+                                        <a href="">-</a>
+                                    </div>
+                                    <div class="number">
+                                        {{$data['quantity']}}
+                                    </div>
+                                    <div class="plus">
+                                        <a href="">+</a>
+                                    </div>
+                                </div>
+                                <div class="remove_button">
+                                    <a href="" class="remove_button">
+                                        Remove
+                                    </a>
+                                </div>
+                            </div>
+                            <p>Total -{{$item->price * $data['quantity']}} MMK</p>
+                            @endforeach
+                            <?php
+                                array_push($arr,{{$item->price * $data['quantity']}});
+                            ?>
+                        </div>
+                    @empty   
+                    @endforelse
+
+                    @php
+                        $totalItemPrice = array_reduce($arr, function ($x, $y) {
+                            return $x + $y;
+                        }, 0); // 0 is the initial value
+                    @endphp
+                    <div class="totalItemPrice">
+                        <p>Total Item Price - {{$totalItemPrice}} MMK</p>
+                        <input type="hidden" name="total_price" value="{{$totalItemPrice}}">
+                        <input type="hidden" name="total_items" value="{{count($cartarray)}}">
+                    </div>
+                    <div class="checkout">
+                        <button type="submit" class="button2 checkout_button">Check out</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    @else 
+    @endif --}}
+    {{-- end of cart --}}
+
     <div class="section2">
         <div class="fast_icons_list flex_row">
             <div class="fast_icons flex_row">
@@ -53,10 +122,9 @@
                 <div class="slider-wrapper">
                     <button id="prev_slide" class="slide-button"><i class="fa-solid fa-chevron-left"></i></button>
                     <div class="card-list grid">
-                        
                             @foreach ($productlists as $productlist)
                                 <a href="{{url('/productdetails/'.$productlist->id)}}">
-                                    <div class="flex_col">
+                                    <div class="flex_col card-list-items">
                                         <img src="{{asset('image/admin/products_info/'.$productlist->image)}}" alt="image of {{$productlist->image}}">
                                         <div>
                                             <p>{{$productlist->name}}</p>
@@ -65,7 +133,6 @@
                                     </div>
                                 </a>
                             @endforeach 
-                        
                     </div>
                     <button id="next_slide" class="slide-button"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
@@ -79,16 +146,16 @@
         <div class="ready2Wear">
             <h1>Ready To Wear Perfection</h1>
             <div class="ready2Wear_item grid">
-                <a href="" class="men flex_col">
+                <a href="{{route('CustomerSideProductList', ['category' => 'Men Fashion']) }}" class="men flex_col">
                     Men Clothing
                 </a>
-                <a href="" class="women flex_col">
+                <a href="{{ route('CustomerSideProductList', ['category' => 'Women Fashion']) }}" class="women flex_col">
                     Women Clothing
                 </a>
-                <a href="" class="accessories flex_col">
+                <a href="{{ route('CustomerSideProductList', ['category' => 'Accessories']) }}" class="accessories flex_col">
                     Accessories
                 </a>                
-                <a href="" class="sport_wear flex_col">
+                <a href="{{ route('CustomerSideProductList', ['category' => 'Sport Wears']) }}" class="sport_wear flex_col">
                     Sport Wear
                 </a>
             </div>

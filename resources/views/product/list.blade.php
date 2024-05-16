@@ -11,6 +11,8 @@
                 <h3>Products</h3>
                 @if (auth('admin')->user()->role_id === 1)
                     <a href="{{route('ProductCreate')}}">+ Add Product</a>
+                @else
+                    <a href="{{route('ProductCreate')}}" class="disable_btn">+ Add Product</a>
                 @endif
             </div>
             <div class="session2">
@@ -27,8 +29,7 @@
                 </div>
             </div>
             <div class="session3">
-                {{-- <div style="overflow-x: auto;"> --}}
-                    <table>
+                <table>
                         <tr>
                             <th class="first_title">Product Name</th>
                             <th>Category</th>
@@ -66,6 +67,9 @@
                                     @if (auth('admin')->user()->role_id === 1)
                                         <a href="{{url('admin/dashboard/productlist/edit/'.$productlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <a href="{{url('admin/dashboard/productlist/delete/'.$productlist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
+                                    @else
+                                        <a href="{{url('admin/dashboard/productlist/edit/'.$productlist->id)}}" class="btn edit-btn disable_btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{url('admin/dashboard/productlist/delete/'.$productlist->id)}}" class="btn edit-btn disable_btn"><i class="fa-regular fa-trash-can"></i></a>
                                     @endif
                                     
                                 </td>
@@ -73,10 +77,81 @@
                         @endforeach
                         
     
-                    </table>
-                {{-- </div> --}}
-
+                </table>
             </div>
+            <div class="session4">
+                <table>
+                    <tr>
+                        <th class="first_title">Product Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th class="last_title">Action</th>
+                    </tr>
+                    @foreach ($productlists as $productlist)
+                        <tr>
+                            <td>
+                                <div class="flex_row product_image">
+                                    <img src="{{asset('image/admin/products_info/'.$productlist->image)}}" alt="photo of {{$productlist->name}}" width="35px" height="35px">
+                                    <p>{{$productlist->name}}</p>
+                                </div>
+                            </td>
+                            <td>{{$productlist->categoryname}}</td>
+                            <td>{{$productlist->price}}</td>
+                            <td>
+                                <a href="{{url('admin/dashboard/productlist/details/'.$productlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-circle-info"></i></a>
+                                @if (auth('admin')->user()->role_id === 1)
+                                    <a href="{{url('admin/dashboard/productlist/edit/'.$productlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="{{url('admin/dashboard/productlist/delete/'.$productlist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
+                                @else
+                                    <a href="{{url('admin/dashboard/productlist/edit/'.$productlist->id)}}" class="btn edit-btn disable_btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="{{url('admin/dashboard/productlist/delete/'.$productlist->id)}}" class="btn edit-btn disable_btn"><i class="fa-regular fa-trash-can"></i></a>
+                                @endif
+                                
+                            </td>
+                        </tr>
+                    @endforeach
+                    
+
+                </table>
+            </div>
+            <div class="session5">
+                <table>
+                    <tr>
+                        <th class="first_title">Product Name</th>
+                        <th class="last_title">Action</th>
+                    </tr>
+                    @foreach ($productlists as $productlist)
+                        <tr>
+                            <td>
+                                <div class="flex_row product_image">
+                                    <img src="{{asset('image/admin/products_info/'.$productlist->image)}}" alt="photo of {{$productlist->name}}" width="35px" height="35px">
+                                    <p>{{$productlist->name}}</p>
+                                </div>
+                            </td>
+                            {{-- <td>{{$productlist->categoryname}}</td> --}}
+                            {{-- <td>{{$productlist->price}}</td> --}}
+                            <td>
+                                <a href="{{url('admin/dashboard/productlist/details/'.$productlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-circle-info"></i></a>
+                                @if (auth('admin')->user()->role_id === 1)
+                                    <a href="{{url('admin/dashboard/productlist/edit/'.$productlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="{{url('admin/dashboard/productlist/delete/'.$productlist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
+                                @else
+                                    <a href="{{url('admin/dashboard/productlist/edit/'.$productlist->id)}}" class="btn edit-btn disable_btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="{{url('admin/dashboard/productlist/delete/'.$productlist->id)}}" class="btn edit-btn disable_btn"><i class="fa-regular fa-trash-can"></i></a>
+                                @endif
+                                
+                            </td>
+                        </tr>
+                    @endforeach
+                    
+
+                </table>
+            </div>
+        <div class="pagination">
+            {{$productlists->links('pagination::bootstrap-5')}}
         </div>
+        </div>
+        
     </div>
+
 @endsection

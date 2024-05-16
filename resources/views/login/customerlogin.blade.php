@@ -12,8 +12,8 @@
 <body>
     <div class="container grid">
         <div class="text">
-            <h1>Welcome Back!</h1>
-            <p>Sign In and Get 25% on selected items</p>
+            <h1 class="text_white">Welcome Back!</h1>
+            <p class="text_white">Sign In and Get 25% on selected items</p>
             <div class="flex_row">
                 <form action="{{route('CustomerLoginProcess')}}" method="post">
                     @csrf
@@ -27,7 +27,6 @@
             </div>
         </div>
         <div class="image">
-            <img src="{{asset('image/customer/Background-image.png')}}" alt="">
         </div>
     </div>
 </body>

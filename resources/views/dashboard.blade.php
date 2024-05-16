@@ -28,23 +28,6 @@
                 <p>{{$userCount}}</p>
             </div>
         </div>
-        {{-- <div class="session2 flex_row">
-            <div class=" date flex_row">
-                <div class="today">
-                    Today
-                </div>
-                <div>Week</div>
-                <div>Month</div>
-                <div>Year</div>
-            </div>
-            <div class="filter flex_row">
-                    
-                <input type="date" name="" id="">
-                <div>
-                    <i class="fa-solid fa-filter"></i>
-                </div>
-            </div>
-        </div> --}}
         <div class="session3 grid">
             <div class="total_order flex_row">
                 <img src="/image/icon/Total Order.svg" alt="">
@@ -84,14 +67,13 @@
                         <button>Women</button>
                     </div>
                 </div>
-                <div id="piechart" style="width: 100% !important;height:300px;"></div>
+                <div id="piechart" style="width: 100% !important;height:300px !important;"></div>
             </div>
             <div class="flex_col">
                 <div class="flex_row">
                     <p>Sale Statics</p>
                 </div>
-                <canvas id="myChart" style="width: 100% !important;height: 300px;"></canvas>
-                
+                <canvas id="myChart" style="width: 100% !important;height: 300px !important; border-radius:10px;"></canvas>    
             </div>
         </div>
         {{-- <div class="session5">
