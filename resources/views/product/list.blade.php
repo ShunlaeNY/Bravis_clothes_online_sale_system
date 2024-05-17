@@ -16,9 +16,11 @@
                 @endif
             </div>
             <div class="session2">
-                <form action="{{route('ProductList')}}" method="get" class="grid">
-                    <input type="text" name="keyword" placeholder="Search by Product Name">
+                <form action="{{route('SearchRecords')}}" method="post" class="grid">
+                    @csrf
+                    <input type="text" name="name" placeholder="Search by Product Name">
                     <select name="category" id="category">
+                        <option value="category">Select Category...</option>
                         @foreach ($categories as $item)
                             <option value="{{$item->id}}">{{$item->name}}</option>
                         @endforeach

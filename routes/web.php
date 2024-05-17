@@ -23,6 +23,9 @@ Route::middleware('admin')->group(function(){
     Route::prefix('admin/dashboard')->group(function(){
         Route::get('/',[AdminController::class,'index'])->name('Dashboard');
 
+        //search
+        Route::post('/productlist/search',[ProductController::class,'searchrecords'])->name('SearchRecords');
+
         // product
         Route::get('/productlist',[ProductController::class,'productlist'])->name('ProductList');
         Route::get('/productlist/create',[ProductController::class,'productcreate'])->name('ProductCreate');

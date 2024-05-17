@@ -12,9 +12,16 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Supplier;
+use App\Repositories\ProductRepository;
 
 class ProductController extends Controller
 {
+    protected $ProductRepository;
+
+    public function __construct(ProductRepository $productRepository)
+    {
+        $this->ProductRepository = $productRepository;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -27,46 +34,47 @@ class ProductController extends Controller
                         ->join('suppliers','suppliers.id','=','supplier_id')
                         ->join('admins','admins.id','=','products.admin_id')
                         ->where('products.status','=','Active')
-                        ->select('products.*','categories.name as categoryname','admins.name as adminname','suppliers.name as suppliername','suppliers.brand_name as brand');  
-                        // ->get();  
-        // dd($productlists);
+                        ->select('products.*','categories.name as categoryname','admins.name as adminname','suppliers.name as suppliername','suppliers.brand_name as brand')
+                        ->orderBy('products.id','desc')
+                       ->paginate(5);
+        // }
         //one or more
-        if($request->has('keyword') || $request->has('category') || $request->has('min_price') || $request->has('max_price'))
-        {
-            if($request->keyword && $request->category && $request->min_price && $request->max_price)
-            {
-                $productlists = $productlists
-                            ->where("category_id" , $request->category)
-                            ->where("products.name" , "like" , "%$request->keyword%")
-                            ->where("price" , ">=" , $request->min_price)
-                            ->where("price" , "<=" , $request->max_price);
-            }
-            elseif($request->category)
-            {
-                $productlists = $productlists
-                            ->where('category_id' , $request->category);
-            }
-            elseif($request->min_price && $request->max_price)
-            {
-                $productlists = $productlists
-                            ->where("price" , ">=" , $request->min_price)
-                            ->where("price" , "<=" , $request->max_price);
-            }
-            elseif($request->keyword)
-            {
-                $productlists = $productlists
-                            ->where("products.name" , "like" ,"%$request->keyword%");
-            }
-            $productlists = $productlists
-                            ->orderBy('products.id','desc')
-                            ->paginate(5);
-        }
-        else
-        {
-            $productlists = $productlists
-                            ->orderBy('products.id','desc')
-                            ->paginate(5);
-        }
+        // if($request->has('keyword') || $request->has('category') || $request->has('min_price') || $request->has('max_price'))
+        // {
+        //     if($request->keyword && $request->category && $request->min_price && $request->max_price)
+        //     {
+        //         $productlists = $productlists
+        //                     ->where("category_id" , $request->category)
+        //                     ->where("products.name" , "like" , "%$request->keyword%")
+        //                     ->where("price" , ">=" , $request->min_price)
+        //                     ->where("price" , "<=" , $request->max_price);
+        //     }
+        //     if($request->category)
+        //     {
+        //         $productlists = $productlists
+        //                     ->where('category_id' , $request->category);
+        //     }
+        //     elseif($request->min_price && $request->max_price)
+        //     {
+        //         $productlists = $productlists
+        //                     ->where("price" , ">=" , $request->min_price)
+        //                     ->where("price" , "<=" , $request->max_price);
+        //     }
+        //     elseif($request->keyword)
+        //     {
+        //         $productlists = $productlists
+        //                     ->where("products.name" , "like" ,"%$request->keyword%");
+        //     }
+        //     $productlists = $productlists
+        //                     ->orderBy('products.id','desc')
+        //                     ->paginate(5);
+        // }
+        // else
+        // {
+        //     $productlists = $productlists
+        //                     ->orderBy('products.id','desc')
+        //                     ->paginate(5);
+        // }
 
         $categories = DB::table('categories')
                     ->where('status','=','Active')
@@ -76,6 +84,11 @@ class ProductController extends Controller
         return view('product.list',compact('productlists','categories'));
     }
 
+    public function searchrecords(Request $request)
+    {
+        $response = $this->ProductRepository->searchrecords($request);
+        return $response;
+    }
 
     /**
      * Show the form for creating a new resource.
