@@ -18,20 +18,64 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function productlist()
+    public function productlist(Request $request)
     {
         //
+        // dd($request);
         $productlists = DB::table('products')
-                        ->join('categories','categories.id','=','products.category_id')
+                        ->join('categories', 'products.category_id', '=', 'categories.id')
+                        ->join('suppliers','suppliers.id','=','supplier_id')
                         ->join('admins','admins.id','=','products.admin_id')
-                        ->join('suppliers','suppliers.id','=','products.supplier_id')
-                        ->select('products.*','categories.name as categoryname','admins.name as adminname','suppliers.name as suppliername','suppliers.brand_name as brand')
                         ->where('products.status','=','Active')
-                        ->paginate(5);
-                        // ->get();
-        return view('product.list',compact('productlists'));
+                        ->select('products.*','categories.name as categoryname','admins.name as adminname','suppliers.name as suppliername','suppliers.brand_name as brand');  
+                        // ->get();  
+        // dd($productlists);
+        //one or more
+        if($request->has('keyword') || $request->has('category') || $request->has('min_price') || $request->has('max_price'))
+        {
+            if($request->keyword && $request->category && $request->min_price && $request->max_price)
+            {
+                $productlists = $productlists
+                            ->where("category_id" , $request->category)
+                            ->where("products.name" , "like" , "%$request->keyword%")
+                            ->where("price" , ">=" , $request->min_price)
+                            ->where("price" , "<=" , $request->max_price);
+            }
+            elseif($request->category)
+            {
+                $productlists = $productlists
+                            ->where('category_id' , $request->category);
+            }
+            elseif($request->min_price && $request->max_price)
+            {
+                $productlists = $productlists
+                            ->where("price" , ">=" , $request->min_price)
+                            ->where("price" , "<=" , $request->max_price);
+            }
+            elseif($request->keyword)
+            {
+                $productlists = $productlists
+                            ->where("products.name" , "like" ,"%$request->keyword%");
+            }
+            $productlists = $productlists
+                            ->orderBy('products.id','desc')
+                            ->paginate(5);
+        }
+        else
+        {
+            $productlists = $productlists
+                            ->orderBy('products.id','desc')
+                            ->paginate(5);
+        }
 
+        $categories = DB::table('categories')
+                    ->where('status','=','Active')
+                    ->select('id','name')
+                    ->get();
+        // dd($categories);
+        return view('product.list',compact('productlists','categories'));
     }
+
 
     /**
      * Show the form for creating a new resource.

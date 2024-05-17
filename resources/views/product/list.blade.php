@@ -16,17 +16,20 @@
                 @endif
             </div>
             <div class="session2">
-                <div class="grid">
-                    <input type="text" placeholder="Search">
-                    <select name="" id="">
-                        <option value="">Category</option>
+                <form action="{{route('ProductList')}}" method="get" class="grid">
+                    <input type="text" name="keyword" placeholder="Search by Product Name">
+                    <select name="category" id="category">
+                        @foreach ($categories as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endforeach
                     </select>
-                    <input type="text" placeholder="Price">
+                    <input type="text" name="min_price" placeholder="Min Price">
+                    <input type="text" name="max_price" placeholder="Max Price">
                     <div class="buttons flex_row">
-                        <button class="filter_button">Filter</button>
-                        <button class="reset_button">Reset</button>
+                        <button type="submit" class="filter_button">Filter</button>
+                        <a href="{{route('ProductList')}}" class="reset_button">Reset</a>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="session3">
                 <table>
@@ -147,9 +150,9 @@
 
                 </table>
             </div>
-        <div class="pagination">
-            {{$productlists->links('pagination::bootstrap-5')}}
-        </div>
+            <div class="pagination">
+                {{$productlists->links('pagination::bootstrap-5')}}
+            </div>
         </div>
         
     </div>
