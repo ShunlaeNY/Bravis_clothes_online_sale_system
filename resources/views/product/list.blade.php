@@ -16,7 +16,7 @@
                 @endif
             </div>
             <div class="session2">
-                <form action="{{route('SearchRecords')}}" method="post" class="grid">
+                <form action="{{route('SearchProducts')}}" method="post" class="grid">
                     @csrf
                     <input type="text" name="name" placeholder="Search by Product Name">
                     <select name="category" id="category">
@@ -28,8 +28,8 @@
                     <input type="text" name="min_price" placeholder="Min Price">
                     <input type="text" name="max_price" placeholder="Max Price">
                     <div class="buttons flex_row">
-                        <button type="submit" class="filter_button">Filter</button>
-                        <a href="{{route('ProductList')}}" class="reset_button">Reset</a>
+                        <button type="submit" class="filter_button button">Filter</button>
+                        <a href="{{route('ProductList')}}" class="reset_button button">Reset</a>
                     </div>
                 </form>
             </div>

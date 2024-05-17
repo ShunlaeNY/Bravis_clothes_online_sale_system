@@ -24,7 +24,12 @@ Route::middleware('admin')->group(function(){
         Route::get('/',[AdminController::class,'index'])->name('Dashboard');
 
         //search
-        Route::post('/productlist/search',[ProductController::class,'searchrecords'])->name('SearchRecords');
+        Route::post('/productlist/search',[ProductController::class,'search'])->name('SearchProducts');
+        Route::post('/categorylist/search',[CategoryController::class,'search'])->name('SearchCategories');
+        Route::post('/customerlist/search',[CustomerController::class,'search'])->name('SearchCustomers');
+        Route::post('/stafflist/search',[StaffController::class,'search'])->name('SearchStaffs');
+        Route::post('/orderlist/search',[OrderController::class,'search'])->name('SearchOrders');
+        Route::post('/supplierlist/search',[SupplierController::class,'search'])->name('SearchSuppliers');
 
         // product
         Route::get('/productlist',[ProductController::class,'productlist'])->name('ProductList');

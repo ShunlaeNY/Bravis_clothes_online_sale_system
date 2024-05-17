@@ -7,10 +7,18 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Repositories\CustomerRepository;
 use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
+    protected $CustomerRepository;
+
+    public function __construct(CustomerRepository $customerRepository)
+    {
+        $this->CustomerRepository = $customerRepository; 
+    }
+
     public function customerlogin(){
         return view('login.customerlogin');
     }
@@ -29,6 +37,11 @@ class CustomerController extends Controller
         return view('customer.list',compact('customerlists'));
     }
 
+    public function search(Request $request)
+    {
+        $response = $this->CustomerRepository->search($request);
+        return $response;
+    }
     /**
      * Store a newly created resource in storage.
      */

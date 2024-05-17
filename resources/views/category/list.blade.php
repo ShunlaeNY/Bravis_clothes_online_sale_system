@@ -16,17 +16,15 @@
                 @endif
             </div>
             <div class="session2">
-                <div class="grid">
-                    <input type="text" placeholder="Search">
-                    <select name="" id="">
-                        <option value="">Category</option>
-                    </select>
-                    <input type="text" placeholder="Price">
+                <form action="{{route('SearchCategories')}}" method="post" class="grid">
+                    @csrf
+                    <input type="text" name="name" placeholder="Search by Category Name">
+                    <input type="text" name="admin_name" placeholder="Search by Admin">
                     <div class="buttons flex_row">
-                        <button class="filter_button">Filter</button>
-                        <button class="reset_button">Reset</button>
+                        <button type="submit" class="filter_button button">Filter</button>
+                        <a href="{{route('CategoryList')}}" class="reset_button button">Reset</a>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="session3">
                 <table>

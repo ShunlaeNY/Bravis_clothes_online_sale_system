@@ -15,15 +15,16 @@
     background-color: #dfeafd81;
     border: 1px solid var(--border-gray-color);
 }
-.session1 .grid .flex_row >button{
+.session1 .grid .flex_row .button{
     padding: 10px 30px; 
     border-radius: 6px;
     width: 100%;
     border: none;
+    text-align: center;
     color: var(--secondary-color);
     background-color: var(--box-blue-color);
 }
-.session1 .grid .flex_row >button:last-child{
+.session1 .grid .flex_row .reset_button{
     background-color: var(--text-title-gray-color);    
 }
 

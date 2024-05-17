@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Repositories\CategoryRepository;
 
 class CategoryController extends Controller
 {
+    protected $CategoryRepository;
+
+    public function __construct(CategoryRepository $categoryRepository)
+    {
+        $this->CategoryRepository = $categoryRepository;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -24,7 +31,11 @@ class CategoryController extends Controller
                         // dd($categorylists);
         return view('category.list',compact('categorylists'));
     }
-
+    public function search(Request $request)
+    {
+        $response = $this->CategoryRepository->search($request);
+        return $response;
+    }
     /**
      * Show the form for creating a new resource.
      */

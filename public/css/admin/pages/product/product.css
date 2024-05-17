@@ -28,7 +28,7 @@
 .session2 .grid .buttons{
     justify-content: space-around;
 }
-.session2 .grid .buttons >button{
+.session2 .grid .buttons .button{
     padding: 10px 30px;
     border-radius: 6px;
     border: none;

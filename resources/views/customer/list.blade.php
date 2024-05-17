@@ -12,13 +12,14 @@
     <div class="main">
         <h3>All Customers</h3>
         <div class="session1">
-            <div class="grid">
-                <input type="text" placeholder="Search">
-                <div class="flex_row">
-                    <button class="search_button">Search</button>
-                    <button class="reset_button">Reset</button>
+            <form action="{{route('SearchCustomers')}}" method="post" class="grid">
+                @csrf
+                <input type="text" name="search" placeholder="Search">
+                <div class="buttons flex_row">
+                    <button type="submit" class="filter_button button">Filter</button>
+                    <a href="{{route('CustomerList')}}" class="reset_button button">Reset</a>
                 </div>
-            </div>
+            </form>
         </div>
         <div class="session3">
             <div>
