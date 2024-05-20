@@ -7,9 +7,15 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Repositories\StaffRepository;
 
 class StaffController extends Controller
 {
+    protected $StaffRepository;
+    public function __construct(StaffRepository $staffRepository)
+    {
+        $this->StaffRepository = $staffRepository;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -21,9 +27,19 @@ class StaffController extends Controller
                     ->where('admins.status','=','Active')
                     ->select('admins.*','roles.name as rolename')
                     ->get();
-        return view('staff.list',compact('stafflists'));
+        $roles = DB::table('roles')
+                    ->select('id','name')
+                    ->where('status','=','Active')
+                    ->get();
+        // dd($roles);
+        return view('staff.list',compact('stafflists','roles'));
     }
 
+    public function search(Request $request)
+    {
+        $response = $this->StaffRepository->search($request);
+        return $response;
+    }
     /**
      * Show the form for creating a new resource.
      */

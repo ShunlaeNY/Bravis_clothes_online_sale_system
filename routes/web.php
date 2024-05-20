@@ -86,6 +86,7 @@ Route::get('/customer/login',[CustomerController::class,'customerlogin'])->name(
 Route::post('/customer/loginprocess',[LoginController::class,'login'])->name('CustomerLoginProcess');
 Route::get('/customer/logout',[LoginController::class,'customerlogout'])->name('CustomerLogout');
 Route::get('/customer/register',[CustomerController::class,'customerregister'])->name('CustomerRegister');
+
 Route::get('/about',[CustomerpageController::class,'about'])->name('AboutUs');
 Route::get('/contact',[CustomerpageController::class,'contact'])->name('ContactUs');
 Route::get('/policy',[CustomerpageController::class,'policy'])->name('PrivacyPolicy');
@@ -94,7 +95,10 @@ Route::get('/checkout/successful',[CustomerpageController::class,'successful'])-
 Route::get('/productlist', [ CustomerPageController::class , 'alllist' ])->name('CustomerSideProductList');
 Route::get('/productdetails/{id}',[CustomerpageController::class,'productdetailspage'])->name('ProductDetailsPage');
 
-
+//search
+Route::post('/productlist/search',[CustomerpageController::class,'search'])->name('Search');
+// sort
+Route::post('/productlist/sort',[CustomerpageController::class,'sort'])->name('Sort');
 
 
 ///////////////////////////////////////////////////////////////////////////////////

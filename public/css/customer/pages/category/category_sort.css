@@ -50,10 +50,15 @@ body{
 .filter .search input{
     width: 500px;
 }
-.filter .search > i{
+.filter .search > button{
     position: absolute;
+    border: 0px;
+    background-color: #fff;
     right: 20px;
     top: 25px;
+}
+.filter .search > button i{
+    font-size: 20px;
 }
 .filter .flex_row .icon >img{
     max-width: 30px;
@@ -62,6 +67,16 @@ body{
 }
 .filter .flex_row .icon >i{
     font-size: 30px;
+    cursor: pointer;
+}
+.filter_btn{
+    padding: 10px;
+    border: none;
+    background-color: var(--fourth-color);
+    transition: 0.3s;
+}
+.filter_btn :hover{
+    /* border: 1px solid burlywood; */
     cursor: pointer;
 }
 /* .products_list{

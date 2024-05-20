@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{asset('css/admin/pages/staff/staff.css')}}">
+    <link rel="stylesheet" href="{{asset('css/admin/pages/product/product.css')}}">
 @endsection
 
 @section('main')
@@ -19,13 +19,15 @@
             @endif
         </div>
         <div class="session2">
-            <div class="grid">
-                <input type="text" placeholder="Search By Name/ Email/ Phone number">
-                <select name="" id="">
-                    <option value="">Admin</option>
-                </select>
-                <button>Search</button>
-            </div>
+            <form action="{{route('SearchSuppliers')}}" method="post" class="grid">
+                @csrf
+                <input type="text" name="supplier_name" placeholder="Search by Supplier Name">
+                <input type="text" name="brand_name" placeholder="Search by Brand">
+                <div class="buttons flex_row">
+                    <button type="submit" class="filter_button button">Filter</button>
+                    <a href="{{route('SupplierList')}}" class="reset_button button">Reset</a>
+                </div>
+            </form>
         </div>
         <div class="session3">
             <div style="overflow-x: auto;">

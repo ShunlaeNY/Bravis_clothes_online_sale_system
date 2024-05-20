@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{asset('css/admin/pages/staff/staff.css')}}">
+    <link rel="stylesheet" href="{{asset('css/admin/pages/product/product.css')}}">
 @endsection
 
 @section('main')
@@ -19,13 +19,21 @@
             @endif
         </div>
         <div class="session2">
-            <div class="grid">
-                <input type="text" placeholder="Search By Name/ Email/ Phone number">
-                <select name="" id="">
-                    <option value="">Admin</option>
+            <form action="{{route('SearchStaffs')}}" method="post" class="grid">
+                @csrf
+                    {{-- {{dd($roles);}} --}}
+                <input type="text" name="search" placeholder="Search">
+                <select name="role" id="roles">
+                    <option value="role">Search by Roles...</option>
+                    @foreach ($roles as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
                 </select>
-                <button>Search</button>
-            </div>
+                <div class="buttons flex_row">
+                    <button type="submit" class="filter_button button">Filter</button>
+                    <a href="{{route('StaffList')}}" class="reset_button button">Reset</a>
+                </div>
+            </form>
         </div>
         <div class="session3">
             <table>

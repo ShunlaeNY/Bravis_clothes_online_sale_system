@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Repositories\CustomerPageRepository;
 
 class CustomerpageController extends Controller
 {
+    protected $CustomerPageRepository;
+    public function __construct(CustomerPageRepository $customerPageRepository)
+    {
+        $this->CustomerPageRepository = $customerPageRepository;
+    }
     //
     public function index(Request $request){
         if(!$request->session()->has('cartdata')){
@@ -70,6 +76,18 @@ class CustomerpageController extends Controller
         }
         return view('customer_pages.products',compact('products','categoryname'));
     }
+
+    public function search(Request $request)
+    {
+        $response = $this->CustomerPageRepository->search($request);
+        return $response;
+    }
+    public function sort(Request $request)
+    {
+        $response = $this->CustomerPageRepository->sort($request);
+        return $response;
+    }
+
     public function productdetailspage($id){
         // dd($id);
         $productdata = Product::find($id);

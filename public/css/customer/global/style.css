@@ -100,18 +100,62 @@ a:visited{
     margin: 0px 30px;
     justify-content: space-between;
 }
-.navi_ph{
-    display: none;
+.navigation
+{
+    position: sticky;
+    background-color: var(--secondary-color);
+    top: 0;
+    z-index: 10;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
-.navi_ph .close_menu{
+/* curtain */
+.sticky{
     display: none;
+    /* background-color: var(--secondary-color); */
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; */
+}
+.overlay1 {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden;
+    transition: 0.5s;
+
+  }
+  
+  .overlay-content1 {
     position: relative;
-    z-index: 2;
-    font-size: 30px;
-}
-.overflow_menu{
-    display: none !important;
-}
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .overlay1 a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .overlay1 a:hover, .overlay1 a:focus {
+    color: #f1f1f1;
+  }
+  
+  .overlay1 .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+  }
+/* end */
 .section1 .flash_sale_bar .flash_sale{
     flex-grow: 2;
     text-align: center;
@@ -124,9 +168,7 @@ a:visited{
     align-items: baseline;
     justify-content: space-between;
 }
-.navigation{
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
-}
+
 .section1 .nav_bar .logo{
     font-size: 50px;
 }
@@ -137,24 +179,7 @@ a:visited{
 .section1 .nav_bar .menu{
     overflow: hidden;
 }
-.menu .women .women_drop_down_content,
-.menu .men .men_drop_down_content{
- display: none;
- width: 100%;
- height: 100vh;
- padding: 20px;
- position: absolute;
- left:0;
- z-index: 1;
- background-color: var(--third-color);
- line-height: 40px;
- border-radius: 10px;
-}
-.menu .women:hover .women_drop_down_content,.menu .women:focus .women_drop_down_content,
-.menu .men:hover .men_drop_down_content,.menu .men:focus .men_drop_down_content
-{
-    display: block;
-}
+
 .section1 .nav_bar div >a{
     transition: .3s;
 }
@@ -202,6 +227,9 @@ a:visited{
 /* tablet */
 @media(max-width:1200px) and (min-width:768px)
 {
+    .sticky{
+        display: none;
+    }
     .section1 .navigation .flash_sale_bar{
         justify-content: end;
         margin: 0px 30px;
@@ -223,33 +251,24 @@ a:visited{
 /* phone */
 @media(max-width:767px) and (min-width:320px)
 {
-    .section1 .navigation{
+    .flash_sale_bar,.nav_bar{
         display: none;
     }
-    .section1 .navi_ph{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+    .sticky{
+        display: inline-block;
+        padding: 0px 10px;
     }
-    .overflow_menu{
-        display: none;
-        width: 100%;
-        height: 100vh;
-        position: relative;
-        top: -60px;
-        padding:50px;
-        line-height: 50px;
-        font-size: 25px;
-        background-color: var(--secondary-color);
+    .overlay1 a {font-size: 20px}
+    .overlay1 .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
     }
+
     .section1 .navi_ph .logo{
         font-size: 30px;
     }
-    .section1 .navi_ph .hamburger_menu{
-        font-size: 20px;
-    }
+    
     body .footer{
         display: flex;
         flex-direction: column;

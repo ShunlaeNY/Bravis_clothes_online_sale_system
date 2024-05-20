@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Supplier;
+use App\Repositories\SupplierRepository;
 
 class SupplierController extends Controller
 {
+    protected $SupplierRepository;
+    public function __construct(SupplierRepository $supplierRepository){
+        $this->SupplierRepository = $supplierRepository;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -22,6 +27,10 @@ class SupplierController extends Controller
         return view('supplier.list',compact('supplierlists'));
     }
 
+    public function search(Request $request){
+        $response = $this->SupplierRepository->search($request);
+        return $response;
+    }
     /**
      * Show the form for creating a new resource.
      */
