@@ -74,6 +74,15 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'image' =>'required|image',            
+            'price' =>'required', 
+            'small'=> 'required',
+            'medium'=> 'required',
+            'large'=> 'required',
+        ]);
         // dd($request);
         $uuid = Str::uuid()->toString(); //uuid to string
         $image = $uuid . '.' . $request->image->extension(); //change image name
@@ -128,6 +137,15 @@ class ProductController extends Controller
      */
     public function productupdate(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'image' =>'required|image',            
+            'price' =>'required', 
+            'small'=> 'required',
+            'medium'=> 'required',
+            'large'=> 'required',
+        ]);
         //
         $uuid = Str::uuid()->toString(); //uuid to string
         $productupdate = Product::find($request->id);

@@ -19,13 +19,23 @@
                 {{-- set usertype Admin --}}
                 <input type="hidden" name="usertype" value="admin">
                 <div class="login_form">
-                    <div class="">
-                        <img src="{{asset('image/admin/icon/staff.svg')}}" alt="">
-                        <input type="text" name="email" placeholder="admin">
+                    <div>
+                        <div>
+                            <img src="{{asset('image/admin/icon/staff.svg')}}" alt="">
+                            <input type="text" name="email" placeholder="admin">
+                        </div>
+                        @error('email')
+                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        @enderror
                     </div>
                     <div>
-                        <img src="{{asset('image/admin/icon/key.svg')}}" alt="">
-                    <input type="password" name="password" placeholder="password">
+                        <div>
+                            <img src="{{asset('image/admin/icon/key.svg')}}" alt="">
+                            <input type="password" name="password" placeholder="password">    
+                        </div>
+                        @error('password')
+                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        @enderror
                     </div>
                 </div>
                 <br>

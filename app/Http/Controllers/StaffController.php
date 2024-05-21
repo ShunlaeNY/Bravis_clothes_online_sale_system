@@ -61,6 +61,20 @@ class StaffController extends Controller
     {
         // dd($request->role_id);
         // dd($request);
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/'
+            ],
+            'phonenumber' => 'required|string|max:20',
+            'address' => 'required|string|max:255',
+            'image' =>'required|image'
+        ]);
+
         $uuid = Str::uuid()->toString(); //uuid to string
         $image = $uuid . '.' . $request->image->extension(); //change image name
         $request->image->move(public_path('image/admin/staffs_info'), $image);//move img under this dir

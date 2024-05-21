@@ -63,7 +63,7 @@
                 <br>
                 <label for="password">Password</label>
                 <br>
-                <small>Tip: Use upper case, lower case and numbers</small>
+                <small>Tip: Use upper case, lower case, special characters and numbers</small>
                 <div class="password_container">
                     <input type="password" id="password" name="password" placeholder="Password">
                     <i class="fa-solid fa-eye-slash hide_password"></i>

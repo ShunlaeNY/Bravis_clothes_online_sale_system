@@ -32,27 +32,34 @@
                 <input type="hidden" name="admin_id" id="admin_id" value="{{auth('admin')->user()->id}}">
 
                 <label for="name">Product Title/Name</label>
-                <input type="text" name="name" placeholder="Product Title/Name" value="{{$updatestatus == true ? $productdata->name :''}}">
-
+                <div>
+                    <input type="text" name="name" placeholder="Product Title/Name" value="{{$updatestatus == true ? $productdata->name :''}}">
+                    @error('name')
+                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                    @enderror
+                </div>
                 <label for="description">Product Description</label>
-                <textarea name="description" id="" cols="30" rows="10" placeholder="Product Description">{{$updatestatus == true ? $productdata->description :''}}</textarea>
-
+                <div>
+                    <textarea name="description" id="" cols="30" rows="10" placeholder="Product Description">{{$updatestatus == true ? $productdata->description :''}}</textarea>
+                    @error('description')
+                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                    @enderror
+                </div>
                 <label for="image">Product image</label>
-                <input type="file" name="image" value="{{$updatestatus == true ? $productdata->image :''}}">
-
-                {{-- <label for="supplier_id">Supplier Name</label>
-                <select name="supplier_id" id="supplier_id">
-                    @foreach ($suppliers as $supplier)
-                        <option value="{{$supplier->id}}">{{$supplier->name}}</option>
-                    @endforeach
-                </select> --}}
-
+                <div>
+                    <input type="file" name="image" value="{{$updatestatus == true ? $productdata->image :''}}">
+                    @error('image')
+                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                    @enderror
+                </div>
                 <label for="supplier_id">Brand Name</label>
-                <select name="supplier_id" id="supplier_id">
-                    @foreach ($suppliers as $supplier)
-                        <option value="{{$supplier->id}}">{{$supplier->brand_name}}</option>
-                    @endforeach
-                </select>
+                <div>
+                    <select name="supplier_id" id="supplier_id">
+                        @foreach ($suppliers as $supplier)
+                            <option value="{{$supplier->id}}">{{$supplier->brand_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
 
                 <label for="category_id">Category</label>
                 <select name="category_id" id="category_id">
@@ -69,24 +76,44 @@
                 </select>
 
                 <label for="price">Product Price</label>
-                <div class="flex_row">
-                    <div>MMK</div>
-                    <input type="text" name="price" id="price" value="{{$updatestatus == true ? $productdata->price :''}}">
+                <div>
+                    <div class="product_price flex_row">
+                        <label for="price" class="currency">MMK</label>
+                        <input type="text" name="price" id="price" value="{{$updatestatus == true ? $productdata->price :''}}">
+                    </div>
+                    @error('price')
+                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                    @enderror
                 </div>
 
                 <label>Sizes</label>
                 <div class="size flex_row">
                     <div>
-                        <label for="small">S</label>
-                        <input type="text" name="small" id="small" value="{{$updatestatus == true ? $productdata->small_qty :''}}">
+                        <div class="product_price flex_row">
+                            <label for="small" class="currency">S</label>
+                            <input type="text" name="small" id="small" value="{{$updatestatus == true ? $productdata->small_qty :''}}">
+                        </div>
+                        @error('small')
+                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        @enderror
                     </div>
                     <div>
-                        <label for="medium">M</label>
-                        <input type="text" name="medium" id="medium" value="{{$updatestatus == true ? $productdata->medium_qty :''}}">
+                        <div class="product_price flex_row">
+                            <label for="medium" class="currency">M</label>
+                            <input type="text" name="medium" id="medium" value="{{$updatestatus == true ? $productdata->medium_qty :''}}">
+                        </div>
+                        @error('medium')
+                                <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        @enderror
                     </div>
                     <div>
-                        <label for="large">L</label>
-                        <input type="text" name="large" id="large" value="{{$updatestatus == true ? $productdata->large_qty :''}}">
+                        <div class="product_price flex_row">
+                            <label for="large" class="currency">L</label>
+                            <input type="text" name="large" id="large" value="{{$updatestatus == true ? $productdata->large_qty :''}}">
+                        </div>
+                        @error('large')
+                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        @enderror
                     </div>
                 </div>
                 <button class="buttons"><a href="{{route('ProductList')}}">Cancel</a></button>

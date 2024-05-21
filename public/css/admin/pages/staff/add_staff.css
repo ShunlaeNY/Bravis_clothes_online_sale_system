@@ -16,7 +16,7 @@
     border-radius: 6px;
     background-color: #dfeafd81;
 }
-.add_staff_form .grid >textarea {
+.add_staff_form .grid >textarea,.add_staff_form .grid div >textarea {
     border:1px solid var(--border-gray-color);
     border-radius: 6px;
     background-color: #dfeafd81;

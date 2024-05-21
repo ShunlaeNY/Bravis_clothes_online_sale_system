@@ -22,8 +22,9 @@
     background-color: #dfeafd81;
 
 }
-.main .add_product_form .grid textarea{
+.main .add_product_form .grid div textarea{
     border:1px solid var(--border-gray-color);
+    width: 100%;
     border-radius: 6px;
     background-color: #dfeafd81;
 }
@@ -38,11 +39,11 @@
     border-top-left-radius: 0px !important;
 }
 .add_product_form .add_product_grid .size{
-    justify-content: start;
+    justify-content: center;
     align-items: center !important;
 }
 .add_product_form .add_product_grid .size > input{
-    width: auto !important;
+    width: 100%;
 }
 .buttons{
     height: 30px;
@@ -53,7 +54,9 @@
     border-radius: 6px;
     box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
-
+.currency{
+    padding-left: 10px;
+}
 
 @media (max-width:767px) and (min-width:320px){
     .main .add_product_form .add_product_grid

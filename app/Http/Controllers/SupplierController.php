@@ -47,6 +47,11 @@ class SupplierController extends Controller
     public function store(Request $request)
     {
         //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'brand_name' => 'required|string|max:255',
+            
+        ]);
         $uuid = Str::uuid()->toString(); //uuid to string
         $supplier = new Supplier();
         $supplier->name = $request->name;
@@ -82,6 +87,11 @@ class SupplierController extends Controller
      */
     public function supplierupdate(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'brand_name' => 'required|string|max:255',
+            
+        ]);
         //
         $uuid = Str::uuid()->toString(); //uuid to string
         $supplierupdate = Supplier::find($request->id);

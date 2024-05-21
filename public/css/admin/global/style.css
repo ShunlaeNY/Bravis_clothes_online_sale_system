@@ -142,7 +142,10 @@ i,button{
     margin: 5px 0px;
     background-color: var(--text-gray-color);
 }
-
+input,textarea,select,option{
+    padding-left: 10px;
+    width: 100%;
+}
 /* table */
 table{
     font-weight: bold;

@@ -51,7 +51,7 @@ Route::middleware('admin')->group(function(){
 
         // customer
         Route::get('/customerlist',[CustomerController::class,'customerlist'])->name('CustomerList');
-        Route::post('/customerlist/register/process',[CustomerController::class,'store'])->name('CustomerRegisterProcess');
+        // Route::post('/customerlist/register/process',[CustomerController::class,'store'])->name('CustomerRegisterProcess');
         Route::get('/customerlist/edit/{id}',[CustomerController::class,'customeredit'])->name('CustomerEdit');
         Route::post('/customerlist/edit/process',[CustomerController::class,'customerupdate'])->name('CustomerUpdateProcess');
         Route::get('/customerlist/delete/{id}',[CustomerController::class,'customerdelete'])->name('CustomerDelete');
@@ -87,6 +87,8 @@ Route::get('/customer/login',[CustomerController::class,'customerlogin'])->name(
 Route::post('/customer/loginprocess',[LoginController::class,'login'])->name('CustomerLoginProcess');
 Route::get('/customer/logout',[LoginController::class,'customerlogout'])->name('CustomerLogout');
 Route::get('/customer/register',[CustomerController::class,'customerregister'])->name('CustomerRegister');
+Route::post('/customer/register/process',[CustomerController::class,'store'])->name('CustomerRegisterProcess');
+
 
 Route::get('/about',[CustomerpageController::class,'about'])->name('AboutUs');
 Route::get('/contact',[CustomerpageController::class,'contact'])->name('ContactUs');

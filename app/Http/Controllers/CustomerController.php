@@ -49,18 +49,23 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'fname' => 'required |string |max:255',
-            'lname' => 'required |string |max:255',
-            'email' =>'required |email |max:255',            
+            'fname' => 'required|string|max:255',
+            'lname' => 'required|string|max:255',
+            'email' =>'required|email|max:255',            
             'dob' =>'required',            
-            'password' => 'required| string | min:8',
-            'phonenumber' => 'required |string |max:20',
-            'address' => 'required |string |max:255',
-            'state' => 'required | string | max:100',
-            'zipcode' => 'required | string | max:6',
-            'image' => 'required'
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/'
+            ],
+            'phonenumber' => 'required|string|max:20',
+            'address' => 'required|string|max:255',
+            'state' => 'required|string|max:100',
+            'zipcode' => 'required|string|max:6',
+            'image' => 'required|image'
         ]);
-        dd($validatedData);
+        // dd($validatedData);
         $uuid = Str::uuid()->toString();
         $image = $uuid . '.' . $request->image->extension(); //change image name
         $request->image->move(public_path('image/customer/customers_info'), $image);//move img under this dir

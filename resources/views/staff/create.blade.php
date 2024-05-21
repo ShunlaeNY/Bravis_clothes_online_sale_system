@@ -27,19 +27,44 @@
         <input type="hidden" name="id" value="{{$updatestatus == true ? $staffdata->id :''}}">
         <div class="grid">
             <label for="name">Name</label>
-            <input type="text" name="name" placeholder="Enter Staff Name" value="{{$updatestatus == true ? $staffdata->name : ''}}">
+            <div>
+                <input type="text" name="name" placeholder="Enter Staff Name" value="{{$updatestatus == true ? $staffdata->name : ''}}">
+                @error('name')
+                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                @enderror
+            </div>
 
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="Enter Staff Email" value="{{$updatestatus == true ? $staffdata->email : ''}}">
+            <div>
+                <input type="email" name="email" id="email" placeholder="Enter Staff Email" value="{{$updatestatus == true ? $staffdata->email : ''}}">
+                @error('email')
+                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                @enderror
+            </div>
 
             <label for="password">Password</label>
-            <input type="password" name="password" placeholder="Enter Staff Password">
+            <div>
+                <input type="password" name="password" placeholder="Enter Staff Password">
+                @error('password')
+                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                @enderror
+            </div>
 
             <label for="phonenumber">Phone Number</label>
-            <input type="text" name="phonenumber" placeholder="Example : 09-XXXXXX" value="{{$updatestatus == true ? $staffdata->phonenumber : ''}}">
+            <div>
+                <input type="text" name="phonenumber" placeholder="Example : 09-XXXXXX" value="{{$updatestatus == true ? $staffdata->phonenumber : ''}}">
+                @error('phonenumber')
+                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                @enderror
+            </div>
 
             <label for="address">Address</label>
-            <textarea name="address" id="textarea" cols="30" rows="10">{{$updatestatus == true ? $staffdata->address : ''}}</textarea>
+            <div>
+                <textarea name="address" id="textarea" cols="30" rows="10">{{$updatestatus == true ? $staffdata->address : ''}}</textarea>
+                @error('address')
+                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                @enderror
+            </div>
 
             <label for="rolename">Staff Position</label>
             <select name="rolename" id="rolename" {{$updatestatus==true? "disabled" :''}}>
@@ -50,8 +75,12 @@
             </select>
 
             <label for="image">Profile Photo</label>
-            <input type="file" name="image">
-
+            <div>
+                <input type="file" name="image">
+                @error('image')
+                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                @enderror
+            </div>
             <button><a href="{{route('StaffList')}}">Cancel</a></button>
             <button type="submit">{{$updatestatus == true ? 'Update' : 'Add'}}</button>
         </div>

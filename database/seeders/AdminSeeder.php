@@ -22,7 +22,7 @@ class AdminSeeder extends Seeder
             'address' => 'admin',
             'role_id' => 1,
             'phonenumber' => '0123456789',
-            'password' => bcrypt('admin'),
+            'password' => bcrypt('Welc0me!Admin'),
             'image' => '-',
             'uuid' => Str::uuid()->toString(),
             'status' => 'Active',
