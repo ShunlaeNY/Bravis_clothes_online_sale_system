@@ -16,6 +16,10 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
+.error{
+    color: red;
+    
+}
 html,body{
     margin: 0px;
     padding: 0px;

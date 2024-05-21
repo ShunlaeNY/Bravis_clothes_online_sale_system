@@ -50,6 +50,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
         //
         $uuid = Str::uuid()->toString(); //uuid to string
         $category = new Category();

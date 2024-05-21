@@ -22,7 +22,9 @@
             <label for="email">Email</label>
             <div>{{$customerdata->email}}</div>
             <label for="password">Password</label>
-            <input type="password" name="password" placeholder="Enter Reset Password">
+            <div>
+                <input type="password" name="password" placeholder="Enter Reset Password">
+            </div>
 
             <label for="status">Status</label>
             <select name="status" id="status" value="{{$customerdata->email}}">

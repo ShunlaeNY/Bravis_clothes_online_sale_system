@@ -43,18 +43,21 @@
                     <th>Address</th>
                     <th>Phone Number</th>
                     <th>Position</th>
-                    <th>Profile Photo</th>
                     <th class="last_title">Action</th>
                 </tr>
 
                     @foreach ($stafflists as $stafflist)
                         <tr>
-                            <td>{{$stafflist->name}}</td>
+                            <td>
+                                <div class="flex_row staff_img">
+                                    <img src="{{asset('image/admin/staffs_info/'.$stafflist->image)}}" alt="" width="35" height="35">
+                                    {{$stafflist->name}}
+                                </div>
+                            </td>
                             <td>{{$stafflist->email}}</td>
                             <td>{{$stafflist->address}}</td>
                             <td>{{$stafflist->phonenumber}}</td>
                             <td>{{$stafflist->rolename}}</td>
-                            <td>{{$stafflist->image}}</td>
                             <td>
                                 @if (auth('admin')->user()->role_id === 1)
                                     <a href="{{url('admin/dashboard/stafflist/edit/'.$stafflist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>

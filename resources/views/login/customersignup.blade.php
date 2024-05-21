@@ -19,41 +19,90 @@
                 <label for="name">Full Name</label>
                 <br>
                 <div class="flex_row">
-                    <input type="text" name="fname" id="fname" placeholder="First Name" required >
-                    <input type="text" name="lname" id="lname" placeholder="Last Name" required>
+                    <div>
+                        <input type="text" name="fname" id="fname" placeholder="First Name">
+                        @error('fname')
+                                <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        @enderror
+                    </div>
+                    <div>
+                        <input type="text" name="lname" id="lname" placeholder="Last Name">
+                        @error('lname')
+                                <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        @enderror
+                    </div>
+
                 </div>
                 <br>
                 <label for="dob">Date of Birth</label>
                 <br>
-                <input type="date" name="dob">
+                <div>
+                    <input type="date" name="dob">
+                    @error('dob')
+                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                    @enderror
+                </div>
                 <br>
                 <label for="email">Email</label>
                 <br>
-                <input type="email" name="email" placeholder="Email" required >
+                <div>
+                    <input type="email" name="email" placeholder="Email">
+                    @error('email')
+                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                    @enderror
+                </div>
                 <br>
                 <label for="phonenumber">Phone Number</label>
                 <br>
-                <input type="text" name="phonenumber" placeholder="phonenumber" required >
+                <div>
+                    <input type="text" name="phonenumber" placeholder="phonenumber">
+                    @error('phonenumber')
+                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                    @enderror
+                </div>
                 <br>
                 <label for="password">Password</label>
                 <br>
                 <small>Tip: Use upper case, lower case and numbers</small>
                 <div class="password_container">
-                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <input type="password" id="password" name="password" placeholder="Password">
                     <i class="fa-solid fa-eye-slash hide_password"></i>
                     <i class="fa-solid fa-eye show_password"></i>
+                    @error('password')
+                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                    @enderror
                 </div>
                 <br>
                 <label for="address">Location</label>
                 <br>
-                <textarea name="address" id="address" cols="30" rows="10"></textarea><br>
+                <div>
+                    <textarea name="address" id="address" cols="30" rows="10"></textarea><br>
+                    @error('address')
+                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                    @enderror
+                </div>
                 <div class="flex_row">
-                    <input type="text" name="state" placeholder="State/Region">
-                    <input type="text" name="zipcode" placeholder="Zip Code (Eg. 1111)">
+                    <div>
+                        <input type="text" name="state" placeholder="State/Region">
+                        @error('state')
+                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        @enderror
+                    </div>
+                    <div>
+                        <input type="text" name="zipcode" placeholder="Zip Code (Eg. 1111)">
+                        @error('zipcode')
+                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        @enderror
+                    </div>
                 </div>
                 <label for="image">Upload Photo</label>
                 <br>
-                <input type="file" name="image">
+                <div>
+                    <input type="file" name="image">
+                    @error('image')
+                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                    @enderror
+                </div>
                 <br>
                 <br>
                 <div class="sign_up flex_row">

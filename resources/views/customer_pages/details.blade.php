@@ -10,56 +10,37 @@
 @endsection
 
 @section('content')
-    <div class="shopping_cart_box">
-        <div class="flex_row">
-            <h1>Cart</h1>
-            <i class="fa-regular fa-circle-xmark close_button"></i>
-        </div>
-        <hr> 
-        <div class="tee1_pick flex_row">
-            <div class="img">
-                <img src="/images/09_2_1_3_1000_1000 1.png" alt="">
-            </div>
-            <div class="pick_detail">
-                <p>Men’s Neck Solid Color Short Sleeve Tee</p>
-                <p>12500MMK</p>
-                <div class="flex_row">
-                    <div class="add_or_remove_quantity grid">
-                        <div class="minus">-</div>
-                        <div class="number">1</div>
-                        <div class="plus">+</div>
-                    </div>
-                    <div class="remove_button">
-                        Remove
-                    </div>
-                </div>
-            </div>
-        </div> 
-        <a href="../../checkout/index.html" class="button2 checkout_button">Check out</a>  
-    </div>
+{{-- add to cart --}}
+    @if ()
+        
+    @endif
+
+
+
+{{-- end --}}
     <div class="section2 flex_row">
 
         <div class="img">
             <img src="{{asset('image/admin/products_info/'.$productdata->image)}}" alt="">
         </div>
         <div class="text">
-            <p class="title">{{ $productdata->name }} </p>
-            <p class="price"> Price - {{ number_format(floatval($productdata->price)) }} MMK</p>
-            <div class="sizes flex_row">
-                <label><b>Sizes -</b></label>
-                <input type="checkbox" name="small" id="small">Small
-                <input type="checkbox" name="medium" id="medium">Medium
-                <input type="checkbox" name="Large" id="Large">Large
-            </div>
-            <p class="description">
-                {{ $productdata->description }}
-            </p>
+            <form action="{{route("AddToCart")}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="productdata" id="" value="{{$productdata->id}}">
+                <p class="title">{{ $productdata->name }} </p>
+                <p class="price"> Price - {{ number_format(floatval($productdata->price)) }} MMK</p>
+                <div class="sizes flex_row">
+                    <label><b>Sizes -</b></label>
+                    <input type="checkbox" name="small" id="small">Small
+                    <input type="checkbox" name="medium" id="medium">Medium
+                    <input type="checkbox" name="Large" id="Large">Large
+                </div>
+                <p class="description">{{ $productdata->description }}</p>
             
-            <div class="flex_row add_to_cart">
-                <a href="" class="button2 pick_item">
-                    Add to cart
-                </a>
-            </div>
+                <button type="submit" class="flex_row add_to_cart button2 pick_item">
+                        Add to cart
+                </button>
+            </form>
             <div class="flex_row delivery_text">
                 <img src="{{ asset('image/customer/delivery-truck_2769339.png') }}" alt=""
                 style="width: 40px; height: 40px;margin :0 10px">

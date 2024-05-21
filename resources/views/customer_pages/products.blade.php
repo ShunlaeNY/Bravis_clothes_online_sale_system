@@ -23,7 +23,6 @@
                 <input type="text" name="search" class="input" placeholder="Search...">
                 <input type="hidden" name="categoryname" value="{{$categoryname}}">
                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                {{-- <a href="{{Route('CustomerSideProductList')}}">Reset</a> --}}
             </form>
             <div class="sort_by flex_row">
                  <form action="{{route('Sort')}}" method="post">

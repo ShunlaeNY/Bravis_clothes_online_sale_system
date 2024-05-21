@@ -19,8 +19,18 @@
                     @csrf
                     <input type="hidden" name="usertype" value="customer">
                     <h1>Sign In Here</h1>
-                    <input type="Email" name="email" placeholder="Email Address"><br>
-                    <input type="password" name="password" placeholder="Password"><br>
+                    <div>
+                        <input type="Email" name="email" placeholder="Email Address"><br>
+                        @error('email')
+                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        @enderror
+                    </div>
+                    <div>
+                        <input type="password" name="password" placeholder="Password"><br>
+                        @error('password')
+                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        @enderror
+                    </div>
                     <button type="submit" class="login_button button2">Login</button>
                     <p>Don’t have an account? <a href="{{route('CustomerRegister')}}">Sign Up</a></p>
                 </form>

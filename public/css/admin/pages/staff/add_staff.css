@@ -9,8 +9,9 @@
     gap: 30px;
 }
 
-.add_staff_form .grid >input,.add_staff_form .grid >select {
+.add_staff_form .grid div >input,.add_staff_form .grid >select {
     height: 30px;
+    width: 100%;
     border:1px solid var(--border-gray-color);
     border-radius: 6px;
     background-color: #dfeafd81;

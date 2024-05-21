@@ -47,6 +47,10 @@
     align-items: center;
     padding: 5px 0px 5px 20px;
 }
+.staff_img{
+    padding: 10px 20px;
+    align-items: center;
+}
 .qty_box
 {
     border: 1px solid #6DD4B1;

@@ -36,114 +36,12 @@
                         <th>Product</th>
                         <th>Customer</th>
                         <th>Price</th>
-                        <th>Date</th>
+                        <th>Ordered Date</th>
                         <th>Payment info</th>
-                        <th class="last_title">Status</th>
+                        <th>Status</th>
+                        <th class="last_title">Action</th>
                     </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>Sweater</td>
-                        <td>Aung Kyaw</td>
-                        <td>53,000MMK</td>
-                        <td>13/2/23</td>
-                        <td>Debit Card</td>
-                        <td><div class="status status_cancelled">Cancelled</div></td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Sweater</td>
-                        <td>Aung Kyaw</td>
-                        <td>53,000MMK</td>
-                        <td>13/2/23</td>
-                        <td>Debit Card</td>
-                        <td><div class="status status_complete">Delivered</div></td>
-                    </tr>
-                    <tr>
-                        <td>003</td>
-                        <td>Sweater</td>
-                        <td>Aung Kyaw</td>
-                        <td>53,000MMK</td>
-                        <td>13/2/23</td>
-                        <td>Debit Card</td>
-                        <td><div class="status status_cancelled">Cancelled</div></td>
-                    </tr>
-                    <tr>
-                        <td>001</td>
-                        <td>Sweater</td>
-                        <td>Aung Kyaw</td>
-                        <td>53,000MMK</td>
-                        <td>13/2/23</td>
-                        <td>Debit Card</td>
-                        <td><div class="status status_pending">Pending</div></td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Sweater</td>
-                        <td>Aung Kyaw</td>
-                        <td>53,000MMK</td>
-                        <td>13/2/23</td>
-                        <td>Debit Card</td>
-                        <td><div class="status status_complete">Delivered</div></td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Sweater</td>
-                        <td>Aung Kyaw</td>
-                        <td>53,000MMK</td>
-                        <td>13/2/23</td>
-                        <td>Debit Card</td>
-                        <td><div class="status status_complete">Delivered</div></td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Sweater</td>
-                        <td>Aung Kyaw</td>
-                        <td>53,000MMK</td>
-                        <td>13/2/23</td>
-                        <td>Debit Card</td>
-                        <td><div class="status status_complete">Processing</div></td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Sweater</td>
-                        <td>Aung Kyaw</td>
-                        <td>53,000MMK</td>
-                        <td>13/2/23</td>
-                        <td>Debit Card</td>
-                        <td><div class="status status_complete">Delivered</div></td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Sweater</td>
-                        <td>Aung Kyaw</td>
-                        <td>53,000MMK</td>
-                        <td>13/2/23</td>
-                        <td>Debit Card</td>
-                        <td><div class="status status_complete">Delivered</div></td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>Sweater</td>
-                        <td>Aung Kyaw</td>
-                        <td>53,000MMK</td>
-                        <td>13/2/23</td>
-                        <td>Debit Card</td>
-                        <td><div class="status status_complete">Processing</div></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="last_row_left">
-                            <div class="page_info">
-                                Showing 1-10 of 30
-                            </div>
-                        </td>
-                        <td colspan="5" class="last_row_right">
-                            <div class="pagination">
-                                <a href="#">&laquo;</a>
-                                <a class="active" href="#">1</a>
-                                <a href="#">&raquo;</a>
-                            </div>
-                        </td>
-                    </tr>
+                   
                     
                 </table>
             </div>

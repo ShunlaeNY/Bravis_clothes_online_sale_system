@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerpageController;
@@ -94,6 +95,7 @@ Route::get('/checkout',[CustomerpageController::class,'checkout'])->name('Checko
 Route::get('/checkout/successful',[CustomerpageController::class,'successful'])->name('Successful');
 Route::get('/productlist', [ CustomerPageController::class , 'alllist' ])->name('CustomerSideProductList');
 Route::get('/productdetails/{id}',[CustomerpageController::class,'productdetailspage'])->name('ProductDetailsPage');
+Route::post('/addtocart',[CartController::class,'addtocart'])->name('AddToCart');
 
 //search
 Route::post('/productlist/search',[CustomerpageController::class,'search'])->name('Search');

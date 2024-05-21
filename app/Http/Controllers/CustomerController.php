@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Repositories\CustomerRepository;
 use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
 
 class CustomerController extends Controller
 {
@@ -47,8 +48,19 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // dd($request);
+        $validatedData = $request->validate([
+            'fname' => 'required |string |max:255',
+            'lname' => 'required |string |max:255',
+            'email' =>'required |email |max:255',            
+            'dob' =>'required',            
+            'password' => 'required| string | min:8',
+            'phonenumber' => 'required |string |max:20',
+            'address' => 'required |string |max:255',
+            'state' => 'required | string | max:100',
+            'zipcode' => 'required | string | max:6',
+            'image' => 'required'
+        ]);
+        dd($validatedData);
         $uuid = Str::uuid()->toString();
         $image = $uuid . '.' . $request->image->extension(); //change image name
         $request->image->move(public_path('image/customer/customers_info'), $image);//move img under this dir
@@ -72,14 +84,6 @@ class CustomerController extends Controller
         return view('login.customerlogin');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-        
-    }
 
     /**
      * Show the form for editing the specified resource.
