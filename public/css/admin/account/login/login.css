@@ -1,22 +1,24 @@
+
+
 .background_image{
     width: 100%;
     height: 100vh;
-    background-image: url(/image/admin/carolinie-cavalli-Qw3w0oBH63s-unsplash\ \(1\)\ 1.png) !important;
+    background-image: url("../../../../image/admin/adminlogin_background.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 .background_image .flex_row{
-    height: 100vh;
+    /* height: 100vh; */
     justify-content: center;
     align-items: center;
 }
 .background_image div >form{
     border-radius: 20px;
-    padding: 50px;
-    /* width: 30%; */
+    padding: 10px;
+    width: 20%;
     height: auto;
-    /* margin: auto; */
+    margin: 10% 0%;
     justify-content: center;
     align-items: center;
     align-content: center;
@@ -30,18 +32,26 @@
 .background_image div form .login_form{
     padding: 50px 0px;
 }
-.background_image div form .login_form div >img {
+.background_image div form .login_form .admin_login{
+    align-items: center;
+    align-content: center;
+    gap: 5px;
+    padding-bottom: 5px;
+}
+/* .background_image div form .login_form div >img {
     position: relative;
     top: 10px;
     right: 10px;
-}
+} */
 .background_image div form .login_form div >input{
     border: none;
     border-radius: 6px;
     /* border-bottom-color:1px solid var(--primary-color); */
     background-color: #fefefe4d;
     height: 30px;
+    width: 100%;
     padding-left: 20px ;
+    margin-bottom: 10px;
     color: var(--secondary-color);
 }
 .login_btn{
@@ -49,6 +59,7 @@
     /* margin-bottom: 100px; */
     border-radius: 10px;
     padding: 5px 15px;
+    margin-bottom: 30px;
     font-weight: bold;
     color: var(--login-form-color) !important;
     background-color: var(--login-btn-color);
@@ -59,6 +70,21 @@
 
 }
 
-@media (max-width:1200px) and (min-width:768px){
-    
+.error_msg{
+    color: red;
+}
+.password_container{
+    position: relative;
+}
+.password_container i{
+    position: absolute;
+    margin: 0;padding: 0;
+    right: 20px;
+    top: 5px;
+}
+.hide_password{
+    display: block;
+}
+.show_password{
+    display: none;
 }
