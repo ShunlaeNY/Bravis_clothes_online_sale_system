@@ -5,7 +5,8 @@
     color:#0079FF;
 }
 .sizes{
-    line-height: 30px;
+    /* line-height: 30px; */
+    align-items: center;
 }
 .section2{
     margin:30px 200px;

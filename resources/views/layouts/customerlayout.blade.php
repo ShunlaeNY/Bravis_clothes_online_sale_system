@@ -81,13 +81,94 @@
               </div>
               <div class="sticky" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Bravis</div>
         </div>
+    {{-- session start --}}
+    @if (session()->has('cartdata'))
+    {{-- {{dd(session()->get('cartdata'))}} --}}
     <div class="shopping_cart_box">
-        <div class="flex_row">
-            <h1>Cart</h1>
-            <i class="fa-regular fa-circle-xmark close_button"></i>
-        </div>
-        <hr>    
+        <form action="{{route('CheckOut')}}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="flex_row">
+                <h1>Cart</h1>
+                <i class="fa-regular fa-circle-xmark close_button"></i>
+            </div>
+            <hr>
+            @php
+                $array = [];//create an empty array
+            @endphp
+            <div class="item-container">
+               
+                @forelse ($cartarray as $item) 
+                    <div class="tee1_pick flex_row">
+                        <div></div>
+                        <div class="img">
+                            <img src="{{asset('image/admin/products_info/'.$item['image'])}}" alt="" width="100px">
+                        </div>
+                        <div class="pick_detail">
+                            <p><b>{{$item['name']}}</p><span>({{$item['size']}})</b></span>
+                            <p>Price - {{$item['price']}}MMK</p>
+                            <div class="flex_row">
+                                <div class="add_or_remove_quantity grid">
+                                    <form action="{{route('AddToCart.show')}}" method="POST" class="minus">
+                                        @csrf
+                                        @php
+                                            $removeQty = true;
+                                        @endphp
+                                        <input type="hidden" name="removeQty" id="" value="{{$removeQty}}">
+                                        <input type="hidden" name="product_id" id="" value="{{$item['product']}}">
+                                        <button type="submit">-</button>
+                                    </form>
+                                    <div class="number">{{$item['quantity']}}</div>
+                                    <form action="{{route('AddToCart.show')}}" method="POST" class="plus">
+                                        @csrf
+                                        @php
+                                            $addQty = true;
+                                        @endphp
+                                        <input type="hidden" name="addQty" id="" value="{{$addQty}}">
+                                        <input type="hidden" name="product_id" id="" value="{{$item['product']}}">
+                                        <button type="submit">+</button>
+                                    </form>
+                                </div>
+                                <form action="{route('AddToCart.show')}" method="POST" class="remove_button">
+                                    @csrf
+                                    <input type="hidden" name="removeFromCart" id="" value="{{$item['product']}}">
+                                    @php
+                                                $addtoCart = true;
+                                    @endphp
+                                    <input type="hidden" name="addtoCart" id="" value="{{$addtoCart}}">
+                                    <input type="hidden" name="product_id" id="" value="{{$item['product']}}">
+                                    <button type="submit">remove</button>
+                                </form>
+                            </div>
+                            
+                            
+                            <p>Total Price - {{$item['price']*$item['quantity']}}MMK</p>
+                            @php
+                                array_push($array,$item['price']*$item['quantity']);
+                            @endphp   
+                        </div>
+                    </div>
+                @empty    
+                @endforelse
+                {{-- @endforeach --}}
+                @php
+                    $totalItemPrice = array_reduce($array,function($a,$b){
+                        return $a+$b;
+                    })
+                @endphp
+                <div class="totalItemPrice flex_row">
+                    <h4>Total Item Price</h4>
+                    <p>{{$totalItemPrice}}MMK</p>
+                    <input type="hidden" name="total_price" value="{{$totalItemPrice}}">
+                    <input type="hidden" name="total_items" id="" value="{{count($cartarray)}}">
+                </div>
+                <div class="checkout">
+                    <button type="submit" class="button2 checkout_button">Check out</button>
+                </div>
+            </div>
+        </form>
     </div>
+    @endif
+    {{-- session end --}}
     
     @yield('content')
 

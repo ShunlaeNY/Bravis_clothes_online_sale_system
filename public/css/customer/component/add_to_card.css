@@ -25,6 +25,7 @@
     right: 0;
     z-index: 1;
     transition: all 0.5s;
+    overflow-y: auto;
     /* animation:moveFromRight ease-in; */
 
 }
@@ -44,15 +45,21 @@
     height: 180px;
     align-items: flex-start;
     gap: 10px;
-    display: none;
+    padding-top: 10px;
+    border-bottom: 1px solid black;
+    /* display: none;  Thank You vary much shun lae */
     /* background-color: red; */
 }
+.shopping_cart_box .tee1_pick{
+    justify-content: flex-start;
+}
 .shopping_cart_box .tee1_pick .img img{
-    height: 180px;
+    width: 100px;
+    height: 150px;
 }
-.shopping_cart_box .tee1_pick .img,.shopping_cart_box .tee1_pick .pick_detail{
+/* .shopping_cart_box .tee1_pick .img,.shopping_cart_box .tee1_pick .pick_detail{
     flex: 1;
-}
+} */
 .shopping_cart_box .tee1_pick .pick_detail > p:first-child{
     margin: 0px;
     padding: 0px;
@@ -73,7 +80,7 @@
     color: var(--button_blue_color);
 }
 .shopping_cart_box .checkout_button{
-    position: absolute;
+    position: sticky;
     bottom: 10px;
     width: 80%;
     text-align: center;

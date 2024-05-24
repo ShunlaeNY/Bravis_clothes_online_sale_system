@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+
     <div>
         <div class="intro flex_row">Privacy Policy</div>
     </div>

@@ -81,7 +81,26 @@
     padding: 0px !important;
 
 }
+.Pagination{
+    margin-left: 100px;
+    margin-right: 100px;
+    display:flex;
+    justify-content: right;
+}
+.Pagination ul
+ {
+    display: flex;
+    gap: 10px;
+    font-size: 16px;
+    list-style-type: none;
+ }
+ .Pagination li {
 
+    padding:10px 15px;
+    box-shadow: 0 1px 5px 0 rgba(75, 75, 75, 0.19);
+    border-radius: 5px solid rgb(218, 218, 218);
+    background-color: #ffffff;
+ }
 @media (max-width:1300px) and (min-width:768px){
     .main .session2 .grid{
         grid-template-columns: repeat(3,1fr);

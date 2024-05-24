@@ -11,9 +11,6 @@
 
 @section('content')
 {{-- add to cart --}}
-    @if ()
-        
-    @endif
 
 
 
@@ -24,20 +21,34 @@
             <img src="{{asset('image/admin/products_info/'.$productdata->image)}}" alt="">
         </div>
         <div class="text">
-            <form action="{{route("AddToCart")}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('AddToCart.show')}}" method="post" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="productdata" id="" value="{{$productdata->id}}">
+                <input type="hidden" name="product_id" id="" value="{{$productdata->id}}">
                 <p class="title">{{ $productdata->name }} </p>
                 <p class="price"> Price - {{ number_format(floatval($productdata->price)) }} MMK</p>
                 <div class="sizes flex_row">
-                    <label><b>Sizes -</b></label>
-                    <input type="checkbox" name="small" id="small">Small
-                    <input type="checkbox" name="medium" id="medium">Medium
-                    <input type="checkbox" name="Large" id="Large">Large
+                    <p>Sizes -</p>
+                    <div class="flex_row">
+                        <div>
+                            <input type="radio" name="sizes" value="S" id="S">
+                            <label for="small">S</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="sizes" value="M" id="M" checked>
+                            <label for="medium">M</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="sizes" value="L" id="L">
+                            <label for="large">L</label>
+                        </div>
+                    </div>
                 </div>
                 <p class="description">{{ $productdata->description }}</p>
-            
-                <button type="submit" class="flex_row add_to_cart button2 pick_item">
+                @php
+                    $addToCart = true;
+                @endphp
+                <input type="hidden" name="addToCart" value="{{$addToCart}}">
+                <button class="flex_row add_to_cart button2 pick_item">
                         Add to cart
                 </button>
             </form>

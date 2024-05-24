@@ -16,6 +16,7 @@
 @endsection
 
 @section('filter')
+
     <div class="filter">
         <div class="flex_row">
             <form action="{{route('Search')}}" method="post" class="search">

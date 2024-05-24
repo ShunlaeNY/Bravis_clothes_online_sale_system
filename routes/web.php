@@ -97,7 +97,8 @@ Route::get('/checkout',[CustomerpageController::class,'checkout'])->name('Checko
 Route::get('/checkout/successful',[CustomerpageController::class,'successful'])->name('Successful');
 Route::get('/productlist', [ CustomerPageController::class , 'alllist' ])->name('CustomerSideProductList');
 Route::get('/productdetails/{id}',[CustomerpageController::class,'productdetailspage'])->name('ProductDetailsPage');
-Route::post('/addtocart',[CartController::class,'addtocart'])->name('AddToCart');
+Route::post('/addtocart/show',[CustomerpageController::class,'addtocart'])->name('AddToCart.show');
+Route::post('/checkout',[CustomerpageController::class,'checkout'])->name('CheckOut');
 
 //search
 Route::post('/productlist/search',[CustomerpageController::class,'search'])->name('Search');

@@ -152,8 +152,8 @@
 
                 </table>
             </div>
-            <div class="pagination">
-                {{$productlists->links('pagination::bootstrap-5')}}
+            <div class="Pagination">
+                {{$productlists->links('pagination::bootstrap-4')}}
             </div>
         </div>
         

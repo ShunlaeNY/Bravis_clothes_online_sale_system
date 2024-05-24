@@ -74,9 +74,9 @@
                     <div class="admin_login flex_row">
                         <img src="{{asset('image/admin/icon/key.svg')}}" alt="">
                         <div class="password_container">
-                            <input name="password" type="password" placeholder="password">
-                                <i class="fa-solid fa-eye-slash hide_password"></i>
-                                <i class="fa-solid fa-eye show_password"></i> 
+                            <input name="password" id="password" type="password" placeholder="password">
+                                <span><i class="fa-solid fa-eye-slash hide_password"></i></span>
+                                <span><i class="fa-solid fa-eye show_password"></i> </span>
                         </div> 
                     </div>
                     @error('password')

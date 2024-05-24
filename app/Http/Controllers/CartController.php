@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     //
-    public function addtocart(Request $request)
-    {
-        dd($request->all());
-    }
+    // public function addtocart(Request $request)
+    // {
+    //     dd($request->all());
+    // }
 }

@@ -14,6 +14,7 @@ class CustomerPageRepository
 {
     public function search(Request $request)
     {
+        $cartarray = $request->session()->get('cartdata') ?? []; //get cartdata array from session
         $columns = [
             'products.name' => 'Product Name',
             'gender' => 'Gender',
@@ -68,7 +69,7 @@ class CustomerPageRepository
         $products = $query
                     ->select('products.*','categories.name as categoryname')
                     ->get();
-        return view('customer_pages.products',compact('products','categoryname'));
+        return view('customer_pages.products',compact('products','categoryname','cartarray'));
 
         
 
@@ -76,6 +77,7 @@ class CustomerPageRepository
 
     public function sort(Request $request)
     {
+        $cartarray = $request->session()->get('cartdata') ?? []; //get cartdata array from session
         $price = 'products.price';
         $sort = $request->sort;
         $categoryname = $request->categoryname;
@@ -125,7 +127,7 @@ class CustomerPageRepository
                 
             }
         $products = $query->select('products.*','categories.name as categoryname')->get();
-        return view('customer_pages.products',compact('products','categoryname'));
+        return view('customer_pages.products',compact('products','categoryname','cartarray'));
     }
     }
         
