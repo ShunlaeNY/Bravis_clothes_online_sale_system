@@ -15,6 +15,11 @@
                 </div>
                 <h1>Thank You.</h1>
                 <p>Your order was completely successfully</p>
+                @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+                @endif
                 <div class="truck flex_row">
                     <img src="/images/delivery-truck_2769339.png" alt="">
                     <p>Your Product will be arrived within one week</p>

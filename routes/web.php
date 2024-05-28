@@ -8,6 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerpageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -111,11 +112,9 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/payment', 'PaymentController@showPaymentForm')->name('payment.form');
-Route::post('/process-payment', 'PaymentController@processPayment')->name('process.payment');
-Route::get('/payment/success', function () {
-    return 'Payment Successful!';
-})->name('payment.success');
-Route::get('/payment/failure', function () {
-    return 'Payment Failed!';
-})->name('payment.failure');
+Route::controller(PaymentController::class) -> group(
+    function(){
+        Route::post('payment', 'stripe')->name('payment');
+        Route::post('payment/process', 'stripePost')->name('stripe.post');
+    }
+);

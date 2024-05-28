@@ -63,10 +63,6 @@ class CustomerpageController extends Controller
         return view('customer_pages.checkout',compact('cartarray','total_items','total_price'));
     }
 
-    public function successful(Request $request){
-        // dd($request->all());
-        return view('customer_pages.successful');
-    }
 
     public function alllist(Request $request){
         $cartarray = $request->session()->get('cartdata') ?? []; //get cartdata array from session

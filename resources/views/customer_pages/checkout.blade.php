@@ -41,7 +41,7 @@
         <hr>    
     </div>   
     <div class="section2">
-        <form action="{{route('OrderAndCartCreate')}}" method="post" >
+        <form action="{{route('payment')}}" method="post" >
             @csrf
             <div class="flex_row">
                 <div class="form">

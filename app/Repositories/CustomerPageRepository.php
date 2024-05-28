@@ -94,7 +94,7 @@ class CustomerPageRepository
                         $query->orderBy($price,'asc');
                     }
                     else if($sort == 'high_to_low_price'){
-                        $query->orderBy($price,'desc');
+                       $query->orderBy($price,'desc');
                     }
                     else
                     {

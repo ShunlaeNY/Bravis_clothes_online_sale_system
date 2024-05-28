@@ -2,34 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use Stripe\Stripe;
-use Stripe\Charge;
+use Stripe;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class PaymentController extends Controller
 {
-    public function showPaymentForm()
-    {
-        return view('payment');
-    }
+    public function stripe(Request $request){
+        $cartarray = $request->session()->get('cartdata') ?? []; //get cartdata array from session
+        // dd($cartarray);
+        $customername = $request->fname .' '. $request->lname;
+        $totalpurchase = $request->Total_paynow;
+        // dd($totalpurchase);
+        return view('customer_pages.payment',compact('customername','cartarray','totalpurchase'));
+   }
 
-    public function processPayment(Request $request)
-    {
-        Stripe::setApiKey(config('services.stripe.secret'));
-
-        try {
-            Charge::create([
-                'amount' => 1000, // Amount in cents
-                'currency' => 'usd',
-                'source' => $request->stripeToken,
-                'description' => 'Test Payment',
-            ]);
-
-            return redirect()->route('payment.success')->with('success', 'Payment successful!');
-        } catch (\Exception $e) {
-            return redirect()->route('payment.failure')->with('error', $e->getMessage());
-        }
-    }
+   public function stripePost(Request $request){
+    $cartarray = $request->session()->get('cartdata') ?? []; //get cartdata array from session
+    $totalpurchase = $request->totalpurchase;
+       Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+       Stripe\Charge::create([
+           "amount" => $totalpurchase* 100,
+           "currency" => "USD",
+           "source" => $request->stripeToken,
+           "description" => "Test Payment From Bravis"
+       ]);
+       return view('customer_pages.successful',compact('cartarray'))->with('success', 'Payment successful');
+   }
 
 }
