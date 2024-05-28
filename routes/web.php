@@ -109,3 +109,13 @@ Route::post('/productlist/sort',[CustomerpageController::class,'sort'])->name('S
 ///////////////////////////////////////////////////////////////////////////////////
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/payment', 'PaymentController@showPaymentForm')->name('payment.form');
+Route::post('/process-payment', 'PaymentController@processPayment')->name('process.payment');
+Route::get('/payment/success', function () {
+    return 'Payment Successful!';
+})->name('payment.success');
+Route::get('/payment/failure', function () {
+    return 'Payment Failed!';
+})->name('payment.failure');

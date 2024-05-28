@@ -86,7 +86,7 @@
                         <button type="button" onclick="getInputValue1();" id="other_fee" class="input other_region">Other Region <span>3500MMK</span></button>   
                         <input type="hidden" name="delivery_fee" class="delivery-fee-for-form" id="delivery" value="">
                     </div>
-                    <div class="div4">
+                    {{-- <div class="div4">
                         <h2>Payment</h2>
                         <p>All transactions are secured and encrypted</p>
         
@@ -114,7 +114,7 @@
                                 <input type="text" placeholder="Name on card" name="nameoncard" class="input card_info">
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="detail">
                     @php
