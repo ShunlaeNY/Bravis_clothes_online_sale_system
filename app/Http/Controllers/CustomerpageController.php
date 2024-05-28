@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Product;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Laravel\Ui\Presets\React;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use App\Repositories\CustomerPageRepository;
+use App\Models\Customer;
 
 class CustomerpageController extends Controller
 {
@@ -18,7 +21,7 @@ class CustomerpageController extends Controller
     }
     //
     public function index(Request $request){
-        session()->flush();
+        // session()->flush();
         //create add to card session if not exist
         if(!$request->session()->has('cartdata')){
             $request->session()->put('cartdata',[]);
@@ -52,11 +55,16 @@ class CustomerpageController extends Controller
         return view('customer_pages.policy');
     }
 
-    public function checkout(){
-        return view('customer_pages.checkout');
+    public function checkout(Request $request){
+        $cartarray = $request->session()->get('cartdata') ?? []; //get cartdata array from session
+        // dd($request->all());
+        $total_price= $request->total_price;
+        $total_items = $request->total_items;
+        return view('customer_pages.checkout',compact('cartarray','total_items','total_price'));
     }
 
-    public function successful(){
+    public function successful(Request $request){
+        // dd($request->all());
         return view('customer_pages.successful');
     }
 
@@ -110,27 +118,29 @@ class CustomerpageController extends Controller
 
     //add data to cart table
     public function addtocart(Product $product,Request $request){
-       
+    //    dd($request->sizes);
         $size = $request->sizes;
         $addToCart = $request->addToCart;
         $product_id = $request->product_id;
         $productdata = Product::find($product_id);
-        // dd($productdata->image);
+        // dd($request->addQty);
         $cartarray = [];
         if($addToCart == true){
             if ($request->session()->has('cartdata')) {
                 $cartarray = $request->session()->get('cartdata');
                 $sameproduct = false;
                 foreach ($cartarray as $key => &$value) {
-                    // dd($value['product']['id']);
+                    // dd($request->all());
                     if ($value['product'] == $product_id && $value['size'] == $size) {
-                        if($request->addQty == true){
-                            // dd($request->all());
+                        if($request->addQty){
                             $value['quantity'] += 1;
                         }
                         elseif($request->removeQty == true && $value['quantity']>1){
                             $value['quantity'] -= 1;
                         }
+                        // elseif($request->removeQty == true && $value['quantity']<=1){
+                        //     unset($cartarray[$key]);
+                        // }
                         elseif($request->removeFromCart){
                             unset($cartarray[$key]);
                         }
@@ -159,5 +169,25 @@ class CustomerpageController extends Controller
         
     }
 
+    //order and cart create
+    public function create(Request $request)
+    {
+        $cartarray = $request->session()->get('cartdata') ?? []; //get cartdata array from session
+        // dd($cartarray);
+        $customer_id = $request->customer_id;
+        // dd($customer_id);
+        // store in cart
+        foreach ($cartarray as $key => &$value) {
+            $uuid = Str::uuid()->toString(); //uuid to string
+            $cartdata = new Cart();
+            $cartdata->product_id = $value['product'];
+            $cartdata->customer_id = $customer_id;
+            $cartdata->uuid = $uuid;
+            $cartdata->status = 'Active';
+            $cartdata->totalprice = $value['price'] * $value['quantity'];
+            $cartdata->save();
+        }
+       
+    }
 
 }

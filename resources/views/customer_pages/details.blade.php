@@ -44,11 +44,11 @@
                     </div>
                 </div>
                 <p class="description">{{ $productdata->description }}</p>
-                @php
+                {{-- @php
                     $addToCart = true;
-                @endphp
-                <input type="hidden" name="addToCart" value="{{$addToCart}}">
-                <button class="flex_row add_to_cart button2 pick_item">
+                @endphp --}}
+                <input type="hidden" name="addToCart" value="{{true}}">
+                <button type="submit" class="flex_row add_to_cart button2 pick_item">
                         Add to cart
                 </button>
             </form>

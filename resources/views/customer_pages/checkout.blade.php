@@ -1,3 +1,12 @@
+@php
+    if (auth('customer')->user() != null) {
+        $registered_user = true;
+    }
+    else{
+        $registered_user = false;
+    }
+@endphp
+{{-- {{dd($registered_user)}} --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,10 +27,10 @@
                 <p>CHECKOUT</p>
             </div>
         </div>
-        <div class="add_to_cart_icon">
+        {{-- <div class="add_to_cart_icon">
             <i class="fa-solid fa-cart-shopping"></i>
             <span>0</span>
-        </div>
+        </div> --}}
         
     </div>
     <div class="shopping_cart_box">
@@ -31,135 +40,159 @@
         </div>
         <hr>    
     </div>   
-    <div class="section2 flex_row">
-        <div class="form">
-            <div class="div1">
-                <div class="flex_row">
-                    <h2>Contact</h2>
-                    <p>Have an account? <a href="/account/login/index.html">Log in</a>
-                    </p>
-                </div>
-                <input type="email" placeholder="Email*" required class="input">
-                <br>
-                <input type="tel" name="" id="" placeholder="Phone Number*" required class="input">
-                <br>
-            </div>
-            <div class="div2">
-                <h2>Delivery</h2>
-                <input type="text" placeholder="Country/Region"  class="input">
-                <div class="name flex_row">
-                    <input type="text" name="" id="fname" placeholder="First Name*" required  class="input">
-                    <input type="text" name="" id="lname" placeholder="Last Name*" required  class="input">
-                </div>
-                <textarea name="" id="" cols="30" rows="1" placeholder="Address*" required  class="input"></textarea>
-                <div class="address flex_row">
-                    <input type="text" name="" id="" placeholder="State/Region(Eg. Yangon)" required class="input">
-                    <input type="text" name="" id="" placeholder="Zip Code(Eg. 111)" required class="input">
-                </div>
-            </div>
-            <div class="div3">
-                <h2>Shipping Fees</h2>
-                <button  class="input yangon" >Yangon <span>2500MMK</span></button>
-                <br>
-                <button  class="input other_region">Other Region <span>3500MMK</span></button>   
-            </div>
-            <div class="div4">
-                <h2>Payment</h2>
-                <p>All transactions are secured and encrypted</p>
-                <div class="card">
-                    <div class="flex_row credit_card">
-                        <p>Credit Card</p>
-                        <img src="/images/credit-card_8813684.png" alt="">
-                    </div>
-                    <div class="card_info">
-                        <div class="parent">
-                            <input type="text" placeholder="Card Number" required  class="input">
-                        <i class="fa-solid fa-lock"></i>
-                        </div>
-                        <div class="flex_row">
-                            <input type="text" placeholder="Expiration Date(MM/YY)" required class="input">
-                            <input type="text" placeholder="Security Code" required  class="input">
-                        </div>
-                        <input type="text" placeholder="Name on card" required class="input">
-                    </div>
-                    <a href="../success/index.html" class="payNow button2">Pay Now</a>
-                </div>
-            </div>
-
-        </div>
-        <div class="detail">
+    <div class="section2">
+        <form action="{{route('OrderAndCartCreate')}}" method="post" >
+            @csrf
             <div class="flex_row">
-                <h2>Your Order</h2>
-                <a href="../category/men/detail.html">Edit</a>
-            </div>
-            <div class="list flex_row">
-                <div>
-                    <div>1 item</div>
-                    <div>Delivery Fees</div>
-                    <div><b>Total</b></div>
+                <div class="form">
+                    <input type="hidden" name="usertype" value="customer">
+                    <input type="hidden" name="customer_id" value="{{$registered_user == true ? auth('customer')->user()->id : null}}">
+                    {{-- <input type="hidden" name="cartarray" value="{{$cartarray}}"> --}}
+                    {{-- <input type="hidden" name="Total_paynow" id="" value=""> --}}
+                    {{-- @php
+                        $cart = array();
+                        $cart = $cartarray;
+                    @endphp --}}
+                    <div class="div1">
+                        <div class="flex_row">
+                            <h2>Contact</h2>
+                            @if (!$registered_user)
+                                <p>Have an account? <a href="{{route('CustomerLogin')}}">Log in</a></p>
+                            @endif
+                        </div>
+                        <input type="email" name="email" placeholder="Email*" class="input" value="{{$registered_user == true ? auth('customer')->user()->email : ''}}">
+                        <br>
+                        <input type="text" name="phonenumber" id="" placeholder="Phone Number*" class="input" value="{{$registered_user == true ? auth('customer')->user()->phonenumber : ''}}">
+                        <br>
+                    </div>
+                    <div class="div2">
+                        <h2>Delivery</h2>
+                        <input type="text" placeholder="Country/Region"  class="input" value="Myanmar">
+                        <div class="name flex_row">
+                            <input type="text" name="fname" id="fname" placeholder="First Name*" class="input" value="{{$registered_user == true ? auth('customer')->user()->fname : ''}}">
+                            <input type="text" name="lname" id="lname" placeholder="Last Name*"  class="input" value="{{$registered_user == true ? auth('customer')->user()->lname : ''}}">
+                        </div>
+                        <textarea name="address" id="" cols="30" rows="1" placeholder="Address*" class="input">{{$registered_user == true ? auth('customer')->user()->address : ''}}</textarea>
+                        <div class="address flex_row">
+                            <input type="text" name="state" id="" placeholder="State/Region(Eg. Yangon)" class="input" value="{{$registered_user == true ? auth('customer')->user()->state : ''}}">
+                            <input type="text" name="zipcode" id="" placeholder="Zip Code(Eg. 111)" class="input" value="{{$registered_user == true ? auth('customer')->user()->zipcode : ''}}">
+                        </div>
+                    </div>
+                    <div class="div3">
+                        <h2>Shipping Fees</h2>
+                        
+                        <button type="button" onclick="getInputValue();" id="yangon_fee" class="input yangon">Yangon <span>2500MMK</span></button>
+                        <br>
+                        <button type="button" onclick="getInputValue1();" id="other_fee" class="input other_region">Other Region <span>3500MMK</span></button>   
+                        <input type="hidden" name="delivery_fee" class="delivery-fee-for-form" id="delivery" value="">
+                    </div>
+                    <div class="div4">
+                        <h2>Payment</h2>
+                        <p>All transactions are secured and encrypted</p>
+        
+                        <label for="payment_type">Payment Type</label>
+                        <select name="payment_type" class="input" id="payment_type">
+                            <option value="{{ null }}">Select Payment Type</option>
+                            <option value="COD" {{$registered_user == false ? "disabled" : ''}}>Cash On Delivery (only avaliable while registered)</option>
+                            <option value="prepaid">Prepaid</option>
+                        </select>
+        
+                        <div class="card" id="card" style="margin-top: 20px;">
+                            <div class="flex_row credit_card">
+                                <p>Credit Card</p>
+                                <img src="/images/credit-card_8813684.png" alt="">
+                            </div>
+                            <div class="card_info">
+                                <div class="parent">
+                                    <input type="text" placeholder="Card Number" name="cardnumber"  class="input card_info">
+                                <i class="fa-solid fa-lock"></i>
+                                </div>
+                                <div class="flex_row">
+                                    <input type="text" placeholder="Expiration Date(MM/YY)" name="expirationdate" class="input card_info">
+                                    <input type="text" placeholder="Security Code" name="securitycode"  class="input card_info">
+                                </div>
+                                <input type="text" placeholder="Name on card" name="nameoncard" class="input card_info">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="text_right">
-                    <div>12500MMK</div>
-                    <div>3000MMK</div>
-                    <div>15500MMK</div>
+                <div class="detail">
+                    @php
+                        $last = end($cartarray);
+                    @endphp
+                    <div class="flex_row">
+                        <h2>Your Order</h2>
+                        <a href="{{url('productdetails/'.$last['product'])}}">Edit</a>
+                    </div>
+                    <div class="list flex_row">
+                        <div>
+                            <div>{{ $total_items }} item{{ $total_items > 1 ? 's' : '' }}</div>
+                            <div>Delivery Fees</div>
+                            @if ($registered_user)
+                                <div >Discount 20%</div>
+                            @else
+                                <div >Discount (available for registered user)</div>
+                            @endif
+                            <div><b>Total</b></div>
+                        </div>
+                        <div class="text_right">
+                            <div>{{$total_price}} <span>MMK</span></div>
+                            <input type="hidden" value="{{$total_price}}" id="totalprice">
+                            <div class="delivery_fee"><label  id="delivery_fee" value=""></label><span> MMK</span></div>
+                            <input type="hidden" id="dprice" name="dprice" value="">
+                            @if ($registered_user)
+                                <div>{{$total_price * 0.2 }}<span>MMK</span></div>
+                            @else
+                                <div>0 <span>MMK</span></div>
+                            @endif
+                            <input type="hidden" id="discountprice" name="dprice" value="{{$registered_user == true ? $total_price * 0.2 : 0 }}">
+                            <div class="total"><label id="total" value=""></label><span> MMK</span></div>
+                            <input type="hidden" name="Total_paynow" id="Total_paynow" value="">
+                            {{-- @foreach ($cartarray as $item)
+                            @php
+                                $queryString = http_build_query($item);
+                            @endphp
+                                <input type="hidden" name="cartarray[]" value="{{$queryString}}">
+                            @endforeach --}}
+                        </div>
+        
+                    </div>
+        
+                    <hr>
+                    <h2>Item Details</h2>
+                    @php
+                        $count=1;
+                    @endphp
+                    @foreach ($cartarray as $item)
+                        <div style="display:inline-block;background-color:#D9D9D9; padding:3px; border-radius:2px;">No. {{$count}}</div>
+                        <div class="item_detail flex_row">
+                            <img src="{{asset('image/admin/products_info/' .$item['image'])}}" alt="">
+                            <div>
+                                <p><b>{{$item['name']}}</b></p>
+                                <p>Price: {{$item['price']}}</p>
+                                <p>Size: {{$item['size']}}</p>
+                                <p>Quantity : {{$item['quantity']}} item{{ $item['quantity'] > 1 ? 's' : '' }}</p>
+                            </div>
+                        </div>
+                        @php
+                            $count +=1;
+                        @endphp
+                    
+                    <hr>
+                    @endforeach
+                    
+        
                 </div>
-
             </div>
-
-            <hr>
-
-            <div class="item_detail flex_row">
-                <img src="/images/09_2_1_3_1000_1000 1.png" alt="">
-                <div>
-                    <p><b>Men’s Neck Solid Color Short Sleeve Tee</b></p>
-                    <p>12500MMK</p>
-                    <p>Size: Small</p>
-                    <p>Quantity : 1 item</p>
-                </div>
+            <div >
+                <button type="submit" class="payNow button2" style="width:46%;">Pay Now</button>
             </div>
+        </form>
 
-        </div>
-    </div>
-
-    <div class="footer grid">
-        <div class="flex_col">
-            <h3>Product</h3>
-            <ul>
-                <li>Clothing</li>
-                <li>Shoes</li>
-                <li>Accessories</li>
-            </ul>
-        </div>
-        <div class="flex_col">
-            <h3>Customer Support</h3>
-            <ul>
-                <li>FAQ</li>
-                <li>Shipping</li>
-                <li>Track Order</li>
-                <li>Return & Exchange</li>
-                <li><a href="{{route('ContactUs')}}">Contact</a></li>
-            </ul>
-        </div>
-        <div class="flex_col">
-            <h3>Company</h3>
-            <ul>
-                <li>About Us</li>
-                <li>Privacy Policy</li>
-                <li>Terms & Condition</li>
-            </ul>
-        </div>
-        <div class="flex_col">
-            <h3>Get Your Latest Update !</h3>
-            <ul>
-                <li>Subscribe to get our latest news  about special discount</li>
-                <li><input type="email" placeholder="Enter your email"></li>
-                <li><button class="button1">Subscribe</button></li>
-            </ul>
-        </div>
     </div>
 
     <!-- script -->
-    <script src="{{asset('js/customer/add_to_card.js')}}"></script>
+    {{-- <script src="{{asset('js/customer/add_to_card.js')}}"></script> --}}
     <script src="{{asset('js/customer/shipping_fee.js')}}"></script>
 </body>
 </html>

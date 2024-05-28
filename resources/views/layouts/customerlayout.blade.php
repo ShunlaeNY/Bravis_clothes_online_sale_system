@@ -23,10 +23,10 @@
                 </div>
                 <div>
                     Welcome!
-                    @if ( auth('customer')->user() != null)
-                        {{auth('customer')->user()->fname}} ! |
+                    @if (auth('customer')->user() != null)
+                        {{auth('customer')->user()->fname}}
                     @else
-                        Guest ! |
+                        Guest
                     @endif
                 </div>
                 <div class="link">
@@ -63,6 +63,7 @@
                 <div class="extra_icon flex_row">
                     <div class="add_to_cart_icon">
                         <i class="fa-solid fa-cart-shopping"></i>
+                        <span>{{count($cartarray)}}</span>
                     </div>
                 </div>
             </div>
@@ -108,35 +109,34 @@
                             <p>Price - {{$item['price']}}MMK</p>
                             <div class="flex_row">
                                 <div class="add_or_remove_quantity grid">
-                                    <form action="{{route('AddToCart.show')}}" method="POST" class="minus">
+                                    <form action="{{route('AddToCart.show')}}" method="post" class="minus">
                                         @csrf
-                                        @php
-                                            $removeQty = true;
-                                        @endphp
-                                        <input type="hidden" name="removeQty" id="" value="{{$removeQty}}">
-                                        <input type="hidden" name="product_id" id="" value="{{$item['product']}}">
-                                        <button type="submit">-</button>
+                                        <input type="hidden" name="removeQty" id="" value="true">
+                                        <input type="hidden" name="addToCart" id="" value="{{true}}">
+                                        <input type="hidden" name="sizes" id="" value="{{$item['size']}}">                                        <input type="hidden" name="product_id" id="" value="{{$item['product']}}">
+                                        <button formaction="{{route('AddToCart.show')}}" type="submit">-</button>
                                     </form>
                                     <div class="number">{{$item['quantity']}}</div>
                                     <form action="{{route('AddToCart.show')}}" method="POST" class="plus">
                                         @csrf
-                                        @php
+                                        {{-- @php
                                             $addQty = true;
-                                        @endphp
-                                        <input type="hidden" name="addQty" id="" value="{{$addQty}}">
+                                        @endphp --}}
+                                        <input type="hidden" name="addQty" id="" value="{{true}}">
+                                        <input type="hidden" name="addToCart" id="" value="{{true}}">
                                         <input type="hidden" name="product_id" id="" value="{{$item['product']}}">
-                                        <button type="submit">+</button>
+                                        <input type="hidden" name="sizes" id="" value="{{$item['size']}}">
+                                        <button formaction="{{route('AddToCart.show')}}" type="submit">+</button>
                                     </form>
                                 </div>
                                 <form action="{route('AddToCart.show')}" method="POST" class="remove_button">
                                     @csrf
                                     <input type="hidden" name="removeFromCart" id="" value="{{$item['product']}}">
-                                    @php
-                                                $addtoCart = true;
-                                    @endphp
-                                    <input type="hidden" name="addtoCart" id="" value="{{$addtoCart}}">
+                                    
+                                    <input type="hidden" name="addToCart" id="" value="{{true}}">
+                                    <input type="hidden" name="sizes" id="" value="{{$item['size']}}">
                                     <input type="hidden" name="product_id" id="" value="{{$item['product']}}">
-                                    <button type="submit">remove</button>
+                                    <button formaction="{{route('AddToCart.show')}}" type="submit">remove</button>
                                 </form>
                             </div>
                             
@@ -162,7 +162,7 @@
                     <input type="hidden" name="total_items" id="" value="{{count($cartarray)}}">
                 </div>
                 <div class="checkout">
-                    <button type="submit" class="button2 checkout_button">Check out</button>
+                    <button formaction="{{route('CheckOut')}}" type="submit" class="button2 checkout_button">Check out</button>
                 </div>
             </div>
         </form>

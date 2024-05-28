@@ -26,11 +26,16 @@
                         @enderror
                     </div>
                     <div>
-                        <input type="password" name="password" placeholder="Password"><br>
+                        <div class="password_container">
+                            <input name="password" id="password" type="password" placeholder="password">
+                                <span><i class="fa-solid fa-eye-slash hide_password"></i></span>
+                                <span><i class="fa-solid fa-eye show_password"></i> </span>
+                        </div>
                         @error('password')
                             <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
                         @enderror
                     </div>
+                    
                     <button type="submit" class="login_button button2">Login</button>
                     <p>Don’t have an account? <a href="{{route('CustomerRegister')}}">Sign Up</a></p>
                 </form>
@@ -39,5 +44,6 @@
         <div class="image">
         </div>
     </div>
+    <script src="{{asset('js/customer/show_hide_password.js')}}"></script>
 </body>
 </html>

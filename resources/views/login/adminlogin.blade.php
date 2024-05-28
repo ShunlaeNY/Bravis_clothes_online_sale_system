@@ -11,48 +11,6 @@
 
 </head>
 <body>
-    {{-- <div class="background_image flex_row">
-        <div class="container flex_col">
-            <form action="{{route('AdminLoginProcess')}}" method="post">
-                @csrf
-                <div class="texts">
-                    <div class="title">
-                        <h2>Bravis</h2>
-                        <p>ADMIN PANEL</p>
-                        <p>Control panel login</p>
-                    </div>
-                    
-                    <input type="hidden" name="usertype" value="admin">
-                    <div class="login_form grid">
-                        <div class="flex_row">
-                            <div class="input_box">
-                                <img src="{{asset('image/admin/icon/staff.svg')}}" alt="">
-                                <input type="text" name="email" placeholder="admin">
-                            </div>
-                            @error('email')
-                                <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
-                            @enderror
-                        </div>
-                        <div class="flex_row">
-                            <div class="input_box">
-                                <img src="{{asset('image/admin/icon/key.svg')}}" alt="">
-                                <div class="password_container">
-                                    <input type="password" name="password" placeholder="password"> 
-                                        <i class="fa-solid fa-eye-slash hide_password"></i>
-                                        <i class="fa-solid fa-eye show_password"></i>   
-                                </div>
-                            </div>
-                            @error('password')
-                                <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
-                            @enderror
-                        </div>
-                    </div>
-                    <br>
-                    <button class="login_btn" type="submit">Login</button>
-                </div>
-            </form>
-        </div>
-    </div> --}}
     <div class="background_image">
         <div class="flex_row">
             <form action="{{route('AdminLoginProcess')}}" method="POST" class="flex_col">

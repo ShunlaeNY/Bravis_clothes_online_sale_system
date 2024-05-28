@@ -41,7 +41,7 @@ class LoginController extends Controller
     }
 
     public function login(Request $request){
-        // dd($request->all());
+
         $validateData = $request->validate([
             'email'=> 'required',
             'password' => 'required',
@@ -52,6 +52,7 @@ class LoginController extends Controller
         // dd($request->all());
         $validateData['password'] = bcrypt($validateData['password']);
         // dd($validateData['password']);
+        // dd($request->all());
         $input = $request->all();
         $userdata = array('email' => $input['email'], 'password' => $input['password']);
         // dd($userdata);
@@ -105,7 +106,7 @@ class LoginController extends Controller
     {
         Auth::logout();
         Session::flush();
-        return redirect()->route('CustomerLogin');
+        return redirect()->route('Home');
     }
     public function adminlogout(Request $request){
         Auth::logout();

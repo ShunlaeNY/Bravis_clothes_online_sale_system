@@ -125,16 +125,19 @@ body{
     line-height: 40px;
 }
 .section2 .detail .item_detail>img{
-    max-width: 210px;
-    max-height: 240px;
+    max-width: 150px;
+    max-height: 200px;
     padding: 20px 0px;
 }
 .section2 .detail .item_detail{
     align-items: start;
-    gap: 20px;
+    justify-content: flex-start;
+    gap: 30px;
     margin-top: 30px;
 }
-
+.card{
+    display:none;
+}
 @media (max-width:1000px) and (min-width:768px)
 {
     .section2{
