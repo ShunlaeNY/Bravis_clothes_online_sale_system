@@ -56,5 +56,8 @@
                 </table>
             </div>
         </div>
+        <div class="Pagination">
+            {{$supplierlists->links('pagination::bootstrap-4')}}
+        </div>
     </div>
 @endsection

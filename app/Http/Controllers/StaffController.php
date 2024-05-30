@@ -26,7 +26,7 @@ class StaffController extends Controller
                     ->join('roles','roles.id','=','admins.role_id')
                     ->where('admins.status','=','Active')
                     ->select('admins.*','roles.name as rolename')
-                    ->get();
+                    ->paginate(5);
         $roles = DB::table('roles')
                     ->select('id','name')
                     ->where('status','=','Active')

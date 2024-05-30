@@ -165,25 +165,30 @@ class CustomerpageController extends Controller
         
     }
 
-    //order and cart create
-    public function create(Request $request)
-    {
-        $cartarray = $request->session()->get('cartdata') ?? []; //get cartdata array from session
-        // dd($cartarray);
-        $customer_id = $request->customer_id;
-        // dd($customer_id);
-        // store in cart
-        foreach ($cartarray as $key => &$value) {
-            $uuid = Str::uuid()->toString(); //uuid to string
-            $cartdata = new Cart();
-            $cartdata->product_id = $value['product'];
-            $cartdata->customer_id = $customer_id;
-            $cartdata->uuid = $uuid;
-            $cartdata->status = 'Active';
-            $cartdata->totalprice = $value['price'] * $value['quantity'];
-            $cartdata->save();
-        }
-       
+    public function successful(){
+        // $cartarray = session()->flush();
+        return view('customer_pages.successful');
     }
+
+    //order and cart create
+    // public function create(Request $request)
+    // {
+    //     $cartarray = $request->session()->get('cartdata') ?? []; //get cartdata array from session
+    //     // dd($cartarray);
+    //     $customer_id = $request->customer_id;
+    //     // dd($customer_id);
+    //     // store in cart
+    //     foreach ($cartarray as $key => &$value) {
+    //         $uuid = Str::uuid()->toString(); //uuid to string
+    //         $cartdata = new Cart();
+    //         $cartdata->product_id = $value['product'];
+    //         $cartdata->customer_id = $customer_id;
+    //         $cartdata->uuid = $uuid;
+    //         $cartdata->status = 'Active';
+    //         $cartdata->totalprice = $value['price'] * $value['quantity'];
+    //         $cartdata->save();
+    //     }
+       
+    // }
 
 }

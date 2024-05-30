@@ -58,6 +58,8 @@ Route::middleware('admin')->group(function(){
         Route::get('/customerlist/delete/{id}',[CustomerController::class,'customerdelete'])->name('CustomerDelete');
         //order
         Route::get('/orderlist',[OrderController::class,'orderlist'])->name('OrderList');
+        Route::get('/order_items/edit/{id}',[OrderController::class,'orderedit'])->name('OrderStatusEdit');
+        Route::post('/order_items/edit/process',[OrderController::class,'orderupdate'])->name('OrderStatusUpdateProcess');
 
         //staff
         Route::get('/stafflist',[StaffController::class,'stafflist'])->name('StaffList');

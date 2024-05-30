@@ -71,9 +71,9 @@
                         </tr>
                     @endforeach
             </table>
-            <div class="pagination">
-
-            </div>
+        </div>
+        <div class="Pagination">
+            {{$stafflists->links('pagination::bootstrap-4')}}
         </div>
     </div>
 @endsection

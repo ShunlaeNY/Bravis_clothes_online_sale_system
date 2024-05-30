@@ -101,6 +101,10 @@
                 </table>
 
             </div>
+            <div class="Pagination">
+                {{$categorylists->links('pagination::bootstrap-4')}}
+            </div>
         </div>
+        
     </div>
 @endsection

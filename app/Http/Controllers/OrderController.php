@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\Cart;
+use App\Models\Order;
+use App\Models\OrderProduct;
 
 class OrderController extends Controller
 {
@@ -13,7 +17,20 @@ class OrderController extends Controller
     public function orderlist()
     {
         //
-        return view('order.list');
+        $order_items = DB::table('order_products')
+                    ->join('orders', 'orders.id', '=', 'order_products.order_id')
+                    ->join('products', 'products.id', '=', 'order_products.product_id')
+                    ->join('customers', 'customers.id', '=', 'orders.customer_id')
+                    // ->where('order_products.status', '=', 'Active')
+                    ->select(
+                        'order_products.*',
+                        'products.name as product_name',
+                        'customers.fname as customer_fname',
+                        'customers.lname as customer_lname',
+                        'orders.paymentmethod as paymentmethod'
+                    )
+    ->paginate(5);
+        return view('order.list',compact('order_items'));
     }
 
     /**
@@ -22,6 +39,8 @@ class OrderController extends Controller
     public function create()
     {
         //
+
+
     }
 
     /**
@@ -30,6 +49,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**
@@ -43,9 +63,13 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function orderedit(string $id)
     {
         //
+        $order_item = OrderProduct::find($id);
+
+        // dd($order_item);
+        return view('order.update',compact('order_item'));
     }
 
     /**

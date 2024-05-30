@@ -36,7 +36,7 @@ class ProductController extends Controller
                         ->where('products.status','=','Active')
                         ->select('products.*','categories.name as categoryname','admins.name as adminname','suppliers.name as suppliername','suppliers.brand_name as brand')
                         ->orderBy('products.id','desc')
-                       ->paginate(5);
+                       ->paginate(4);
         
         $categories = DB::table('categories')
                     ->where('status','=','Active')

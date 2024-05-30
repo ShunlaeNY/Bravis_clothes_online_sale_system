@@ -55,7 +55,11 @@
                          <form id='checkout-form' method='post' action="{{ route('stripe.post') }}">   
                             @csrf             
                             <input type='hidden' name='stripeToken' id='stripe-token-id'>                              
-                            <input type='hidden' name='totalpurchase' id='totalpurchase' value="{{$totalpurchase}}">                              
+                            {{-- {{dd($alldata)}}                           --}}
+                            @foreach ($alldata as $key => $value)
+                                <input type="hidden" name="alldata[{{ $key }}]" value="{{ $value }}">
+                            @endforeach
+                           
                             <br>
                             <div id="card-element" class="form-control" ></div>
                             <button 

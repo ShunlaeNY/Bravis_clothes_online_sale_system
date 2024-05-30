@@ -34,7 +34,7 @@ function getInputValue(){
     ygn_fee =  2500;
     
     document.getElementById("delivery_fee").textContent = ygn_fee;
-    document.getElementById('dprice').value = ygn_fee ;
+    document.getElementById('delivery').value = ygn_fee ;
     // console.log(document.getElementById('dprice').value);
     const disc_price = document.getElementById('discountprice').value;
     // console.log(disc_price);
@@ -54,7 +54,7 @@ function getInputValue1(){
     ygn_fee = 3500;
     // console.log(ygn_fee);
     document.getElementById("delivery_fee").textContent = ygn_fee;
-    document.getElementById('dprice').value = ygn_fee ;
+    document.getElementById('delivery').value = ygn_fee ;
     const disc_price = document.getElementById('discountprice').value;
     // console.log(disc_price);
     var totalprice = document.getElementById('totalprice').value;

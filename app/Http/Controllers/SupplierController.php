@@ -23,7 +23,7 @@ class SupplierController extends Controller
         //
         $supplierlists = DB::table('suppliers')
                         ->where('status','Active')
-                        ->get();
+                        ->paginate(5);
         return view('supplier.list',compact('supplierlists'));
     }
 

@@ -27,7 +27,7 @@ class CategoryController extends Controller
                         ->join('admins','admins.id','=','categories.admin_id')
                         ->where('categories.status','=','Active')
                         ->select('categories.*','admins.name as admin_name')
-                        ->get();
+                        ->paginate(5);
                         // dd($categorylists);
         return view('category.list',compact('categorylists'));
     }

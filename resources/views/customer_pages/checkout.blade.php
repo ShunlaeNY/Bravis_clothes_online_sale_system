@@ -139,21 +139,15 @@
                             <div>{{$total_price}} <span>MMK</span></div>
                             <input type="hidden" value="{{$total_price}}" id="totalprice">
                             <div class="delivery_fee"><label  id="delivery_fee" value=""></label><span> MMK</span></div>
-                            <input type="hidden" id="dprice" name="dprice" value="">
+                            {{-- <input type="hidden" id="dprice" name="delifee" value=""> --}}
                             @if ($registered_user)
                                 <div>{{$total_price * 0.2 }}<span>MMK</span></div>
                             @else
                                 <div>0 <span>MMK</span></div>
                             @endif
-                            <input type="hidden" id="discountprice" name="dprice" value="{{$registered_user == true ? $total_price * 0.2 : 0 }}">
+                            <input type="hidden" id="discountprice" name="discprice" value="{{$registered_user == true ? $total_price * 0.2 : 0 }}">
                             <div class="total"><label id="total" value=""></label><span> MMK</span></div>
                             <input type="hidden" name="Total_paynow" id="Total_paynow" value="">
-                            {{-- @foreach ($cartarray as $item)
-                            @php
-                                $queryString = http_build_query($item);
-                            @endphp
-                                <input type="hidden" name="cartarray[]" value="{{$queryString}}">
-                            @endforeach --}}
                         </div>
         
                     </div>
@@ -163,7 +157,8 @@
                     @php
                         $count=1;
                     @endphp
-                    @foreach ($cartarray as $item)
+                    <div>
+                        @foreach ($cartarray as $item)
                         <div style="display:inline-block;background-color:#D9D9D9; padding:3px; border-radius:2px;">No. {{$count}}</div>
                         <div class="item_detail flex_row">
                             <img src="{{asset('image/admin/products_info/' .$item['image'])}}" alt="">
@@ -180,6 +175,8 @@
                     
                     <hr>
                     @endforeach
+                    </div>
+                    
                     
         
                 </div>
