@@ -13,11 +13,11 @@
         <div class="session1 grid">
             <div class="total_earnings">
                 <p>Total Earnings</p>
-                <p>K </p>
+                <p>{{$TotalEarning}} MMK </p>
             </div>
             <div class="total_expenses">
-                <p>Total Expenses</p>
-                <p>K </p>
+                <p>Total Products</p>
+                <p>{{$productCount}}</p>
             </div>
             <div class="clients">
                 <p>Clients</p>
@@ -33,33 +33,33 @@
                 <img src="/image/icon/Total Order.svg" alt="">
                 <div>
                     <p>Total Order</p>
-                    <p></p>
+                    <p>{{$TotalOrder}}</p>
                 </div>
             </div>
             <div class="order_pending flex_row">
                 <img src="/image/icon/Pending.svg" alt="">
                 <div>
                     <p>Order_pending</p>
-                    <p></p>
+                    <p>{{$TotalOrderPending}}</p>
                 </div>
             </div>
             <div class="order_processing flex_row">
                 <img src="/image/icon/Processing.svg" alt="">
                 <div>
                     <p>Order Processing</p>
-                    <p></p>
+                    <p>{{$TotalOrderProcessing}}</p>
                 </div>
             </div>
             <div class="order_delivered flex_row">
                 <img src="/image/icon/Delivered.svg" alt="">
                 <div>
                     <p>Order Delivered</p>
-                    <p></p>
+                    <p>{{$TotalOrderDelivered}}</p>
                 </div>
             </div>
         </div>
         <div class="session4 grid">
-            <div class="flex_col">
+            <div class="flex_col"  style="width: 100% !important;height:300px !important;">
                 <div class="flex_row">
                     <p>Top selling products</p>
                     <div>
@@ -67,108 +67,66 @@
                         <button>Women</button>
                     </div>
                 </div>
-                <div id="piechart" style="width: 100% !important;height:300px !important;"></div>
+                <div id="piechart"></div>
             </div>
-            <div class="flex_col">
+            <div class="flex_col" style="width: 100% !important;height: 300px !important;">
                 <div class="flex_row">
                     <p>Sale Statics</p>
                 </div>
-                <canvas id="myChart" style="width: 100% !important;height: 300px !important; border-radius:10px;"></canvas>    
+                <canvas id="myChart" style="height: 50px !important;width:100px;"></canvas>    
             </div>
         </div>
-        {{-- <div class="session5">
-            <p>Recent Transitions</p>
-            <div class="filter_entry flex_row">
-                <div>
-                    Show
-                    <select name="" id="select_entry">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                    entries
-                </div>
-                <div>
-                    <label for="">Search:</label>
-                    <input type="text" id="select_input">
-                </div>
-            </div>
-            <div style="overflow-x: auto;">
-                <table class="transition_table">
-                    <tr>
-                        <th class="first_title">ID</th>
-                        <th>Product</th>
-                        <th>Customer Name</th>
-                        <th>Price</th>
-                        <th>Payment Info</th>
-                        <th class="last_title">Status</th>
-                    </tr>
-                    <tr>
-                        <td>#Order111</td>
-                        <td>
-                            <div class="flex_row">
-                                <div class="product_img"></div>
-                                <p>Polo Shirt</p>
-                            </div>
-                        </td>
-                        <td>Mg Myo</td>
-                        <td>25,450MMK</td>
-                        <td>Credit Card</td>
-                        <td>
-                            <div class="status status_complete">Complete</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#Order111</td>
-                        <td>
-                            <div class="flex_row">
-                                <div class="product_img"></div>
-                                <p>Polo Shirt</p>
-                            </div>
-                        </td>
-                        <td>Mg Myo</td>
-                        <td>25,450MMK</td>
-                        <td>Credit Card</td>
-                        <td>
-                            <div class="status status_pending">Pending</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#Order111</td>
-                        <td>
-                            <div class="flex_row">
-                                <div class="product_img"></div>
-                                <p>Polo Shirt</p>
-                            </div>
-                        </td>
-                        <td>Mg Myo</td>
-                        <td>25,450MMK</td>
-                        <td>Credit Card</td>
-                        <td>
-                            <div class="status status_cancelled">Cancelled</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="last_row_left">
-                            <div class="page_info">
-                                Showing 1-3 of 30
-                            </div>
-                        </td>
-                        <!-- <td colspan="4" class="last_row_right">
-                            <div class="pagination">
-                                <a href="#">&laquo;</a>
-                                <a class="active" href="#">1</a>
-                                <a href="#">&raquo;</a>
-                            </div>
-                        </td> -->
-                    </tr>
-                </table>
-            </div>
-        </div> --}}
     </div>
 @endsection
 
 @section('js')
-    <script type="text/javascript" src="{{asset('js/admin/pie_chart.js')}}"></script>
-    <script src="{{asset('js/admin/bar_chart.js')}}"></script>
+    {{-- <script type="text/javascript" src="{{asset('js/admin/pie_chart.js')}}"></script> --}}
+    <script>
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+
+        function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Categories', 'Total Orders'],
+            ['Women Fashion', {{$women_fashion_order}}],
+            ['Men Fashion', {{$men_fashion_order}}],
+            ['Accessories',  {{$accessories_order}}],
+            ['Sport Wrears',{{$sport_wear_order}}]
+        ]);
+
+        var options = {
+            title: ''
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+        }
+    </script>
+    {{-- <script src="{{asset('js/admin/bar_chart.js')}}"></script> --}}
+    <script>
+        const xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep","Oct", "Nov","Dec"];
+        const yValues = [580, 560, 200, 90, 350,500,420,700,300,690,490,220];
+        const barColors = ["blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue"];
+
+        new Chart("myChart", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+            }]
+        },
+        options: {
+            legend: {display: false},
+            title: {
+            display: true,
+            text: ""
+            }
+        }
+        });
+    </script>
 @endsection

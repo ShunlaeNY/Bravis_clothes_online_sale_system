@@ -26,8 +26,7 @@
                 @if ($updatestatus == true)
                     @method('PATCH')
                 @endif
-
-            <input type="hidden" name="id" value="{{$updatestatus == true ? $productdata->id :''}}">
+                <input type="hidden" name="id" value="{{$updatestatus == true ? $productdata->id :''}}">
 
                 <input type="hidden" name="admin_id" id="admin_id" value="{{auth('admin')->user()->id}}">
 

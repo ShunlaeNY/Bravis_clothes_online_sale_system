@@ -6,11 +6,11 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
 
   var data = google.visualization.arrayToDataTable([
-    ['Task', 'Hours per Day'],
-    ['Pants',     50],
-    ['Shirts',      20],
-    ['Jackets',  15],
-    ['T-shirts', 15]
+    ['Categories', 'Total Orders'],
+    ['Women Fashion',     50],
+    ['Men Fashion',      20],
+    ['Accessories',  15],
+    ['Sport Wrears', 15]
   ]);
 
   var options = {

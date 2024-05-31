@@ -106,10 +106,11 @@ class SupplierController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function supplierdelete(string $id)
+    public function supplierdelete(Request $request)
     {
         //
-        $supplierdel = Supplier::find($id);
+        // dd($request->all());
+        $supplierdel = Supplier::find($request->supplier_id);
         $supplierdel->status = "Inactive";
         $supplierdel->update();
         // $categorydelete->delete();

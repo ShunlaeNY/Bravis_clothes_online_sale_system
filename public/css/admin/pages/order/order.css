@@ -1,3 +1,7 @@
+td{
+    text-align: left;
+    padding-left: 20px;
+}
 .session1{
     padding: 30px 15px;
     border-radius: 10px;
@@ -90,7 +94,7 @@
     margin: auto;
     padding: 10px 50px;
     border: 1px solid #888;
-    width: 40%;
+    width: 20%;
   }
   
   /* The Close Button */
@@ -106,6 +110,11 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
+  }
+  .update_status{
+    margin: 20px 0px;
+    height: 30px;
+    border-radius: 5px;
   }
 
 @media (max-width:767px) and (min-width:320px)

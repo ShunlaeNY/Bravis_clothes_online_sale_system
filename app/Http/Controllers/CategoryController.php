@@ -101,10 +101,10 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function categorydelete(string $id)
+    public function categorydelete(Request $request)
     {
         //
-        $categorydel = Category::find($id);
+        $categorydel = Category::find($request->category_id);
         $categorydel->status = "Inactive";
         $categorydel->update();
         // $categorydelete->delete();

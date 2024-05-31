@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{asset('css/admin/pages/product/product.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/admin/pages/product/product.css') }}">
 @endsection
 
 @section('main')
@@ -13,19 +13,19 @@
         <div class="session1 flex_row">
             <h3>All Suppliers</h3>
             @if (auth('admin')->user()->role_id === 1)
-                <a href="{{route('SupplierCreate')}}">+ Add Supplier</a>
+                <a href="{{ route('SupplierCreate') }}">+ Add Supplier</a>
             @else
-                <a href="{{route('SupplierCreate')}}" class="disable_btn">+ Add Supplier</a>
+                <a href="{{ route('SupplierCreate') }}" class="disable_btn">+ Add Supplier</a>
             @endif
         </div>
         <div class="session2">
-            <form action="{{route('SearchSuppliers')}}" method="post" class="grid">
+            <form action="{{ route('SearchSuppliers') }}" method="post" class="grid">
                 @csrf
                 <input type="text" name="supplier_name" placeholder="Search by Supplier Name">
                 <input type="text" name="brand_name" placeholder="Search by Brand">
                 <div class="buttons flex_row">
                     <button type="submit" class="filter_button button">Filter</button>
-                    <a href="{{route('SupplierList')}}" class="reset_button button">Reset</a>
+                    <a href="{{ route('SupplierList') }}" class="reset_button button">Reset</a>
                 </div>
             </form>
         </div>
@@ -38,26 +38,75 @@
                         <th class="last_title">Action</th>
                     </tr>
                     @foreach ($supplierlists as $supplierlist)
-                            <tr>
-                                <td>{{$supplierlist->name}}</td>
-                                <td>{{$supplierlist->brand_name}}</td>
-                                <td>
-                                    @if (auth('admin')->user()->role_id === 1)
-                                        <a href="{{url('admin/dashboard/supplierlist/edit/'.$supplierlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a href="{{url('admin/dashboard/supplierlist/delete/'.$supplierlist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
-                                    @else
-                                        <a href="{{url('admin/dashboard/supplierlist/edit/'.$supplierlist->id)}}" class="btn edit-btn disable_btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a href="{{url('admin/dashboard/supplierlist/delete/'.$supplierlist->id)}}" class="btn edit-btn disable_btn"><i class="fa-regular fa-trash-can"></i></a>
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                   
+                        <tr>
+                            <td>{{ $supplierlist->name }}</td>
+                            <td>{{ $supplierlist->brand_name }}</td>
+                            <td>
+                                @if (auth('admin')->user()->role_id === 1)
+                                    <a href="{{ url('admin/dashboard/supplierlist/edit/' . $supplierlist->id) }}" class="btn edit-btn">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <button class="deleteBtn" data-supplier-id="{{ $supplierlist->id }}">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                @else
+                                    <a href="{{ url('admin/dashboard/supplierlist/edit/' . $supplierlist->id) }}" class="btn edit-btn disable_btn">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <i class="fa-regular fa-trash-can"></i>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
                 </table>
             </div>
         </div>
         <div class="Pagination">
-            {{$supplierlists->links('pagination::bootstrap-4')}}
+            {{ $supplierlists->links('pagination::bootstrap-4') }}
         </div>
+
+        <!-- The Modal -->
+        <div id="deleteModal" class="modal">
+            <div class="modal-content">
+                <div class="flex_row" style="justify-content: space-between;">
+                    <h3>Delete Supplier</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <p>Do you want to delete this supplier?</p>
+                <form id="deleteForm" action="{{ route('SupplierDelete') }}" method="post" class="flex_row" style="justify-content: flex-end">
+                    @csrf
+                    {{-- @method('DELETE') --}}
+                    <input type="hidden" name="supplier_id" id="modal_supplier_id">
+                    <button type="submit" class="change_button">Delete</button>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var modal = document.getElementById("deleteModal");
+                var span = document.getElementsByClassName("close")[0];
+                var deleteButtons = document.querySelectorAll('.deleteBtn');
+                var supplierIdInput = document.getElementById('modal_supplier_id');
+
+                deleteButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        var supplierId = this.getAttribute('data-supplier-id');
+                        supplierIdInput.value = supplierId;
+                        modal.style.display = "block";
+                    });
+                });
+
+                span.onclick = function() {
+                    modal.style.display = "none";
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            });
+        </script>
     </div>
 @endsection

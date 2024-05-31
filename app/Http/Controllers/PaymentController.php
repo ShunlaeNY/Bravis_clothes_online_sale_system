@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Stripe;
 use Carbon\Carbon;
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\Product;
 use App\Models\Customer;
 use Illuminate\Support\Str;
+use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Order;
-use App\Models\OrderProduct;
 
 class PaymentController extends Controller
 {
@@ -130,7 +131,7 @@ class PaymentController extends Controller
     $order->total_price = $total_price;
     $order->shippingfees = $shippingfees;
     $order->uuid = $uuid;
-    $order->status = 'Active';
+    $order->status = 'Pending';
     $order->save();
 
     //order product store
@@ -148,6 +149,22 @@ class PaymentController extends Controller
     // dd($orderproduct);
 
 
+    //inventory qty
+    foreach ($cartarray as $key => &$value) {
+        $product = Product::find($value['product']);
+        if ($value['size'] == 'S') {
+                $product->small_qty -= $value['quantity'];
+        }
+        elseif ($value['size'] == 'M') {
+                $product->medium_qty -= $value['quantity'];
+        }
+        elseif ($value['size'] == 'L') {
+                $product->large_qty -= $value['quantity'];
+        }
+        $product->update();
+    }
+
+
     // payment
        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
        Stripe\Charge::create([
@@ -158,6 +175,9 @@ class PaymentController extends Controller
        ]);
        
     //empty cart session
+
+
+
     return view('customer_pages.successful',compact('cartarray'))->with('success', 'Payment successful','alldata');
    }
 

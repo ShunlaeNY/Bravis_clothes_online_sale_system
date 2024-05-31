@@ -8,9 +8,16 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Repositories\OrderRepository;
 
 class OrderController extends Controller
 {
+    protected $OrderRepository;
+
+    public function __construct(OrderRepository $orderRepository)
+    {
+        $this->OrderRepository = $orderRepository; 
+    }
     /**
      * Display a listing of the resource.
      */
@@ -29,7 +36,8 @@ class OrderController extends Controller
                         'customers.lname as customer_lname',
                         'orders.paymentmethod as paymentmethod'
                     )
-    ->paginate(5);
+                    ->orderByDesc('order_products.id')
+                    ->paginate(5);
         return view('order.list',compact('order_items'));
     }
 
@@ -66,19 +74,23 @@ class OrderController extends Controller
     public function orderedit(string $id)
     {
         //
-        $order_item = OrderProduct::find($id);
-
-        // dd($order_item);
-        return view('order.update',compact('order_item'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function updateOrderStatus(Request $request)
     {
-        //
+    $order = OrderProduct::find($request->input('order_id'));
+    if ($order) {
+        $order->status = $request->input('update_status');
+        $order->update();
     }
+
+    return redirect()->route('OrderList')->with('success', 'Order status updated successfully.');
+    }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -86,5 +98,11 @@ class OrderController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $response = $this->OrderRepository->search($request);
+        return $response;
     }
 }

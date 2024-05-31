@@ -33,7 +33,8 @@ class CustomerController extends Controller
     {
         //
         $customerlists = DB::table('customers')
-                        ->get();
+        ->orderBy('status','asc')
+        ->paginate(6);
         // dd($customerlist);
         return view('customer.list',compact('customerlists'));
     }
@@ -131,10 +132,11 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function customerdelete($id)
+    public function customerdelete(Request $request)
     {
         //
-        $customerdel = Customer::find($id);
+        // dd($request->customer_id);
+        $customerdel = Customer::find($request->customer_id);
         $customerdel->status = 'Inactive';
         $customerdel->update();
         return redirect()->route('CustomerList')->with('success','Customer Deleted Successfully');

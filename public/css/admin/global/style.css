@@ -59,18 +59,7 @@ i,button{
     font-size: 10px;
     color: var(--secondary-color);
 }
-.status_complete{
-    border: 1px solid var(--box-lightgreen-color);
-    background-color: var(--box-lightgreen-color);
-}
-.status_cancelled{
-    border: 1px solid var(--box-red-color);
-    background-color: var(--box-red-color);
-}
-.status_pending{
-    border: 1px solid var(--box-yellow-color);
-    background-color: var(--box-yellow-color);
-}
+
 
 /*  */
 .session{

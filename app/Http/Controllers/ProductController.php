@@ -121,6 +121,7 @@ class ProductController extends Controller
     public function productedit($id)
     {
         //
+        // dd($id);
         $categories = DB::table('categories')
                 ->select('id','name')
                 ->where('status','=','Active')
@@ -129,6 +130,7 @@ class ProductController extends Controller
                 ->where('status','=','Active')
                 ->get();
         $productdata=Product::find($id);
+        // dd($productdata);
         return view('product.create',compact('categories','suppliers','productdata'));
     }
 
@@ -171,24 +173,24 @@ class ProductController extends Controller
         }
         return redirect()->route('ProductList');
     }
-    public function productdelete($id){
+    public function productdelete(Request $request){
         // dd($id);
-        $productdel = Product::find($id);
+        $productdel = Product::find($request->product_id);
         $productdel->status = 'Inactive';
         $productdel->update();
         return redirect()->route('ProductList')->with('success','Product Deleted Successfully');
         
     }
 
-    public function productdetails($id){
-        // dd($id);
-        $productdetails = Product ::find($id);
-        $category = Category::where('id','=',$productdetails->category_id)->select('name')->get();
-        $supplier = Supplier::where('id','=',$productdetails->supplier_id)->select('name','brand_name')->get();
-        $admin = Admin::where('id','=',$productdetails->admin_id)->select('name')->get();
+    // public function productdetails($id){
+    //     // dd($id);
+    //     $productdetails = Product ::find($id);
+    //     $category = Category::where('id','=',$productdetails->category_id)->select('name')->get();
+    //     $supplier = Supplier::where('id','=',$productdetails->supplier_id)->select('name','brand_name')->get();
+    //     $admin = Admin::where('id','=',$productdetails->admin_id)->select('name')->get();
 
-        // dd($productdetails);
-        return view('product.details',compact('productdetails','category','supplier','admin'));
+    //     // dd($productdetails);
+    //     return view('product.details',compact('productdetails','category','supplier','admin'));
 
-    }
+    // }
 }

@@ -61,11 +61,13 @@
                             <td>
                                 @if (auth('admin')->user()->role_id === 1)
                                     <a href="{{url('admin/dashboard/stafflist/edit/'.$stafflist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <a href="{{url('admin/dashboard/stafflist/delete/'.$stafflist->id)}}" class="btn edit-btn"><i class="fa-regular fa-trash-can"></i></a>
+                                    <button class="deleteBtn" data-staff-id="{{ $stafflist->id }}">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
 
                                 @else
                                     <a href="{{url('admin/dashboard/stafflist/edit/'.$stafflist->id)}}" class="btn edit-btn disable_btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <a href="{{url('admin/dashboard/stafflist/delete/'.$stafflist->id)}}" class="btn edit-btn disable_btn"><i class="fa-regular fa-trash-can"></i></a>
+                                    <i class="fa-regular fa-trash-can"></i>
                                  @endif
                             </td>
                         </tr>
@@ -75,5 +77,48 @@
         <div class="Pagination">
             {{$stafflists->links('pagination::bootstrap-4')}}
         </div>
+
+        <!-- The Modal -->
+        <div id="deleteModal" class="modal">
+            <div class="modal-content">
+                <div class="flex_row" style="justify-content: space-between;">
+                    <h3>Delete Staff</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <p>Do you want to delete this staff?</p>
+                <form id="deleteForm" action="{{ route('StaffDelete') }}" method="post" class="flex_row" style="justify-content: flex-end">
+                    @csrf
+                    {{-- @method('DELETE') --}}
+                    <input type="hidden" name="staff_id" id="modal_staff_id">
+                    <button type="submit" class="change_button">Delete</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var modal = document.getElementById("deleteModal");
+                var span = document.getElementsByClassName("close")[0];
+                var deleteButtons = document.querySelectorAll('.deleteBtn');
+                var staffIdInput = document.getElementById('modal_staff_id');
+
+                deleteButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        var staffId = this.getAttribute('data-staff-id');
+                        staffIdInput.value = staffId;
+                        modal.style.display = "block";
+                    });
+                });
+
+                span.onclick = function() {
+                    modal.style.display = "none";
+                }
+
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            });
+        </script>
     </div>
 @endsection

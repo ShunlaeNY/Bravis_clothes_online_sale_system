@@ -148,9 +148,9 @@ class StaffController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function staffdelete($id){
+    public function staffdelete(Request $request){
         // dd($id);
-        $staffdel = Admin::find($id);
+        $staffdel = Admin::find($request->staff_id);
         $staffdel->status = 'Inactive';
         $staffdel->update();
         return redirect()->route('StaffList')->with('success','Staff Deleted Successfully');

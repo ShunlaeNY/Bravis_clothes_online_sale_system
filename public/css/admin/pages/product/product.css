@@ -101,6 +101,86 @@
     border-radius: 5px solid rgb(218, 218, 218);
     background-color: #ffffff;
  }
+ .status-btn{
+    border-radius: 20px;
+    color: white;
+    font-size: 12px;
+    border: none;
+    padding: 5px;
+}
+.pending-btn{
+    background-color: rgb(223, 186, 5);
+}
+.processing-btn{
+    background-color: rgb(77, 94, 255);
+}
+.delivered-btn{
+    background-color: rgb(96, 167, 34);
+}
+/* model box */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.264); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    margin: auto;
+    padding: 10px 50px;
+    border: 1px solid #888;
+    width: 30%;
+  }
+  
+  /* The Close Button */
+  .close,.close_info {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus,.close_info:hover ,.close_info:focus{
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .update_status{
+    margin: 20px 0px;
+    height: 30px;
+    border-radius: 5px;
+  }
+  .editStatusBtn,.deleteBtn,.infoBtn{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+  }
+  .editStatusBtn:hover,.deleteBtn:hover,.infoBtn:hover{
+    color: white;
+    padding: 5px 6px;
+    border-radius: 3px;
+    background-color: var(--box-blue-color);
+  }
+  .change_button{
+    margin: 20px 0px 30px 0px;
+    padding: 10px 30px;
+    border-radius: 6px;
+    border: none;
+    color: white;
+    background-color: var(--box-blue-color);
+  }
 @media (max-width:1300px) and (min-width:768px){
     .main .session2 .grid{
         grid-template-columns: repeat(3,1fr);
