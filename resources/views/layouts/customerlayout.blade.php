@@ -81,7 +81,7 @@
                 </div>
               </div>
               <div class="sticky" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Bravis</div>
-        </div>
+    </div>
     {{-- session start --}}
     @if (session()->has('cartdata'))
     {{-- {{dd(session()->get('cartdata'))}} --}}
@@ -98,11 +98,12 @@
             @endphp
             <div class="item-container">
                
-                @forelse ($cartarray as $item) 
+                <div class="scroll">
+                    @forelse ($cartarray as $item) 
                     <div class="tee1_pick flex_row">
                         <div></div>
-                        <div class="img">
-                            <img src="{{asset('image/admin/products_info/'.$item['image'])}}" alt="" width="100px">
+                        <div class="img" style="height:125px !important;">
+                            <img src="{{asset('image/admin/products_info/'.$item['image'])}}" alt="" width="100%" height="100%">
                         </div>
                         <div class="pick_detail">
                             <p><b>{{$item['name']}}</p><span>({{$item['size']}})</b></span>
@@ -113,8 +114,9 @@
                                         @csrf
                                         <input type="hidden" name="removeQty" id="" value="true">
                                         <input type="hidden" name="addToCart" id="" value="{{true}}">
-                                        <input type="hidden" name="sizes" id="" value="{{$item['size']}}">                                        <input type="hidden" name="product_id" id="" value="{{$item['product']}}">
-                                        <button formaction="{{route('AddToCart.show')}}" type="submit">-</button>
+                                        <input type="hidden" name="sizes" id="" value="{{$item['size']}}">  
+                                        <input type="hidden" name="product_id" id="" value="{{$item['product']}}">
+                                        <button formaction="{{route('AddToCart.show')}}" type="submit" class="minus_btn">-</button>
                                     </form>
                                     <div class="number">{{$item['quantity']}}</div>
                                     <form action="{{route('AddToCart.show')}}" method="POST" class="plus">
@@ -136,7 +138,7 @@
                                     <input type="hidden" name="addToCart" id="" value="{{true}}">
                                     <input type="hidden" name="sizes" id="" value="{{$item['size']}}">
                                     <input type="hidden" name="product_id" id="" value="{{$item['product']}}">
-                                    <button formaction="{{route('AddToCart.show')}}" type="submit">remove</button>
+                                    <button formaction="{{route('AddToCart.show')}}" type="submit"><i class="fa-regular fa-trash-can"></i></button>
                                 </form>
                             </div>
                             
@@ -149,6 +151,7 @@
                     </div>
                 @empty    
                 @endforelse
+                </div>
                 {{-- @endforeach --}}
                 @php
                     $totalItemPrice = array_reduce($array,function($a,$b){
@@ -174,10 +177,10 @@
 
     {{-- footer --}}
     <div class="footer grid">
-        <a href="{{route('Home')}}">Home</a>
-        <a href="{{route('AboutUs')}}">About Us</a> 
-        <a href="{{route('ContactUs')}}">Contact Us</a>
-        <a href="{{route('CustomerSideProductList')}}">All Products</a>
+        <a href="{{route('Home')}}"><b>Home</b></a>
+        <a href="{{route('AboutUs')}}"><b>About Us</b></a> 
+        <a href="{{route('ContactUs')}}"><b>Contact Us</b></a>
+        <a href="{{route('CustomerSideProductList')}}"><b>All Products</b></a>
 
     </div>
     

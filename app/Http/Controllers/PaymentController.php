@@ -13,10 +13,20 @@ use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class PaymentController extends Controller
 {
     public function stripe(Request $request){
+        $validatedData = $request->validate([
+            'fname' => 'required|string|max:255',
+            'lname' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phonenumber' => 'required|string|max:20',
+            'address' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
+            'zipcode' => 'required|string|max:255',
+        ]);
         // dd($request->all());
         $cartarray = $request->session()->get('cartdata') ?? []; //get cartdata array from session
         // dd($cartarray[0]['quantity']);
@@ -176,9 +186,9 @@ class PaymentController extends Controller
        
     //empty cart session
 
+    $request->session()->flush('cartdata');
 
-
-    return view('customer_pages.successful',compact('cartarray'))->with('success', 'Payment successful','alldata');
+    return view('customer_pages.successful')->with('success', 'Payment successful','alldata');
    }
 
 }

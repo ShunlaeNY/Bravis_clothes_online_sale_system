@@ -25,7 +25,6 @@
     right: 0;
     z-index: 1;
     transition: all 0.5s;
-    overflow-y: auto;
     /* animation:moveFromRight ease-in; */
 
 }
@@ -37,7 +36,7 @@
     margin-top: 0px;
     padding-top: 0px;
 }
-.shopping_cart_box .flex_row i{
+.shopping_cart_box .flex_row .close_button{
     padding-top: 15px;
     font-size: 20px;
 }
@@ -50,12 +49,22 @@
     /* display: none;  Thank You vary much shun lae */
     /* background-color: red; */
 }
+.scroll{
+    overflow-y: auto;
+    height:60vh;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+/* .scroll_checkout{
+    background-color: #fff;
+    height: 65vh !important;
+} */
 .shopping_cart_box .tee1_pick{
     justify-content: flex-start;
 }
 .shopping_cart_box .tee1_pick .img img{
     width: 100px;
-    height: 150px;
+    height: 100%;
 }
 /* .shopping_cart_box .tee1_pick .img,.shopping_cart_box .tee1_pick .pick_detail{
     flex: 1;
@@ -82,10 +91,29 @@
 .shopping_cart_box .checkout_button{
     position: sticky;
     bottom: 10px;
-    width: 80%;
+    width: 100%;
     text-align: center;
     color: var(--third-color);
 }
 .shopping_cart_box .checkout_button:hover{
     color: var(--button_blue_color);
+}
+.minus_btn,.plus button{
+    background-color: var(--secondary-color) ;
+    border:none;
+    font-size: 15px;
+}
+.plus button{
+    padding-top: 8px;
+}
+.remove_button button{
+    padding-top: 8px;
+    font-size: 15px;
+    color: red;
+    border:none;
+    background-color: #ffffff00;
+}
+.remove_button button:hover{
+    
+    border-bottom: 1px solid red;
 }

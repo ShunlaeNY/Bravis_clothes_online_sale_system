@@ -47,12 +47,6 @@
                 <div class="form">
                     <input type="hidden" name="usertype" value="customer">
                     <input type="hidden" name="customer_id" value="{{$registered_user == true ? auth('customer')->user()->id : null}}">
-                    {{-- <input type="hidden" name="cartarray" value="{{$cartarray}}"> --}}
-                    {{-- <input type="hidden" name="Total_paynow" id="" value=""> --}}
-                    {{-- @php
-                        $cart = array();
-                        $cart = $cartarray;
-                    @endphp --}}
                     <div class="div1">
                         <div class="flex_row">
                             <h2>Contact</h2>
@@ -61,21 +55,51 @@
                             @endif
                         </div>
                         <input type="email" name="email" placeholder="Email*" class="input" value="{{$registered_user == true ? auth('customer')->user()->email : ''}}">
+                        @error('email')
+                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        @enderror
                         <br>
                         <input type="text" name="phonenumber" id="" placeholder="Phone Number*" class="input" value="{{$registered_user == true ? auth('customer')->user()->phonenumber : ''}}">
+                        @error('phonenumber')
+                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        @enderror
                         <br>
                     </div>
                     <div class="div2">
                         <h2>Delivery</h2>
                         <input type="text" placeholder="Country/Region"  class="input" value="Myanmar">
                         <div class="name flex_row">
-                            <input type="text" name="fname" id="fname" placeholder="First Name*" class="input" value="{{$registered_user == true ? auth('customer')->user()->fname : ''}}">
-                            <input type="text" name="lname" id="lname" placeholder="Last Name*"  class="input" value="{{$registered_user == true ? auth('customer')->user()->lname : ''}}">
+                            <div>
+                                <input type="text" name="fname" id="fname" placeholder="First Name*" class="input" value="{{$registered_user == true ? auth('customer')->user()->fname : ''}}">
+                                @error('fname')
+                                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                                @enderror
+                            </div>
+                            
+                            <div>
+                                <input type="text" name="lname" id="lname" placeholder="Last Name*"  class="input" value="{{$registered_user == true ? auth('customer')->user()->lname : ''}}">
+                                @error('lname')
+                                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                                @enderror
+                            </div>
                         </div>
                         <textarea name="address" id="" cols="30" rows="1" placeholder="Address*" class="input">{{$registered_user == true ? auth('customer')->user()->address : ''}}</textarea>
+                        @error('address')
+                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        @enderror
                         <div class="address flex_row">
-                            <input type="text" name="state" id="" placeholder="State/Region(Eg. Yangon)" class="input" value="{{$registered_user == true ? auth('customer')->user()->state : ''}}">
-                            <input type="text" name="zipcode" id="" placeholder="Zip Code(Eg. 111)" class="input" value="{{$registered_user == true ? auth('customer')->user()->zipcode : ''}}">
+                            <div>
+                                <input type="text" name="state" id="" placeholder="State/Region(Eg. Yangon)" class="input" value="{{$registered_user == true ? auth('customer')->user()->state : ''}}">
+                                @error('state')
+                                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                                @enderror
+                            </div>
+                            <div>
+                                <input type="text" name="zipcode" id="" placeholder="Zip Code(Eg. 111)" class="input" value="{{$registered_user == true ? auth('customer')->user()->zipcode : ''}}">
+                                @error('zipcode')
+                                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                     <div class="div3">
@@ -86,35 +110,6 @@
                         <button type="button" onclick="getInputValue1();" id="other_fee" class="input other_region">Other Region <span>3500MMK</span></button>   
                         <input type="hidden" name="delivery_fee" class="delivery-fee-for-form" id="delivery" value="">
                     </div>
-                    {{-- <div class="div4">
-                        <h2>Payment</h2>
-                        <p>All transactions are secured and encrypted</p>
-        
-                        <label for="payment_type">Payment Type</label>
-                        <select name="payment_type" class="input" id="payment_type">
-                            <option value="{{ null }}">Select Payment Type</option>
-                            <option value="COD" {{$registered_user == false ? "disabled" : ''}}>Cash On Delivery (only avaliable while registered)</option>
-                            <option value="prepaid">Prepaid</option>
-                        </select>
-        
-                        <div class="card" id="card" style="margin-top: 20px;">
-                            <div class="flex_row credit_card">
-                                <p>Credit Card</p>
-                                <img src="/images/credit-card_8813684.png" alt="">
-                            </div>
-                            <div class="card_info">
-                                <div class="parent">
-                                    <input type="text" placeholder="Card Number" name="cardnumber"  class="input card_info">
-                                <i class="fa-solid fa-lock"></i>
-                                </div>
-                                <div class="flex_row">
-                                    <input type="text" placeholder="Expiration Date(MM/YY)" name="expirationdate" class="input card_info">
-                                    <input type="text" placeholder="Security Code" name="securitycode"  class="input card_info">
-                                </div>
-                                <input type="text" placeholder="Name on card" name="nameoncard" class="input card_info">
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
                 <div class="detail">
                     @php
@@ -157,7 +152,7 @@
                     @php
                         $count=1;
                     @endphp
-                    <div>
+                    <div class="scroll scroll_checkout">
                         @foreach ($cartarray as $item)
                         <div style="display:inline-block;background-color:#D9D9D9; padding:3px; border-radius:2px;">No. {{$count}}</div>
                         <div class="item_detail flex_row">
