@@ -37,15 +37,18 @@ class AdminController extends Controller
                             ->join('products','products.id','order_products.product_id')
                             ->join('categories','categories.id','products.category_id')
                             ->where('categories.name','=','Women Fashion')
-                            ->select('order_products.qty')->get();
+                            ->select('order_products.*')
+                            ->get();
         $women_fashion_order = count($women_fashion_order);
+        // dd($women_fashion_order);
 
         $men_fashion_order = DB::table('order_products')
                             ->join('products','products.id','order_products.product_id')
                             ->join('categories','categories.id','products.category_id')
                             ->where('categories.name','=','Men Fashion')
-                            ->select('order_products.qty')->get();
+                            ->get();
         $men_fashion_order = count($men_fashion_order);
+        // dd($men_fashion_order);
 
         $accessories_order = DB::table('order_products')
                             ->join('products','products.id','order_products.product_id')

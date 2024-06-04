@@ -60,14 +60,17 @@ i,button{
     color: var(--secondary-color);
 }
 
-
+.grid-container{
+    width: 95vw;
+    height: 91vh;
+    margin: 30px;
+}
 /*  */
 .session{
-    padding: 30px;
+    /* padding: 30px; */
     grid-template-columns: 15% 83%;
     grid-template-rows: 10% 85%;
     gap: 20px;
-    /* width: 100%; */
     height:90vh;
 }
 .nav{
@@ -207,22 +210,33 @@ td .sizes{
     color: red;
     
 }
-@media (max-width:1300px) and (min-width:768px) {
-    .session{
-        margin: 20px 20px;
-        grid-template-columns: 15% 83%;
-        /* grid-template-rows: 15% 85%; */
-        gap: 20px;
-        height: 100%;
+@media (max-width:1440px) and (min-width:768px) {
+    .grid-container {
+        width: 95vw;
+        height: 91vh;
+        margin: 20px;
     }
-    .nav .flex_row{
+    .session {
+        /* padding: 30px; */
+        grid-template-columns: 21% 77%;
+        grid-template-rows: 10% 85%;
+    }
+    .nav {
+        /* margin: 30px; */
+        grid-row: span 2;
+        background-color: var(--secondary-color);
+        border-radius: 20px;
+        padding-left: 20px;
+    }
+    
+    /* .nav .flex_row{
         gap: 10px;
     }
     .nav .nav_logo{
         font-size: 15px;
     }
     .nav_text{
-        /* display: none; */
+        display: none;
         font-size: 10px;
     }
     .nav{
@@ -235,7 +249,7 @@ td .sizes{
     .session .nav .bravis_logo{
         font-size: 18px;
         text-align: center;
-    }
+    }  */
 }
 @media (max-width:767px) and (min-width:320px) {
     

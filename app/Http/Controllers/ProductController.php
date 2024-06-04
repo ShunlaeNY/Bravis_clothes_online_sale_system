@@ -142,7 +142,7 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
-            'image' =>'required|image',            
+            'image' =>'image',            
             'price' =>'required', 
             'small'=> 'required',
             'medium'=> 'required',
@@ -160,6 +160,7 @@ class ProductController extends Controller
         $productupdate->small_qty = $request->small;
         $productupdate->medium_qty = $request->medium;
         $productupdate->large_qty = $request->large;
+        // $productupdate->category_id = $request->category_id;
         $productupdate->uuid =$uuid;
         $productupdate->status = "Active";
         if($request->image == null){

@@ -74,34 +74,6 @@
         <div class="Pagination">
             {{$order_items->links('pagination::bootstrap-4')}}
         </div>
-
-        <!-- The Modal -->
-        {{-- <div id="myModal" class="modal">
-
-            <!-- Modal content -->
-            <div class="modal-content">
-                <div class="flex_row" style="justify-content: space-between;">
-                    <h3>Update Status</h3>
-                    <span class="close">&times;</span>
-                </div>
-                <div style="font-size: 14px;">
-                    <p><b>Pending</b> - Customer ordered items and haven't checked by the admins</p>
-                    <p><b>Processing</b> - Order has been checked and start delivering</p>
-                    <p><b>Delivered</b> - Order had been reached to customer</p>
-                </div>
-                <form action="" method="post" class="updatestatusform">
-                    @csrf
-                    <select name="update_status" id="update_status" class="update_status">
-                        <option value="pending">Pending</option>
-                        <option value="processing">Processing</option>
-                        <option value="delivered">Delivered</option>
-                    </select>
-                    <div class="flex_row" style="justify-content: flex-end">
-                        <button type="submit" class="change_button">Change</button>
-                    </div>   
-            </form>
-            <div>
-        </div> --}}
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <div class="flex_row" style="justify-content: space-between;">

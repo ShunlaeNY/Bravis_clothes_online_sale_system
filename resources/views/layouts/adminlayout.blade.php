@@ -19,83 +19,72 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 <body>
-    <div class="session grid">
-        <div class="nav flex_col">
-            <a href="{{route('Dashboard')}}" target="_self">
-                <h1 class="bravis_logo nav_text">Bravis</h1>
-                <div class="flex_row">
-                    <i class="fa-solid fa-house nav_logo"></i>
-                    <p class="nav_text">Dashboard</p>
-                </div>
-            </a>    
-            <a href="{{route('ProductList')}}" target="_self">
-                <div class="flex_row">
-                    <i class="fa-solid fa-bag-shopping nav_logo"></i>
-                    <p class="nav_text">Product</p>
-                </div>
-            </a>
-            <a href="{{route('CategoryList')}}" target="_self">
-                <div class="flex_row">
-                    <i class="fa-solid fa-bag-shopping nav_logo"></i>
-                    <p class="nav_text">Category</p>
-                </div>
-            </a>
-            <a href="{{route('CustomerList')}}" target="_self">
-                <div class="flex_row">
-                    <i class="fa-solid fa-users nav_logo"></i>
-                    <p class="nav_text">Customer</p>
-                </div>
-            </a>
-            <a href="{{route('OrderList')}}" target="_self">
-                <div class="flex_row">
-                    <i class="fa-solid fa-cart-shopping nav_logo"></i>
-                    <p class="nav_text">Order</p>
-                </div>
-            </a>
-            <a href="{{route('StaffList')}}" target="_self">
-                <div class="flex_row">
-                    <i class="fa-solid fa-user nav_logo"></i>
-                    <p class="nav_text">Staff</p>
-                </div>
-            </a>
-            <a href="{{route('SupplierList')}}" target="_self">
-                <div class="flex_row">
-                    <i class="fa-solid fa-user nav_logo"></i>
-                    <p class="nav_text">Supplier</p>
-                </div>
-            </a>
-
-        </div>
-        <div class="header flex_row">
-            <div class="flex_row icons">
-                <h3>{{auth('admin')->user()->name}}</h3> 
-                <p>({{$roles[0]->rolename}})</p>
+    <div class="grid-container">
+        <div class="session grid">
+            <div class="nav flex_col">
+                <a href="{{route('Dashboard')}}" target="_self">
+                    <h1 class="bravis_logo nav_text">Bravis</h1>
+                    <div class="flex_row">
+                        <i class="fa-solid fa-house nav_logo"></i>
+                        <p class="nav_text">Dashboard</p>
+                    </div>
+                </a>    
+                <a href="{{route('ProductList')}}" target="_self">
+                    <div class="flex_row">
+                        <i class="fa-solid fa-bag-shopping nav_logo"></i>
+                        <p class="nav_text">Product</p>
+                    </div>
+                </a>
+                <a href="{{route('CategoryList')}}" target="_self">
+                    <div class="flex_row">
+                        <i class="fa-solid fa-bag-shopping nav_logo"></i>
+                        <p class="nav_text">Category</p>
+                    </div>
+                </a>
+                <a href="{{route('CustomerList')}}" target="_self">
+                    <div class="flex_row">
+                        <i class="fa-solid fa-users nav_logo"></i>
+                        <p class="nav_text">Customer</p>
+                    </div>
+                </a>
+                <a href="{{route('OrderList')}}" target="_self">
+                    <div class="flex_row">
+                        <i class="fa-solid fa-cart-shopping nav_logo"></i>
+                        <p class="nav_text">Order</p>
+                    </div>
+                </a>
+                <a href="{{route('StaffList')}}" target="_self">
+                    <div class="flex_row">
+                        <i class="fa-solid fa-user nav_logo"></i>
+                        <p class="nav_text">Staff</p>
+                    </div>
+                </a>
+                <a href="{{route('SupplierList')}}" target="_self">
+                    <div class="flex_row">
+                        <i class="fa-solid fa-user nav_logo"></i>
+                        <p class="nav_text">Supplier</p>
+                    </div>
+                </a>
+    
             </div>
-            <div class="user_profile">
-                <img src="{{asset('image/admin/staffs_info/'.auth('admin')->user()->image)}}" alt="image of {{auth('admin')->user()->name}}" width="60" height="60" style="border-radius: 50%">
-            </div>     
-        </div>
-        <!-- user Profile Info -->
-        <div class="user_profile_info">
-               <a href="{{url('admin/dashboard/stafflist/edit/'.auth('admin')->user()->id)}}"><i class="fa-solid fa-gear"></i>Edit Profile</a><br>
-               <a href="{{route('AdminLogout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i>Log out</a>
-        </div>
-
-        {{-- main --}}
-        @yield('main')
-
-        {{-- pop up model
-        <div class="pop_up_model_box">
-            <div>@yield('model name')</div>
-            <div class="pop_up_content">
-                @yield('model content')
+            <div class="header flex_row">
+                <div class="flex_row icons">
+                    <h3>Welcome {{auth('admin')->user()->name}}!</h3> 
+                    <p>({{$roles[0]->rolename}})</p>
+                </div>
+                <div class="user_profile">
+                    <img src="{{asset('image/admin/staffs_info/'.auth('admin')->user()->image)}}" alt="image of {{auth('admin')->user()->name}}" width="60" height="60" style="border-radius: 50%">
+                </div>     
             </div>
-            <div class="flex_row">
-                <a href="@yield('no')">No</a>
-                <a href="@yield('yes')">Yes</a>
+            <!-- user Profile Info -->
+            <div class="user_profile_info">
+                   <a href="{{url('admin/dashboard/stafflist/edit/'.auth('admin')->user()->id)}}"><i class="fa-solid fa-gear"></i>Edit Profile</a><br>
+                   <a href="{{route('AdminLogout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i>Log out</a>
             </div>
-        </div> --}}
-        
+    
+            {{-- main --}}
+            @yield('main')    
+        </div>
     </div>
 
 
