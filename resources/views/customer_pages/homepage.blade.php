@@ -17,78 +17,10 @@
             <h1 class="text_title">
                 Express Your Unique Style
             </h1>
-            <p>Timeless Classics</p>
+            <p style="margin-bottom: 20px;">Timeless Classics</p>
             <a href="{{route('CustomerSideProductList')}}"><button>Shop Now<i class="fa-solid fa-arrow-right-long"></i></button></a>
         </div>
     </div>
-
-    {{-- cart --}}
-    {{-- @if (session()->has('cartdata'))
-        <div class="shopping_cart_box">
-            <form action="" method="get" class="form">
-                <div class="flex_row">
-                    <h1>Cart</h1>
-                    <i class="fa-regular fa-circle-xmark close_button"></i>
-                </div>
-                <hr>
-                @php
-                    $arr = [];
-                @endphp
-                <div class="item-container">
-                    @forelse ($cartarray as $cartdata)
-                        <div class="tee1_pick flex_row">
-                            @foreach ($productlists as $item)
-                            <div class="image">
-                                <img src="{{asset('image/admin/products_info/'.$item->image)}}" alt="">
-                            </div>
-                            <div class="pick_detail">
-                                <p>{{$item->name}}</p>
-                                <p>{{$item->price}}MMK per one</p>
-                                <div class="add_or_remove_quantity grid">
-                                    <div class="minus">
-                                        <a href="">-</a>
-                                    </div>
-                                    <div class="number">
-                                        {{$data['quantity']}}
-                                    </div>
-                                    <div class="plus">
-                                        <a href="">+</a>
-                                    </div>
-                                </div>
-                                <div class="remove_button">
-                                    <a href="" class="remove_button">
-                                        Remove
-                                    </a>
-                                </div>
-                            </div>
-                            <p>Total -{{$item->price * $data['quantity']}} MMK</p>
-                            @endforeach
-                            <?php
-                                array_push($arr,{{$item->price * $data['quantity']}});
-                            ?>
-                        </div>
-                    @empty   
-                    @endforelse
-
-                    @php
-                        $totalItemPrice = array_reduce($arr, function ($x, $y) {
-                            return $x + $y;
-                        }, 0); // 0 is the initial value
-                    @endphp
-                    <div class="totalItemPrice">
-                        <p>Total Item Price - {{$totalItemPrice}} MMK</p>
-                        <input type="hidden" name="total_price" value="{{$totalItemPrice}}">
-                        <input type="hidden" name="total_items" value="{{count($cartarray)}}">
-                    </div>
-                    <div class="checkout">
-                        <button type="submit" class="button2 checkout_button">Check out</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    @else 
-    @endif --}}
-    {{-- end of cart --}}
 
     <div class="section2">
         <div class="fast_icons_list flex_row">
@@ -123,7 +55,7 @@
                     <button id="prev_slide" class="slide-button"><i class="fa-solid fa-chevron-left"></i></button>
                     <div class="card-list grid">
                             @foreach ($productlists as $productlist)
-                                <a href="{{url('/productdetails/'.$productlist->id)}}">
+                                <a href="{{url('productdetails/'.$productlist->id)}}">
                                     <div class="flex_col card-list-items">
                                         <img src="{{asset('image/admin/products_info/'.$productlist->image)}}" alt="image of {{$productlist->image}}">
                                         <div>
@@ -147,16 +79,16 @@
             <h1>Ready To Wear Perfection</h1>
             <div class="ready2Wear_item grid">
                 <a href="{{route('CustomerSideProductList', ['category' => 'Men Fashion']) }}" class="men flex_col">
-                    Men Clothing
+                    <p class=" text-shadow-pop-bottom">Men Clothing</p>
                 </a>
                 <a href="{{ route('CustomerSideProductList', ['category' => 'Women Fashion']) }}" class="women flex_col">
-                    Women Clothing
+                    <p class=" text-shadow-pop-bottom">Women Clothing</p>
                 </a>
                 <a href="{{ route('CustomerSideProductList', ['category' => 'Accessories']) }}" class="accessories flex_col">
-                    Accessories
+                    <p class=" text-shadow-pop-bottom">Accessories</p>
                 </a>                
                 <a href="{{ route('CustomerSideProductList', ['category' => 'Sport Wears']) }}" class="sport_wear flex_col">
-                    Sport Wear
+                    <p class=" text-shadow-pop-bottom">Sport Wear</p>
                 </a>
             </div>
         </div>
@@ -164,23 +96,22 @@
             <h3>Follow us</h3>
             <p>@bravisSLNY</p>
             <div class="image flex_row">
-                <div>
-                    <img src="image/customer/iam_os-9wM5SCjhsOM-unsplash (1) 1.png" alt="">
+                <div class="image-container1">
+                    <div class="image-cycle1"></div>
                 </div>
-                <div>
-                    <img src="image/customer/trendy-fashionable-couple-posing (1).jpg" alt="">
+                <div class="image-container2">
+                    <div class="image-cycle2"></div>
                 </div>
-                <div>
-                    <img src="image/customer/portrait-stylish-lady-sunglasses-wide-brimmed-hat-cool-young-woman-black-jacket-pants-poses-smiles-isolated-background 1.png" alt="">
-                </div>  
+                <div class="image-container3">
+                    <div class="image-cycle3"></div>
+                </div>
             </div>
-            <a href="{{route('ContactUs')}}" class="button1">Follow Us</a>
+            <div class=" follow_us_btn">
+                <a href="{{route('ContactUs')}}" class="button1">Follow Us</a>
+            </div>
         </div>
     </div>
 @endsection
-
-
-    
 @section('js')
 <script src="{{asset('js/customer/slide_show_button.js')}}" defer></script>
 @endsection

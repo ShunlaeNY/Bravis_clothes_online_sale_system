@@ -27,7 +27,7 @@
                 <div class="panel panel-default credit-card-box">
                     <div class="panel-heading display-table flex_row" style="justify-content: space-between;align-items:center;">
                         <h2 class="panel-title" >Proceed Your Payment</h2>
-                        <a href="{{route('CheckOut')}}" class="btn btn-primary">Back</a>
+                        <a href="{{route('CheckOut')}}" class="btn btn-primary" style="color: white;">Back</a>
                     </div>
                     <div class="panel-body">
                         <p>Dear {{$customername}},</p>

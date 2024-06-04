@@ -11,14 +11,14 @@
     <div class="contact_session">
         <div class="left">
             <h1 style="margin-bottom: 20px; text-align:center;">Contact Us</h1>
-            <h2 style="margin-bottom: 20px;">You Can Contact Us Directly At:</h2>
+            <h2 style="margin-bottom: 25px;">You Can Contact Us Directly At:</h2>
             <div style="align-items: center" class="flex_col">
                 <div style="align-items: center;padding: 10px" class="flex_row">
                     <p>Email</p>
                     <p>:</p>
                     <p>bravismy@gmail.com</p>
                 </div>
-                <div style="align-items: center;padding: 10px" class="flex_row">
+                <div style="align-items: center;padding::10px;" class="flex_row">
                     <p>Contact</p>
                     <p>:</p>
                     <p>(+95)9234535987</p>

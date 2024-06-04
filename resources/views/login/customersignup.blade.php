@@ -1,4 +1,9 @@
-
+@php
+    $updatestatus = false;
+    if (isset($customerdata)) {
+        $updatestatus = true;
+    }
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,21 +17,26 @@
 </head>
 <body>
     <div class="container">
-        <h1>Create Account</h1>
+        
+        <h1>{{$updatestatus == true ? 'Update' : 'Create'}} Account</h1>
         <div class="flex_row">
-            <form action="{{route('CustomerRegisterProcess')}}" method="post" enctype="multipart/form-data">
+            <form action="{{$updatestatus == true ? route('CustomerUpdateProfileProcess'): route('CustomerRegisterProcess')}}" method="post" enctype="multipart/form-data">
                 @csrf
+                @if ($updatestatus == true)
+                    @method('PATCH')
+                @endif
+                <input type="hidden" name="id" value="{{$updatestatus == true ? $customerdata->id :''}}">
                 <label for="name">Full Name</label>
                 <br>
                 <div class="flex_row">
                     <div>
-                        <input type="text" name="fname" id="fname" placeholder="First Name">
+                        <input type="text" name="fname" id="fname" placeholder="First Name" value="{{$updatestatus == true ? $customerdata->fname : ''}}">
                         @error('fname')
                                 <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
                         @enderror
                     </div>
                     <div>
-                        <input type="text" name="lname" id="lname" placeholder="Last Name">
+                        <input type="text" name="lname" id="lname" placeholder="Last Name" value="{{$updatestatus == true ? $customerdata->lname : ''}}">
                         @error('lname')
                                 <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
                         @enderror
@@ -37,7 +47,7 @@
                 <label for="dob">Date of Birth</label>
                 <br>
                 <div>
-                    <input type="date" name="dob">
+                    <input type="date" name="dob" value="{{$updatestatus == true ? $customerdata->dob : ''}}">
                     @error('dob')
                         <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
                     @enderror
@@ -46,7 +56,7 @@
                 <label for="email">Email</label>
                 <br>
                 <div>
-                    <input type="email" name="email" placeholder="Email">
+                    <input type="email" name="email" placeholder="Email" value="{{$updatestatus == true ? $customerdata->email : ''}}">
                     @error('email')
                     <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
                     @enderror
@@ -55,7 +65,7 @@
                 <label for="phonenumber">Phone Number</label>
                 <br>
                 <div>
-                    <input type="text" name="phonenumber" placeholder="phonenumber">
+                    <input type="text" name="phonenumber" placeholder="phonenumber" value="{{$updatestatus == true ? $customerdata->phonenumber : ''}}">
                     @error('phonenumber')
                         <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
                     @enderror
@@ -76,20 +86,20 @@
                 <label for="address">Location</label>
                 <br>
                 <div>
-                    <textarea name="address" id="address" cols="30" rows="10"></textarea><br>
+                    <textarea name="address" id="address" cols="30" rows="10">{{$updatestatus == true ? $customerdata->address : ''}}</textarea><br>
                     @error('address')
                         <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
                     @enderror
                 </div>
                 <div class="flex_row">
                     <div>
-                        <input type="text" name="state" placeholder="State/Region">
+                        <input type="text" name="state" placeholder="State/Region" value="{{$updatestatus == true ? $customerdata->state : ''}}">
                         @error('state')
                             <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
                         @enderror
                     </div>
                     <div>
-                        <input type="text" name="zipcode" placeholder="Zip Code (Eg. 1111)">
+                        <input type="text" name="zipcode" placeholder="Zip Code (Eg. 1111)" value="{{$updatestatus == true ? $customerdata->zipcode : ''}}">
                         @error('zipcode')
                             <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
                         @enderror
@@ -105,9 +115,13 @@
                 </div>
                 <br>
                 <br>
-                <div class="sign_up flex_row">
-                    <button type="submit" class="button2">Sign Up</button>
+                <div class="sign_up flex_row" style="gap: 30px;">
+                    @if ($updatestatus == true)
+                        <a href="{{route('Home')}}" class="button2" >Cancel</a>
+                @endif
+                    <button type="submit" class="button2">{{$updatestatus == true ? 'Update': 'Sign Up'}}</button>
                 </div>
+                
     
             </form>
         </div>

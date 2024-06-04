@@ -24,16 +24,14 @@ class AdminController extends Controller
 
     public function index(){
         $TotalEarning = Order::sum('total_price');
-        // dd($TotalEarning);  
-        // $TotalProductsPrice = Product::where('status','=','Active')->sum('price');
-        // $TotalExpenses = $TotalProductsPrice * 0.5;//all products from this page's purchase price is 50% than Sale Price
+        $productCount = count(Product::where('status' ,'=', 'Active')->get());
         $supplierCount = count(Supplier::where('status' ,'=', 'Active')->get());
         $userCount = count(Customer::where('status' ,'=', 'Active')->get());
-        $productCount = count(Product::where('status' ,'=', 'Active')->get());
+        
         $TotalOrder = Order::sum('total_qty');
-        $TotalOrderPending = Order::where('status','=','Pending')->count('total_qty');
-        $TotalOrderProcessing = Order::where('status','=','Processing')->count('total_qty');
-        $TotalOrderDelivered = Order::where('status','=','Delivered')->count('total_qty');
+        $TotalOrderPending = OrderProduct::where('status','=','Pending')->count('qty');
+        $TotalOrderProcessing = OrderProduct::where('status','=','Processing')->count('qty');
+        $TotalOrderDelivered = OrderProduct::where('status','=','Delivered')->count('qty');
 
         $women_fashion_order = DB::table('order_products')
                             ->join('products','products.id','order_products.product_id')
@@ -63,8 +61,21 @@ class AdminController extends Controller
                             ->select('order_products.qty')->get();
         $sport_wear_order = count($sport_wear_order);
 
-        // dd($women_fashion_order);
-        return view('dashboard',compact('userCount','supplierCount','TotalEarning','productCount','TotalOrder','TotalOrderPending','TotalOrderProcessing','TotalOrderDelivered','sport_wear_order','women_fashion_order','men_fashion_order','accessories_order'));
+        $salesData = DB::table('orders')
+            ->select(DB::raw('MONTH(created_at) as month'), DB::raw('SUM(total_price) as total_amount'))
+            ->groupBy('month')
+            ->get();
+        // dd($salesData);
+
+        // array_fill(start_index, count, value)
+        $monthlySales = array_fill(0, 12, 0);
+
+        foreach ($salesData as $data) {
+            $monthlySales[$data->month - 1] = $data->total_amount;
+        }
+        // dd($monthlySales);
+        
+        return view('dashboard',compact('userCount','supplierCount','TotalEarning','productCount','TotalOrder','TotalOrderPending','TotalOrderProcessing','TotalOrderDelivered','sport_wear_order','women_fashion_order','men_fashion_order','accessories_order','monthlySales'));
     }
     /**
      * Display a listing of the resource.

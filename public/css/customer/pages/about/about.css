@@ -74,6 +74,10 @@
 /* tablet */
 @media (max-width:1400px) and (min-width:768px)
 {
+    .body .flex_col >p {
+        font-size: 20px;
+        padding-bottom: 50px;
+    }
     .body .flex_col{
         max-width: 600px;
     }
@@ -89,7 +93,7 @@
         position: static;
     }
     .body .flex_col{
-        padding:0px 50px 0px 50px;
+        padding:0px 30px 0px 30px;
     }
     .body .flex_col >p{
         font-size: 20px;

@@ -43,7 +43,7 @@
     <div class="section2">
         <form action="{{route('payment')}}" method="post" >
             @csrf
-            <div class="flex_row">
+            <div class="flex_row container">
                 <div class="form">
                     <input type="hidden" name="usertype" value="customer">
                     <input type="hidden" name="customer_id" value="{{$registered_user == true ? auth('customer')->user()->id : null}}">
@@ -177,7 +177,7 @@
                 </div>
             </div>
             <div >
-                <button type="submit" class="payNow button2" style="width:46%;">Pay Now</button>
+                <button type="submit" class="payNow button2">Pay Now</button>
             </div>
         </form>
 

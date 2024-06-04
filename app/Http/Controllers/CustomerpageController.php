@@ -51,8 +51,9 @@ class CustomerpageController extends Controller
         return view('customer_pages.contact',compact('cartarray'));
     }
 
-    public function policy(){
-        return view('customer_pages.policy');
+    public function policy(Request $request){
+        $cartarray = $request->session()->get('cartdata') ?? []; //get cartdata array from session
+        return view('customer_pages.policy',compact('cartarray'));
     }
 
     public function checkout(Request $request){

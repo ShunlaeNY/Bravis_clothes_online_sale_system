@@ -24,7 +24,7 @@
                 <div>
                     Welcome!
                     @if (auth('customer')->user() != null)
-                        {{auth('customer')->user()->fname}}
+                        {{auth('customer')->user()->fname}} {{auth('customer')->user()->lname}}
                     @else
                         Guest
                     @endif
@@ -33,7 +33,7 @@
                     {{-- <a href="">FAQ</a>|
                     <a href="">orders and returns</a>| --}}
                     @if (auth('customer')->user() != null)
-                        <a href="{{route('CustomerLogout')}}">Log Out</a>
+                        
                     @else
                         <a href="{{route('CustomerLogin')}}">Log In</a>
                     @endif
@@ -60,11 +60,27 @@
                         <a href="{{ route('CustomerSideProductList', ['category' => 'Sport Wears']) }}">Sport Wears</a>
                     </div>
                 </div>
-                <div class="extra_icon flex_row">
+                <div class="extra_icon flex_row" style="align-items: center;">
                     <div class="add_to_cart_icon">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <span>{{count($cartarray)}}</span>
                     </div>
+                    @if (auth('customer')->user() != null)
+                        <div class="user_profile" style=" width:40px; height:40px;">
+                            <img src="{{asset('image/customer/customers_info/' .auth('customer')->user()->image)}}" alt="" style="border-radius: 50%">
+                        </div>
+                        <!-- user Profile Info -->
+                        <div class="user_profile_info">
+                            <a href="{{url('customer/editprofile/'.auth('customer')->user()->id)}}"><i class="fa-solid fa-gear"></i>Edit Profile</a><br>
+                            <a href="{{route('CustomerLogout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i>Log out</a>
+                        </div>
+                        
+                    @else
+                        <div class="login_ph">
+                            <a href="{{route('CustomerLogin')}}">Login</a> 
+                        </div>   
+                    @endif
+                    
                 </div>
             </div>
             <div id="myNav1" class="overlay1">
@@ -75,12 +91,17 @@
                     <a href="{{ route('CustomerSideProductList', ['category' => 'Men Fashion']) }}" >Men Fashion</a>
                     <a href="{{ route('CustomerSideProductList', ['category' => 'Accessories']) }}">Accessories</a>
                     <a href="{{ route('CustomerSideProductList', ['category' => 'Sport Wears']) }}">Sport Wears</a>
+                    <a href="{{ route('CustomerSideProductList')}}">All Products</a>
                     <a href="{{route('AboutUs')}}">About</a>
                     <a href="{{route('ContactUs')}}">Contact</a>
                     <a href="{{route('PrivacyPolicy')}}">Policy</a>
                 </div>
               </div>
-              <div class="sticky" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Bravis</div>
+              <div class="flex_row" style="justify-content: space-between; align-items:center;padding:10px 0px;">
+                <div class="sticky" style="font-size:30px;cursor:pointer" onclick="openNav()">
+                    &#9776; Bravis
+                </div>
+              </div>
     </div>
     {{-- session start --}}
     @if (session()->has('cartdata'))
@@ -97,18 +118,16 @@
                 $array = [];//create an empty array
             @endphp
             <div class="item-container">
-               
                 <div class="scroll">
                     @forelse ($cartarray as $item) 
                     <div class="tee1_pick flex_row">
-                        <div></div>
                         <div class="img" style="height:125px !important;">
                             <img src="{{asset('image/admin/products_info/'.$item['image'])}}" alt="" width="100%" height="100%">
                         </div>
                         <div class="pick_detail">
                             <p><b>{{$item['name']}}</p><span>({{$item['size']}})</b></span>
                             <p>Price - {{$item['price']}}MMK</p>
-                            <div class="flex_row">
+                            <div class="add_or_remove flex_row">
                                 <div class="add_or_remove_quantity grid">
                                     <form action="{{route('AddToCart.show')}}" method="post" class="minus">
                                         @csrf
@@ -143,7 +162,7 @@
                             </div>
                             
                             
-                            <p>Total Price - {{$item['price']*$item['quantity']}}MMK</p>
+                            <p class="total_price">Total Price - {{$item['price']*$item['quantity']}}MMK</p>
                             @php
                                 array_push($array,$item['price']*$item['quantity']);
                             @endphp   
@@ -158,7 +177,7 @@
                         return $a+$b;
                     })
                 @endphp
-                <div class="totalItemPrice flex_row">
+                <div class="totalItemPrice flex_row" style="align-items: center">
                     <h4>Total Item Price</h4>
                     <p>{{$totalItemPrice}}MMK</p>
                     <input type="hidden" name="total_price" value="{{$totalItemPrice}}">
@@ -187,11 +206,23 @@
    
 
     {{-- scripts --}}
+    <script src="{{asset('js/admin/user_profile_info_popup.js')}}"></script>
     <script src="{{asset("js/customer/add_to_card.js")}}" defer></script>
     <script src="{{asset('js/customer/hamburger_menu.js')}}"></script>
     {{-- <script src="{{asset('js/customer/curtain_menu.js')}}"></script> --}}
     @yield('js')
-    
+    {{-- <script>
+        const profiles = document.querySelector(".user_profile_phone");
+        const profileInfos = document.querySelector(".user_profile_info_phone");
+
+    profiles.addEventListener("click", () => {
+    if (profileInfos.style.display === "none" || profileInfos.style.display === "") {
+        profileInfos.style.display = "inline-block";
+        } else {
+            profileInfos.style.display = "none";
+        }
+    });
+    </script> --}}
 </body>
 </html>
 <script>

@@ -24,7 +24,7 @@
                 <div>
                     Welcome!
                     @if (auth('customer')->user() != null)
-                        {{auth('customer')->user()->fname}}
+                        {{auth('customer')->user()->fname}} {{auth('customer')->user()->lname}}
                     @else
                         Guest
                     @endif
@@ -33,7 +33,7 @@
                     {{-- <a href="">FAQ</a>|
                     <a href="">orders and returns</a>| --}}
                     @if (auth('customer')->user() != null)
-                        <a href="{{route('CustomerLogout')}}">Log Out</a>
+                        {{-- <a href="{{route('CustomerLogout')}}">Log Out</a> --}}
                     @else
                         <a href="{{route('CustomerLogin')}}">Log In</a>
                     @endif
@@ -60,12 +60,27 @@
                         <a href="{{ route('CustomerSideProductList', ['category' => 'Sport Wears']) }}">Sport Wears</a>
                     </div>
                 </div>
-                {{-- <div class="extra_icon flex_row">
-                    <div class="add_to_cart_icon">
+                <div class="extra_icon flex_row" style="align-items: center;">
+                    {{-- <div class="add_to_cart_icon">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <span>{{count($cartarray)}}</span>
-                    </div>
-                </div> --}}
+                    </div> --}}
+                    @if (auth('customer')->user() != null)
+                        <div class="user_profile" style=" width:40px; height:40px;">
+                            <img src="{{asset('image/customer/customers_info/' .auth('customer')->user()->image)}}" alt="" style="border-radius: 50%">
+                        </div>
+                        <!-- user Profile Info -->
+                        <div class="user_profile_info">
+                            <a href="{{url('customer/editprofile/'.auth('customer')->user()->id)}}"><i class="fa-solid fa-gear"></i>Edit Profile</a><br>
+                            <a href="{{route('CustomerLogout')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i>Log out</a>
+                        </div>    
+                    @else
+                        <div class="login_ph">
+                            <a href="{{route('CustomerLogin')}}">Login</a> 
+                        </div>   
+                    @endif
+                    
+                </div>
             </div>
             <div id="myNav1" class="overlay1">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -89,18 +104,17 @@
                     <img src="/images/checkmark_8832119.png" alt="">
                 </div>
                 <h1>Thank You.</h1>
-                <p>Your order was completely successfully</p>
+                <p>Your order was completely successfully...</p>
                 @if(session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
                 @endif
                 <div class="truck flex_row">
-                    <img src="/images/delivery-truck_2769339.png" alt="">
-                    <p>Your Product will be arrived within one week</p>
+                    <img src="{{asset('image/customer/delivery-truck_2769339.png')}}" alt="" width="30px" height="30px">
+                    <p>Your Product will be arrived within one week.</p>
                 </div>
-                <a href="/index.html#shop_now"><button class="button2">Continue To Shopping
-                </button></a>
+                <a href="{{route('Home')}}" class="button2">Continue To Shopping</a>
             </div>
         </div>
     </div>
@@ -116,6 +130,7 @@
 
 
 {{-- scripts --}}
+<script src="{{asset('js/admin/user_profile_info_popup.js')}}"></script>
 <script src="{{asset("js/customer/add_to_card.js")}}" defer></script>
 <script src="{{asset('js/customer/hamburger_menu.js')}}"></script>
 {{-- <script src="{{asset('js/customer/curtain_menu.js')}}"></script> --}}

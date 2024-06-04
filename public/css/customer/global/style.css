@@ -64,8 +64,24 @@ a:visited{
     display: flex;
     flex-direction: column;
 }
+.user_profile_info{
+    display: none;
+    position: absolute;
+    right: 30px;
+    top: 90px;
+    line-height: 30px;
+    background-color: white;
+    border: 1px solid var(--text-gray-color);
+    border-radius: 10px;
+    color: var(--text-gray-color);
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    padding: 10px;
+}
+.user_profile_info>a:hover{
+    color: var(--box-blue-color);
+}
 .follow_us .button1{
-    margin: 30px;
+    /* margin: 100px; */
     padding: 10px 20px;
     font-size: 20px;
     background-color: var(--primary-color);
@@ -227,6 +243,9 @@ a:visited{
     border-radius: none;
 }
 
+.login_ph{
+    display: none;
+}
 /* responsive */
 /* tablet */
 @media(max-width:1200px) and (min-width:768px)
@@ -248,14 +267,23 @@ a:visited{
         font-size: 40px;
     }
     .section1 .nav_bar .menu div >a, .nav_bar .extra_icon i{
-        font-size: 15px;
+        font-size: 14px;
     }
+    .user_profile_info{
+        position: absolute;
+        right: 30px;
+        top: 80px;
+    }
+    .login_ph{
+        display: none;
+    }
+    
 }
 
 /* phone */
 @media(max-width:767px) and (min-width:320px)
 {
-    .flash_sale_bar,.nav_bar{
+    .flash_sale_bar,.nav_bar .logo,.nav_bar .menu{
         display: none;
     }
     .sticky{
@@ -281,6 +309,35 @@ a:visited{
         padding: 50px 30px;
         text-align: left;
         gap: 30px;
+    }
+    .user_profile_info {
+        right: 0px;
+        top: 44px;
+        width: 100px;
+        font-size: 10px;
+        padding: 13px;
+    }
+    .login_ph{
+        display: inline-block;
+    }
+    .section1 .nav_bar{
+        margin: 0;
+        position: relative;
+    }
+    .section1 .nav_bar .extra_icon{
+
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+    .nav_bar .extra_icon i {
+        font-size: 16px;
+    }
+    .add_to_cart_icon span {
+        position: absolute;
+        top: 5px;
+        font-size: 11px;
+        right: 20px;
     }
     
 

@@ -186,7 +186,8 @@ class PaymentController extends Controller
        
     //empty cart session
 
-    $request->session()->flush('cartdata');
+    $request->session()->put('cartdata', []);
+
 
     return view('customer_pages.successful')->with('success', 'Payment successful','alldata');
    }

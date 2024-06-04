@@ -46,9 +46,10 @@ body{
 }
 .filter .search{
     position: relative;
+    width: 50%;
 }
 .filter .search input{
-    width: 500px;
+    width: 100%;
 }
 .filter .search > button{
     position: absolute;
@@ -90,10 +91,10 @@ body{
     .filter{
         margin: 20px 50px;
     }
-    .filter .flex_row{
+    /* .filter .flex_row{
         flex-direction: column;
         gap: 0px;
-    }
+    } */
     .input{
         height: 35px;
     }
@@ -105,6 +106,13 @@ body{
         flex-direction: row;
         gap: 20px;
     }
+    .filter .search > button {
+        position: absolute;
+        border: 0px;
+        background-color: #fff;
+        right: 10px;
+        top: 17px;
+    }
 }
 
 @media (max-width:767px) and (min-width:320px)
@@ -115,8 +123,8 @@ body{
     .filter{
         margin: 20px 30px;
     }
-    .filter .search input{
-        max-width: 220px;
+    .filter .search{
+        width: 100%;
     }
     .filter .flex_row{
         flex-direction: column;

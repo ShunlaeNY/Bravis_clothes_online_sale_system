@@ -26,15 +26,15 @@
                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
             <div class="sort_by flex_row">
-                 <form action="{{route('Sort')}}" method="post">
+                 <form action="{{route('Sort')}}" method="post" id="sortForm">
                     @csrf
                     <span>Sort By Price:</span>
-                    <select name="sort" id="sort" class="input">
-                        <option value="sort">Choose...</option>
-                        <option value="low_to_high_price">Lower to Higher</option>
-                        <option value="high_to_low_price">Higher to Lower</option>
+                    <select name="sort" id="sort" class="input" onchange="document.getElementById('sortForm').submit()">
+                        <option value="sort" {{request('sort') == 'sort' ? 'selected' : ''}}>Choose...</option>
+                        <option value="low_to_high_price" {{request('sort') == 'low_to_high_price' ? 'selected' : ''}}>Lower to Higher</option>
+                        <option value="high_to_low_price" {{request('sort') == 'high_to_low_price' ? 'selected' : ''}}>Higher to Lower</option>
                     </select>
-                    <button type="submit" class="filter_btn"><i class="fa-solid fa-filter"></i></button>
+                    {{-- <button type="submit" class="filter_btn"><i class="fa-solid fa-filter"></i></button> --}}
                 </form>
             </div>
         </div>

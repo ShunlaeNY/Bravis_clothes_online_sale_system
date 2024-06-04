@@ -49,9 +49,12 @@
     /* display: none;  Thank You vary much shun lae */
     /* background-color: red; */
 }
+.add_or_remove{
+    justify-content: flex-start !important;gap: 20px;
+}
 .scroll{
     overflow-y: auto;
-    height:60vh;
+    height:65vh;
     scrollbar-width: none;
     scroll-behavior: smooth;
 }
@@ -116,4 +119,37 @@
 .remove_button button:hover{
     
     border-bottom: 1px solid red;
+}
+@media(max-width:1200px) and (min-width:768px)
+{
+    .shopping_cart_box{
+        width: 50%;
+    }
+    .checkout_button{
+        font-size: 15px;
+        margin: 0;
+    }
+    .pick_detail .total_price{
+        margin: 0;
+    }
+}
+@media(max-width:767px) and (min-width:320px)
+{
+    .shopping_cart_box{
+        width: 100%;
+    }
+    .checkout_button{
+        font-size: 15px;
+        /* padding: 0; */
+        margin: 0;
+    }
+    .pick_detail p{
+        font-size: 15px;
+    }
+    .pick_detail .total_price{
+        font-size: 12px;
+        font-weight: bold;
+        margin: 0;
+    }
+    
 }

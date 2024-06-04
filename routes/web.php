@@ -90,6 +90,8 @@ Route::post('/customer/loginprocess',[LoginController::class,'login'])->name('Cu
 Route::get('/customer/logout',[LoginController::class,'customerlogout'])->name('CustomerLogout');
 Route::get('/customer/register',[CustomerController::class,'customerregister'])->name('CustomerRegister');
 Route::post('/customer/register/process',[CustomerController::class,'store'])->name('CustomerRegisterProcess');
+Route::get('/customer/editprofile/{id}',[CustomerController::class,'customereditprofile'])->name('CustomerEditProfile');
+Route::patch('/customer/editprofile/process',[CustomerController::class,'customerupdateprofile'])->name('CustomerUpdateProfileProcess');
 
 
 Route::get('/about',[CustomerpageController::class,'about'])->name('AboutUs');

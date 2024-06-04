@@ -26,6 +26,66 @@ class CustomerController extends Controller
     public function customerregister(){
         return view('login.customersignup');
     }
+    public function customereditprofile($id){
+        // dd($id);
+        $customerdata = Customer::find($id);
+        return view('login.customersignup',compact('customerdata'));
+    }
+    public function customerupdateprofile(Request $request){
+        // dd($request->all());
+        // $validatedData = $request->validate([
+        //     'fname' => 'required|string|max:255',
+        //     'lname' => 'required|string|max:255',
+        //     'email' =>'required|email|max:255',            
+        //     'dob' =>'required',            
+        //     'password' => [
+        //         'required',
+        //         'string',
+        //         'min:8',
+        //         'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/'
+        //     ],
+        //     'phonenumber' => 'required|string|max:20',
+        //     'address' => 'required|string|max:255',
+        //     'state' => 'required|string|max:100',
+        //     'zipcode' => 'required|string|max:6',
+        //     'image' => 'required|image'
+        // ]);
+        $uuid = Str::uuid()->toString(); //uuid to string
+        $customerupdate = Customer::find($request->id);
+        $customerupdate->fname = $request->fname;
+        $customerupdate->lname = $request->lname;
+        $customerupdate->email = $request->email;
+        $customerupdate->address = $request->address;
+        $customerupdate->phonenumber = $request->phonenumber;
+        $customerupdate->state = $request->state;
+        $customerupdate->zipcode = $request->zipcode;
+        $customerupdate->dob = $request->dob;
+        $customerupdate->uuid = $uuid;
+        $customerupdate->status = 'Active';
+        if ($request->password == null && $request->image == null) {
+            $customerupdate->update();
+        } else {
+            if ($request->password != null) {
+                // Hash and update the password
+                $customerupdate->password = bcrypt($request->password);
+            }
+    
+            if ($request->hasFile('image')) {
+                // Handle the image upload
+                $image = $uuid . '.' . $request->image->extension(); //change image name
+                $request->image->move(public_path('image/customer/customers_info'), $image);//move img under this dir
+            }
+    
+            // Update other fields that are not null in the request
+            $customerupdate->update($request->except(['password', 'image']));
+            
+            // Save the customer with the updated fields
+            $customerupdate->save();
+        }
+        return redirect()->route('Home')->with('success', 'Customer Updated Successfully');
+    }
+
+
     /**
      * Display a listing of the resource.
      */

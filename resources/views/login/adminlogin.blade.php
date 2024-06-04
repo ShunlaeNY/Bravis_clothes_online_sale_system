@@ -11,39 +11,50 @@
 
 </head>
 <body>
-    <div class="background_image">
-        <div class="flex_row">
-            <form action="{{route('AdminLoginProcess')}}" method="POST" class="flex_col">
-                @csrf
-                <input type="hidden" name="usertype" value="admin">
-                <h2>Bravis</h2>
-                <p>ADMIN PANEL</p>
-                <p>Control panel login</p>
-                <div class="login_form flex_col">
-
-                    <div class="admin_login flex_row">
-                        <img src="{{asset('image/admin/icon/staff.svg')}}" alt="">
-                        <input name="email" type="text" class="@error('email') is-invalid @enderror"
-                            placeholder="admin">
+    <div class="flex_row bg_container">
+        <div class="background_image">
+            <div class="form_container">
+                <form action="{{route('AdminLoginProcess')}}" method="POST" class="">
+                    @csrf
+                    <input type="hidden" name="usertype" value="admin">
+                    <div class="title">
+                        <h2>Bravis</h2>
+                        <p>ADMIN PANEL</p>
+                        <p>Control panel login</p>
                     </div>
-                    @error('email')
-                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
-                    @enderror
-                    <div class="admin_login flex_row">
-                        <img src="{{asset('image/admin/icon/key.svg')}}" alt="">
-                        <div class="password_container">
-                            <input name="password" id="password" type="password" placeholder="password">
-                                <span><i class="fa-solid fa-eye-slash hide_password"></i></span>
-                                <span><i class="fa-solid fa-eye show_password"></i> </span>
-                        </div> 
+                    <div class="login_form flex_col">
+    
+                        <div>
+                            <div class="admin_login flex_row">
+                                <i class="fa-solid fa-user"></i>
+                                <input name="email" type="text"
+                                    placeholder="admin" class="input">
+                            </div>
+                            @error('email')
+                                <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                            @enderror
+                        </div>
+                        <div>
+                            <div class="admin_login flex_row password_container">                             
+                                    <i class="fa-solid fa-key"></i>
+                                    
+                                        <input name="password" id="password" type="password" placeholder="password" class="input">
+                                        <i class="fa-solid fa-eye-slash hide_password"></i>
+                                        <i class="fa-solid fa-eye show_password"></i>
+                                                                                                
+                                @error('password')
+                                <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                                @enderror
+                            </div>
+                            
+                        </div>
                     </div>
-                    @error('password')
-                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
-                    @enderror
-                </div>
-                <br>
-                <button type="submit" name="submit" class="login_btn">Login</button>
-            </form>
+                    <br>
+                    <div class="flex_row" style="justify-content: center;">
+                        <button type="submit" name="submit" class="login_btn">Login</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <script src="{{asset('js/customer/show_hide_password.js')}}"></script>
