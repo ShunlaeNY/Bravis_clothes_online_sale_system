@@ -27,9 +27,9 @@
                     <tr>
                         <th class="first_title">ID</th>
                         <th>Customer's Name</th>
-                        <th>Email</th>
-                        <th>Address</th>
-                        <th>Phone Number</th>
+                        <th class="email">Email</th>
+                        <th class="address">Address</th>
+                        <th class="phone">Phone Number</th>
                         <th>Status</th>
                         <th class="last_title">Action</th>
                     </tr>
@@ -38,9 +38,9 @@
                         <tr>
                             <td>{{$customerlist->id}}</td>
                             <td>{{$customerlist->fname}} {{$customerlist->lname}}</td>
-                            <td>{{$customerlist->email}}</td>
-                            <td>{{$customerlist->address}}</td>
-                            <td>{{$customerlist->phonenumber}}</td>
+                            <td class="email">{{$customerlist->email}}</td>
+                            <td class="address">{{$customerlist->address}}</td>
+                            <td class="phone">{{$customerlist->phonenumber}}</td>
                             <td>{{$customerlist->status}}</td>
                             <td>
                                 @if (auth('admin')->user()->role_id === 1)

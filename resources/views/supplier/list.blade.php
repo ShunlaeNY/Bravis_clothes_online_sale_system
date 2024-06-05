@@ -9,13 +9,21 @@
 @endsection
 
 @section('main')
+    {{-- alert --}}
+    <div class="alert warning">
+        <span class="closebtn">&times;</span>  
+        <strong>Warning!</strong> Indicates a warning that might need attention.
+    </div>
+
+
     <div class="main">
         <div class="session1 flex_row">
             <h3>All Suppliers</h3>
+            {{-- <button class="alert_btn">+ Add Supplier</button> --}}
             @if (auth('admin')->user()->role_id === 1)
                 <a href="{{ route('SupplierCreate') }}">+ Add Supplier</a>
             @else
-                <a href="{{ route('SupplierCreate') }}" class="disable_btn">+ Add Supplier</a>
+                <a class="alert_btn">+ Add Supplier</a>
             @endif
         </div>
         <div class="session2">
@@ -109,4 +117,5 @@
             });
         </script>
     </div>
+  
 @endsection

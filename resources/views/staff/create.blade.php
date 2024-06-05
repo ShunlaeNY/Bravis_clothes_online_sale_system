@@ -17,8 +17,10 @@
 
 @section('main')
 <div class="main">
-    <h4><b>{{$updatestatus == true ? 'Update Staff' : 'Add Staff'}}</b></h4>
-    <p>{{$updatestatus == true ? 'Update' : 'Add'}} your staff necessary information here</p>
+    <div class="session1">
+        <h4><b>{{$updatestatus == true ? 'Update Staff' : 'Add Staff'}}</b></h4>
+        <p>{{$updatestatus == true ? 'Update' : 'Add'}} your staff necessary information here</p>
+    </div>
     <form action="{{$updatestatus == true ? route('StaffUpdateProcess') : route('StaffCreateProcess')}}" method="post" class="add_staff_form" enctype="multipart/form-data">
         @csrf
         @if ($updatestatus == true)
@@ -81,7 +83,7 @@
                     <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
                 @enderror
             </div>
-            <button><a href="{{route('StaffList')}}">Cancel</a></button>
+            <button><a href="{{route('StaffList')}}" class="cancel">Cancel</a></button>
             <button type="submit">{{$updatestatus == true ? 'Update' : 'Add'}}</button>
         </div>
     </form>

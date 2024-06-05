@@ -46,7 +46,7 @@
             </div>
             <input type="hidden" name="admin_id" value="{{auth('admin')->user()->id}}">
 
-            <button><a href="{{route('CategoryList')}}">Cancel</a></button>
+            <button><a href="{{route('CategoryList')}}" class="cancel">Cancel</a></button>
             <button type="submit">{{$updatestatus == true ? 'Update' : 'Add'}}</button>
         </div>
     </form>

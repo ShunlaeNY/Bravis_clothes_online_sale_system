@@ -39,9 +39,9 @@
             <table>
                 <tr>
                     <th class="first_title">Name</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Phone Number</th>
+                    <th class="email">Email</th>
+                    <th class="address">Address</th>
+                    <th class="phone">Phone Number</th>
                     <th>Position</th>
                     <th class="last_title">Action</th>
                 </tr>
@@ -54,9 +54,9 @@
                                     {{$stafflist->name}}
                                 </div>
                             </td>
-                            <td>{{$stafflist->email}}</td>
-                            <td>{{$stafflist->address}}</td>
-                            <td>{{$stafflist->phonenumber}}</td>
+                            <td class="email">{{$stafflist->email}}</td>
+                            <td class="address">{{$stafflist->address}}</td>
+                            <td class="phone">{{$stafflist->phonenumber}}</td>
                             <td>{{$stafflist->rolename}}</td>
                             <td>
                                 @if (auth('admin')->user()->role_id === 1)

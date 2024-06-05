@@ -9,7 +9,6 @@
 @endsection
 
 @section('main')
-    <div class="scroll">
         <div class="main">
             <div class="session1 grid">
                 <div class="total_earnings">
@@ -60,10 +59,10 @@
                 </div>
             </div>
             <div class="session4 grid">
-                <div class="flex_col"  style="width: 100%;height:100%">
+                <div class="flex_col pie"  >
                     <div class="flex_row">
                         <p>Top selling products</p>
-                        <div>
+                        <div class="men_women_btn_pie">
                             <button>Men</button>
                             <button>Women</button>
                         </div>
@@ -72,7 +71,7 @@
                         <div id="piechart"></div>
                     </div>
                 </div>
-                <div class="flex_col" style="width: 100%;height: 100%;">
+                <div class="flex_col chart">
                     <div class="flex_row">
                         <p>Sale Statics</p>
                     </div>
@@ -82,7 +81,6 @@
                 </div>
             </div>
         </div>
-    </div>
 @endsection
 
 @section('js')

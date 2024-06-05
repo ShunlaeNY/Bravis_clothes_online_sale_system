@@ -37,10 +37,10 @@
                 <table>
                         <tr>
                             <th class="first_title">Product Name</th>
-                            <th>Category</th>
-                            <th>Brand</th>
-                            <th>Price</th>
-                            <th>Sizes</th>
+                            <th class="category">Category</th>
+                            <th class="brand">Brand</th>
+                            <th class="price">Price</th>
+                            <th class="size">Sizes</th>
                             <th class="last_title">Action</th>
                         </tr>
                         @foreach ($productlists as $productlist)
@@ -51,10 +51,10 @@
                                         <p>{{$productlist->name}}</p>
                                     </div>
                                 </td>
-                                <td>{{$productlist->categoryname}}</td>
-                                <td>{{$productlist->brand}}</td>
-                                <td>{{$productlist->price}}</td>
-                                <td>
+                                <td class="category">{{$productlist->categoryname}}</td>
+                                <td class="brand">{{$productlist->brand}}</td>
+                                <td class="price">{{$productlist->price}}</td>
+                                <td class="size">
                                     <div class="flex_row sizes">
                                         <div class="qty_box">
                                             <p>S-{{$productlist->small_qty}}/{{$productlist->small_qty+$productlist->medium_qty+$productlist->large_qty}}</p>
@@ -68,18 +68,20 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <button class="infoBtn" data-product-id="{{ $productlist->id }}">
-                                        <i class="fa-solid fa-circle-info"></i>
-                                    </button>
-                                    @if (auth('admin')->user()->role_id === 1)
-                                        <a href="{{url('admin/dashboard/productlist/edit/'.$productlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <button class="deleteBtn" data-product-id="{{ $productlist->id}}">
+                                    <div class="btn-container">
+                                        <button class="infoBtn" data-product-id="{{ $productlist->id }}">
+                                            <i class="fa-solid fa-circle-info"></i>
+                                        </button>
+                                        @if (auth('admin')->user()->role_id === 1)
+                                            <a href="{{url('admin/dashboard/productlist/edit/'.$productlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <button class="deleteBtn" data-product-id="{{ $productlist->id}}">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </button>  
+                                        @else
+                                            <a href="{{url('admin/dashboard/productlist/edit/'.$productlist->id)}}" class="btn edit-btn disable_btn"><i class="fa-solid fa-pen-to-square"></i></a>
                                             <i class="fa-regular fa-trash-can"></i>
-                                        </button>  
-                                    @else
-                                        <a href="{{url('admin/dashboard/productlist/edit/'.$productlist->id)}}" class="btn edit-btn disable_btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    @endif
+                                        @endif
+                                    </div>
                                     
                                 </td>
                             </tr>
@@ -91,7 +93,7 @@
                                         <span class="close_info">&times;</span>
                                     </div>
                                     <div class="flex_col" style="margin-bottom: 30px">
-                                        <div class="grid">
+                                        <div class="grid model-grid">
                                             <div>
                                                 <img src="{{ asset('image/admin/products_info/' . $productlist->image) }}" alt="photo of {{ $productlist->name }}" width="150px" height="auto" style="border: 1px solid rgba(100, 100, 100, 0.473);align-self:center">
                                             </div>
@@ -106,7 +108,7 @@
                                             <p>Brand   : {{ $productlist->brand }}</p>
                                             <p>Price   : {{ $productlist->price }} MMK</p>
                                             <p>Sizes   :</p>
-                                            <ul>
+                                            <ul >
                                                 <li>S: {{ $productlist->small_qty }}</li>
                                                 <li>M: {{ $productlist->medium_qty }}</li>
                                                 <li>L: {{ $productlist->large_qty }}</li>
@@ -122,6 +124,10 @@
     
                 </table>
             </div>
+            
+
+
+            
             <div class="Pagination">
                 {{$productlists->links('pagination::bootstrap-4')}}
             </div>

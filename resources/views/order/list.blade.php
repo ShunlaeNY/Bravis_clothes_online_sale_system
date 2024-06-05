@@ -13,7 +13,7 @@
         <h3>Order</h3>
             <form action="{{route('SearchOrders')}}" method="post" class="session2">
                 @csrf
-                <div class="grid">
+                <div class="grid order-grid">
                     <div class="flex_col">
                         <small>Order Start Date</small>
                         <input type="date" name="orderstartdate">
@@ -32,27 +32,27 @@
                 </div>
             </form>
         <div class="session3">
-            <div style="overflow-x: auto;">
+            <div>
                 <table>
                     <tr>
                         <th class="first_title">Order ID</th>
                         <th>Product</th>
-                        <th>Customer</th>
-                        <th>Price</th>
-                        <th>Ordered Date</th>
-                        <th>Payment info</th>
+                        <th class="customer">Customer</th>
+                        <th class="price">Price</th>
+                        <th class="orderdate">Ordered Date</th>
+                        <th class="paymentinfo">Payment info</th>
                         <th>Status</th>
                         <th class="last_title">Action</th>
                     </tr>
                     {{-- {{dd($order_items)}} --}}
                     @foreach ($order_items as $item)
                         <tr>
-                            <td>{{$item->id}}</td>
+                            <td>{{$item->order_id}}</td>
                             <td>{{$item->product_name}}</td>
-                            <td>{{$item->customer_fname}} {{$item->customer_lname}}</td>
-                            <td>{{$item->price}}</td>
-                            <td>{{$item->created_at}}</td>
-                            <td>{{$item->paymentmethod}}</td>
+                            <td class="customer">{{$item->customer_fname}} {{$item->customer_lname}}</td>
+                            <td class="price">{{$item->price}}</td>
+                            <td class="orderdate">{{$item->created_at}}</td>
+                            <td class="paymentinfo">{{$item->paymentmethod}}</td>
                             <td>
                                 @if ($item->status == "Pending")
                                     <div class="status-btn pending-btn">{{$item->status}}</div>

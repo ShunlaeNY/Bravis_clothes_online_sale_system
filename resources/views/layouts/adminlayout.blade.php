@@ -25,43 +25,44 @@
                 <a href="{{route('Dashboard')}}" target="_self">
                     <h1 class="bravis_logo nav_text">Bravis</h1>
                     <div class="flex_row">
-                        <i class="fa-solid fa-house nav_logo"></i>
+                        <div class="tooltip"><i class="fa-solid fa-house nav_logo"></i><span class="tooltiptext tooltiptext1">Dashboard</span></div>
                         <p class="nav_text">Dashboard</p>
                     </div>
                 </a>    
                 <a href="{{route('ProductList')}}" target="_self">
                     <div class="flex_row">
-                        <i class="fa-solid fa-bag-shopping nav_logo"></i>
+                        <div class="tooltip"><i class="fa-solid fa-bag-shopping nav_logo"></i><span class="tooltiptext tooltiptext2">Product</span></div>
                         <p class="nav_text">Product</p>
                     </div>
                 </a>
                 <a href="{{route('CategoryList')}}" target="_self">
                     <div class="flex_row">
-                        <i class="fa-solid fa-bag-shopping nav_logo"></i>
+                        <div class="tooltip"><i class="fa-solid fa-list nav_logo"></i><span class="tooltiptext tooltiptext3">Category</span></div>
                         <p class="nav_text">Category</p>
                     </div>
                 </a>
                 <a href="{{route('CustomerList')}}" target="_self">
                     <div class="flex_row">
-                        <i class="fa-solid fa-users nav_logo"></i>
+                        <div class="tooltip"><i class="fa-solid fa-users nav_logo"></i><span class="tooltiptext tooltiptext4">Customer</span>
+                        </div>
                         <p class="nav_text">Customer</p>
                     </div>
                 </a>
                 <a href="{{route('OrderList')}}" target="_self">
                     <div class="flex_row">
-                        <i class="fa-solid fa-cart-shopping nav_logo"></i>
+                        <div class="tooltip"><i class="fa-solid fa-cart-shopping nav_logo"></i><span class="tooltiptext tooltiptext4">Order</span></div>
                         <p class="nav_text">Order</p>
                     </div>
                 </a>
                 <a href="{{route('StaffList')}}" target="_self">
                     <div class="flex_row">
-                        <i class="fa-solid fa-user nav_logo"></i>
+                        <div class="tooltip"><i class="fa-solid fa-user nav_logo"></i><span class="tooltiptext tooltiptext5">Staff</span></div>
                         <p class="nav_text">Staff</p>
                     </div>
                 </a>
                 <a href="{{route('SupplierList')}}" target="_self">
                     <div class="flex_row">
-                        <i class="fa-solid fa-user nav_logo"></i>
+                        <div class="tooltip"><i class="fa-solid fa-parachute-box nav_logo"></i><span class="tooltiptext tooltiptext6">Supplier</span></div>
                         <p class="nav_text">Supplier</p>
                     </div>
                 </a>
@@ -73,7 +74,7 @@
                     <p>({{$roles[0]->rolename}})</p>
                 </div>
                 <div class="user_profile">
-                    <img src="{{asset('image/admin/staffs_info/'.auth('admin')->user()->image)}}" alt="image of {{auth('admin')->user()->name}}" width="60" height="60" style="border-radius: 50%">
+                    <img src="{{asset('image/admin/staffs_info/'.auth('admin')->user()->image)}}" alt="image of {{auth('admin')->user()->name}}" width="50" height="50" style="border-radius: 50%">
                 </div>     
             </div>
             <!-- user Profile Info -->
@@ -83,7 +84,9 @@
             </div>
     
             {{-- main --}}
-            @yield('main')    
+            <div class="scroll">
+                @yield('main')  
+            </div>
         </div>
     </div>
 
@@ -94,6 +97,8 @@
     
     <!-- script-->
     <script src="{{asset('js/admin/user_profile_info_popup.js')}}"></script>
+    <script src="{{asset('js/admin/alert.js')}}"></script>
     @yield('js')
+
 </body>
 </html>

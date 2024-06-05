@@ -17,8 +17,10 @@
 
 @section('main')
     <div class="main">
-        <h3><b>{{$updatestatus == true ? 'Edit' : 'Add'}} product</b></h3>
-        <p>{{$updatestatus == true ? 'Edit' : 'Add'}} your product and necessary information here</p>
+        <div class="session1">
+            <h3><b>{{$updatestatus == true ? 'Edit' : 'Add'}} product</b></h3>
+            <p>{{$updatestatus == true ? 'Edit' : 'Add'}} your product and necessary information here</p>
+        </div>
         <div class="add_product_form">
             <h3>Basic Information</h3>
             <form class="add_product_grid grid" action="{{$updatestatus == true ? route('ProductUpdateProcess') : route('ProductCreateProcess')}}" method="post" enctype="multipart/form-data">
@@ -115,7 +117,7 @@
                         @enderror
                     </div>
                 </div>
-                <button class="buttons"><a href="{{route('ProductList')}}">Cancel</a></button>
+                <button class="buttons"><a href="{{route('ProductList')}}" class="cancel">Cancel</a></button>
                 <button type="submit" class="buttons">{{$updatestatus == true ? 'Update' : 'Add'}}</button>
             </form>
             
