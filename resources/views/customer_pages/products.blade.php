@@ -28,6 +28,7 @@
             <div class="sort_by flex_row">
                  <form action="{{route('Sort')}}" method="post" id="sortForm">
                     @csrf
+                    <input type="hidden" name="categoryname" id="categoryname" value="{{$categoryname}}">
                     <span>Sort By Price:</span>
                     <select name="sort" id="sort" class="input" onchange="document.getElementById('sortForm').submit()">
                         <option value="sort" {{request('sort') == 'sort' ? 'selected' : ''}}>Choose...</option>

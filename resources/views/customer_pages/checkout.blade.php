@@ -121,6 +121,13 @@
                     </div>
                     <div class="list flex_row">
                         <div>
+{{-- {{dd($cartarray)}} --}}@php
+                                $total_items = count($cartarray);
+                                $total_price = 0;
+                                foreach ($cartarray as $item) {
+                                    $total_price += $item['quantity'] * $item['price'];
+                                }
+                            @endphp
                             <div>{{ $total_items }} item{{ $total_items > 1 ? 's' : '' }}</div>
                             <div>Delivery Fees</div>
                             @if ($registered_user)
@@ -166,6 +173,7 @@
                         </div>
                         @php
                             $count +=1;
+
                         @endphp
                     
                     <hr>

@@ -114,7 +114,7 @@
                     <img src="{{asset('image/customer/delivery-truck_2769339.png')}}" alt="" width="30px" height="30px">
                     <p>Your Product will be arrived within one week.</p>
                 </div>
-                <a href="{{route('Home')}}" class="button2">Continue To Shopping</a>
+                <a href="{{route('Home')}}" class="button2" style="color: white;">Continue To Shopping</a>
             </div>
         </div>
     </div>
