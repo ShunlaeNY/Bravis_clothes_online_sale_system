@@ -42,7 +42,10 @@
     </div>
 @endsection
 @section('product_list')
-    <div class="men_tee_list grid">
+    @if ($products->isEmpty())
+        <div class="flex_row" style="justify-content: center"><h3>No product found!</h3></div>
+    @else
+        <div class="men_tee_list grid">
         @foreach ($products as $product)
             <a href=" {{ route('ProductDetailsPage' , $product->id ) }} ">
                 <div>
@@ -54,5 +57,6 @@
                 </div>
             </a>
         @endforeach
-    </div>
+        </div>
+    @endif
 @endsection

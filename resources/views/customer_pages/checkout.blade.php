@@ -54,14 +54,14 @@
                                 <p>Have an account? <a href="{{route('CustomerLogin')}}">Log in</a></p>
                             @endif
                         </div>
-                        <input type="email" name="email" placeholder="Email*" class="input" value="{{$registered_user == true ? auth('customer')->user()->email : ''}}">
+                        <input type="email" name="email" placeholder="Email*" class="input" value="{{$registered_user == true ? auth('customer')->user()->email : old('email')}}">
                         @error('email')
-                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                            <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                         @enderror
                         <br>
-                        <input type="text" name="phonenumber" id="" placeholder="Phone Number*" class="input" value="{{$registered_user == true ? auth('customer')->user()->phonenumber : ''}}">
+                        <input type="text" name="phonenumber" id="" placeholder="Phone Number*" class="input" value="{{$registered_user == true ? auth('customer')->user()->phonenumber : old('phonenumber')}}">
                         @error('phonenumber')
-                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                            <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                         @enderror
                         <br>
                     </div>
@@ -70,34 +70,34 @@
                         <input type="text" placeholder="Country/Region"  class="input" value="Myanmar">
                         <div class="name flex_row">
                             <div>
-                                <input type="text" name="fname" id="fname" placeholder="First Name*" class="input" value="{{$registered_user == true ? auth('customer')->user()->fname : ''}}">
+                                <input type="text" name="fname" id="fname" placeholder="First Name*" class="input" value="{{$registered_user == true ? auth('customer')->user()->fname : old('fname')}}">
                                 @error('fname')
-                                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                                    <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                                 @enderror
                             </div>
                             
                             <div>
-                                <input type="text" name="lname" id="lname" placeholder="Last Name*"  class="input" value="{{$registered_user == true ? auth('customer')->user()->lname : ''}}">
+                                <input type="text" name="lname" id="lname" placeholder="Last Name*"  class="input" value="{{$registered_user == true ? auth('customer')->user()->lname : old('lname')}}">
                                 @error('lname')
-                                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                                    <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                                 @enderror
                             </div>
                         </div>
-                        <textarea name="address" id="" cols="30" rows="1" placeholder="Address*" class="input">{{$registered_user == true ? auth('customer')->user()->address : ''}}</textarea>
+                        <textarea name="address" id="" cols="30" rows="1" placeholder="Address*" class="input">{{$registered_user == true ? auth('customer')->user()->address : old('address')}}</textarea>
                         @error('address')
-                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                            <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                         @enderror
                         <div class="address flex_row">
                             <div>
-                                <input type="text" name="state" id="" placeholder="State/Region(Eg. Yangon)" class="input" value="{{$registered_user == true ? auth('customer')->user()->state : ''}}">
+                                <input type="text" name="state" id="" placeholder="State/Region(Eg. Yangon)" class="input" value="{{$registered_user == true ? auth('customer')->user()->state : old('state')}}">
                                 @error('state')
-                                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                                    <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                                 @enderror
                             </div>
                             <div>
-                                <input type="text" name="zipcode" id="" placeholder="Zip Code(Eg. 111)" class="input" value="{{$registered_user == true ? auth('customer')->user()->zipcode : ''}}">
+                                <input type="text" name="zipcode" id="" placeholder="Zip Code(Eg. 111)" class="input" value="{{$registered_user == true ? auth('customer')->user()->zipcode : old('zipcode')}}">
                                 @error('zipcode')
-                                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                                    <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                                 @enderror
                             </div>
                         </div>
