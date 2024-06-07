@@ -110,7 +110,7 @@ a:visited{
 /* **************** */
 /* header */
 .section1{
-    height: auto;
+    height: 100vh;
     background-color: var(--secondary-color);
     position: sticky;
     top: 0;

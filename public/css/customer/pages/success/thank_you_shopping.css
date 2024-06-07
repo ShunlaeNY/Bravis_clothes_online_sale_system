@@ -24,7 +24,7 @@
 .button2:hover{
     color: var(--button_blue_color) !important;
 }
-@media (min-width:320px) and (max-width:767px){
+@media (min-width:320px) and (max-width:768px){
     .section2 .flex_row{
         padding: 0px 30px;
     }

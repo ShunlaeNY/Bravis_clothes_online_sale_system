@@ -340,7 +340,7 @@
 
 
 /* phone view */
-@media (max-width:767px) and (min-width:320px)
+@media (max-width:768px) and (min-width:320px)
 {
     .section1_body{
         padding: 55px 0px 0px 0px;
