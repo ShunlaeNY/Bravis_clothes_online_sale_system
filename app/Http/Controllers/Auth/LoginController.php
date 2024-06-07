@@ -43,12 +43,22 @@ class LoginController extends Controller
     public function login(Request $request){
 
         $validateData = $request->validate([
-            'email'=> 'required',
-            'password' => 'required',
-        ],[
-            'email.required' => 'Email field is required.',
-            'password.required' => 'Password field is required.',
+            'email' => 'required|email|max:255',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/'
+            ],
+        ], [
+            'email.required' => 'The email field is required and cannot be left empty.',
+            'email.email' => 'The email provided must be a valid email address.',
+            'email.max' => 'The email may not be greater than 255 characters.',
+            'password.required' => 'The password field is required and cannot be left empty.',
+            'password.min' => 'The password must be at least 8 characters long.',
+            'password.regex' => 'The password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.',
         ]);
+        
         // dd($request->all());
         $validateData['password'] = bcrypt($validateData['password']);
         // dd($validateData['password']);

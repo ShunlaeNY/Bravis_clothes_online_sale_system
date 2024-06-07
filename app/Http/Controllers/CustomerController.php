@@ -110,11 +110,11 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validateData = $request->validate([
             'fname' => 'required|string|max:255',
             'lname' => 'required|string|max:255',
-            'email' =>'required|email|max:255',            
-            'dob' =>'required',            
+            'email' => 'required|email|max:255',
+            'dob' => 'required|date',
             'password' => [
                 'required',
                 'string',
@@ -125,8 +125,48 @@ class CustomerController extends Controller
             'address' => 'required|string|max:255',
             'state' => 'required|string|max:100',
             'zipcode' => 'required|string|max:6',
-            'image' => 'required|image'
+            'image' => 'required|image',
+        ], [
+            'fname.required' => 'The first name field is required and cannot be left empty.',
+            'fname.string' => 'The first name must be a string.',
+            'fname.max' => 'The first name may not be greater than 255 characters.',
+            
+            'lname.required' => 'The last name field is required and cannot be left empty.',
+            'lname.string' => 'The last name must be a string.',
+            'lname.max' => 'The last name may not be greater than 255 characters.',
+            
+            'email.required' => 'The email field is required and cannot be left empty.',
+            'email.email' => 'The email provided must be a valid email address.',
+            'email.max' => 'The email may not be greater than 255 characters.',
+            
+            'dob.required' => 'The date of birth field is required and cannot be left empty.',
+            'dob.date' => 'The date of birth must be a valid date.',
+            
+            'password.required' => 'The password field is required and cannot be left empty.',
+            'password.string' => 'The password must be a string.',
+            'password.min' => 'The password must be at least 8 characters long.',
+            'password.regex' => 'The password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.',
+            
+            'phonenumber.required' => 'The phone number field is required and cannot be left empty.',
+            'phonenumber.string' => 'The phone number must be a string.',
+            'phonenumber.max' => 'The phone number may not be greater than 20 characters.',
+            
+            'address.required' => 'The address field is required and cannot be left empty.',
+            'address.string' => 'The address must be a string.',
+            'address.max' => 'The address may not be greater than 255 characters.',
+            
+            'state.required' => 'The state field is required and cannot be left empty.',
+            'state.string' => 'The state must be a string.',
+            'state.max' => 'The state may not be greater than 100 characters.',
+            
+            'zipcode.required' => 'The zip code field is required and cannot be left empty.',
+            'zipcode.string' => 'The zip code must be a string.',
+            'zipcode.max' => 'The zip code may not be greater than 6 characters.',
+            
+            'image.required' => 'The image field is required and cannot be left empty.',
+            'image.image' => 'The file must be an image (jpeg, png, bmp, gif, or svg).',
         ]);
+        
         // dd($validatedData);
         $uuid = Str::uuid()->toString();
         $image = $uuid . '.' . $request->image->extension(); //change image name

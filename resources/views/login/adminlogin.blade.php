@@ -28,25 +28,24 @@
                             <div class="admin_login flex_row">
                                 <i class="fa-solid fa-user"></i>
                                 <input name="email" type="text"
-                                    placeholder="admin" class="input">
+                                    placeholder="admin" class="input" value="{{ old('email') }}">
                             </div>
                             @error('email')
-                                <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                                <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                             @enderror
                         </div>
                         <div>
                             <div class="admin_login flex_row password_container">                             
                                     <i class="fa-solid fa-key"></i>
                                     
-                                        <input name="password" id="password" type="password" placeholder="password" class="input">
+                                    <input name="password" id="password" type="password" placeholder="password" class="input">
                                         <i class="fa-solid fa-eye-slash hide_password"></i>
                                         <i class="fa-solid fa-eye show_password"></i>
                                                                                                 
-                                @error('password')
-                                <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
-                                @enderror
                             </div>
-                            
+                            @error('password')
+                                <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
+                                @enderror
                         </div>
                     </div>
                     <br>

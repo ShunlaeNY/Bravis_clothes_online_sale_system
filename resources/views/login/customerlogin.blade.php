@@ -20,9 +20,9 @@
                     <input type="hidden" name="usertype" value="customer">
                     <h1>Sign In Here</h1>
                     <div>
-                        <input type="Email" name="email" placeholder="Email Address"><br>
+                        <input type="Email" name="email" placeholder="Email Address" value="{{ old('email') }}"><br>
                         @error('email')
-                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                            <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                         @enderror
                     </div>
                     <div>
@@ -32,7 +32,7 @@
                                 <span><i class="fa-solid fa-eye show_password"></i> </span>
                         </div>
                         @error('password')
-                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                            <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                         @enderror
                     </div>
                     

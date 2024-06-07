@@ -30,15 +30,15 @@
                 <br>
                 <div class="flex_row">
                     <div>
-                        <input type="text" name="fname" id="fname" placeholder="First Name" value="{{$updatestatus == true ? $customerdata->fname : ''}}">
+                        <input type="text" name="fname" id="fname" placeholder="First Name" value="{{$updatestatus == true ? $customerdata->fname : old('fname')}}">
                         @error('fname')
-                                <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                                <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                         @enderror
                     </div>
                     <div>
-                        <input type="text" name="lname" id="lname" placeholder="Last Name" value="{{$updatestatus == true ? $customerdata->lname : ''}}">
+                        <input type="text" name="lname" id="lname" placeholder="Last Name" value="{{$updatestatus == true ? $customerdata->lname : old('lname')}}">
                         @error('lname')
-                                <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                                <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                         @enderror
                     </div>
 
@@ -47,27 +47,27 @@
                 <label for="dob">Date of Birth</label>
                 <br>
                 <div>
-                    <input type="date" name="dob" value="{{$updatestatus == true ? $customerdata->dob : ''}}">
+                    <input type="date" name="dob" value="{{$updatestatus == true ? $customerdata->dob : old('dob')}}">
                     @error('dob')
-                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                     @enderror
                 </div>
                 <br>
                 <label for="email">Email</label>
                 <br>
                 <div>
-                    <input type="email" name="email" placeholder="Email" value="{{$updatestatus == true ? $customerdata->email : ''}}">
+                    <input type="email" name="email" placeholder="Email" value="{{$updatestatus == true ? $customerdata->email : old('email')}}">
                     @error('email')
-                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                    <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                     @enderror
                 </div>
                 <br>
                 <label for="phonenumber">Phone Number</label>
                 <br>
                 <div>
-                    <input type="text" name="phonenumber" placeholder="phonenumber" value="{{$updatestatus == true ? $customerdata->phonenumber : ''}}">
+                    <input type="text" name="phonenumber" placeholder="phonenumber" value="{{$updatestatus == true ? $customerdata->phonenumber : old('phonenumber')}}">
                     @error('phonenumber')
-                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                     @enderror
                 </div>
                 <br>
@@ -75,33 +75,33 @@
                 <br>
                 <small>Tip: Use upper case, lower case, special characters and numbers</small>
                 <div class="password_container">
-                    <input type="password" id="password" name="password" placeholder="Password">
+                    <input type="password" id="password" name="password" placeholder="Password" >
                     <i class="fa-solid fa-eye-slash hide_password"></i>
                     <i class="fa-solid fa-eye show_password"></i>
-                    @error('password')
-                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
-                    @enderror
                 </div>
+                @error('password')
+                        <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
+                @enderror
                 <br>
                 <label for="address">Location</label>
                 <br>
                 <div>
-                    <textarea name="address" id="address" cols="30" rows="10">{{$updatestatus == true ? $customerdata->address : ''}}</textarea><br>
+                    <textarea name="address" id="address" cols="30" rows="10">{{$updatestatus == true ? $customerdata->address : old('address')}}</textarea><br>
                     @error('address')
-                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                     @enderror
                 </div>
                 <div class="flex_row">
                     <div>
-                        <input type="text" name="state" placeholder="State/Region" value="{{$updatestatus == true ? $customerdata->state : ''}}">
+                        <input type="text" name="state" placeholder="State/Region" value="{{$updatestatus == true ? $customerdata->state : old('state')}}">
                         @error('state')
-                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                            <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                         @enderror
                     </div>
                     <div>
-                        <input type="text" name="zipcode" placeholder="Zip Code (Eg. 1111)" value="{{$updatestatus == true ? $customerdata->zipcode : ''}}">
+                        <input type="text" name="zipcode" placeholder="Zip Code (Eg. 1111)" value="{{$updatestatus == true ? $customerdata->zipcode : old('zipcode')}}">
                         @error('zipcode')
-                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                            <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                         @enderror
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                 <div>
                     <input type="file" name="image">
                     @error('image')
-                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                            <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                     @enderror
                 </div>
                 <br>
