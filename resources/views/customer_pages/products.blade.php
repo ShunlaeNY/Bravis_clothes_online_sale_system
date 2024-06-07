@@ -29,11 +29,13 @@
                  <form action="{{route('Sort')}}" method="post" id="sortForm">
                     @csrf
                     <input type="hidden" name="categoryname" id="categoryname" value="{{$categoryname}}">
-                    <span>Sort By Price:</span>
+                    <span>Sort By:</span>
                     <select name="sort" id="sort" class="input" onchange="document.getElementById('sortForm').submit()">
                         <option value="sort" {{request('sort') == 'sort' ? 'selected' : ''}}>Choose...</option>
-                        <option value="low_to_high_price" {{request('sort') == 'low_to_high_price' ? 'selected' : ''}}>Lower to Higher</option>
-                        <option value="high_to_low_price" {{request('sort') == 'high_to_low_price' ? 'selected' : ''}}>Higher to Lower</option>
+                        <option value="low_to_high_price" {{request('sort') == 'low_to_high_price' ? 'selected' : ''}}>Lower to Higher Price</option>
+                        <option value="high_to_low_price" {{request('sort') == 'high_to_low_price' ? 'selected' : ''}}>Higher to Lower Price</option>
+                        <option value="most_selling" {{request('sort') == 'most_selling' ? 'selected' : ''}}>Most Selling Products</option>
+                        <option value="latest" {{request('sort') == 'latest' ? 'selected' : ''}}>Latest Products</option>
                     </select>
                     {{-- <button type="submit" class="filter_btn"><i class="fa-solid fa-filter"></i></button> --}}
                 </form>
