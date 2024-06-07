@@ -81,7 +81,13 @@ class LoginController extends Controller
             if(auth('customer')->attempt($userdata)){
                 $user = auth('customer')->user();
                 if($user->status == "Active"){
-                    return redirect()->route('Home');
+                    if ($request->session()->has('cartdata')) {
+                        return redirect()->route('CheckOut');
+                    } else {
+                        return redirect()->route('Home');
+                    }
+                    
+                   
 
                 }
                 else{

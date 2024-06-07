@@ -130,18 +130,40 @@ class StaffController extends Controller
         $staffupdate->email = $request->email;
         $staffupdate->address = $request->address;
         $staffupdate->uuid = $uuid;
+        $staffupdate->role_id = $request->rolename;
         $staffupdate->phonenumber = $request->phonenumber;
         $staffupdate->password = bcrypt($request->password);
-        if($request->image == null){
+        if ($request->password == null && $request->image == null) {
+            $staffupdate->update();
+        } 
+        else {
+            if ($request->password != null) {
+                // Hash and update the password
+                $staffupdate->password = bcrypt($request->password);
+            }
+    
+            if ($request->hasFile('image')) {
+                // Handle the image upload
+                $image = $uuid . '.' . $request->image->extension(); //change image name
+                $request->image->move(public_path('image/admin/staffs_info'), $image);//move img under this dir
+            }
+    
+            // Update other fields that are not null in the request
+            // $staffupdate->update($request->except(['password', 'image']));
             
+            // Save the customer with the updated fields
             $staffupdate->update();
         }
-        else{
-            $image = $uuid . '.' . $request->image->extension(); //change image name
-            $request->image->move(public_path('image/admin/staffs_info'), $image);//move img under this dir    
-            $staffupdate->image = $image;
-            $staffupdate->update();
-        }
+        // if($request->image == null){
+            
+        //     $staffupdate->update();
+        // }
+        // else{
+        //     $image = $uuid . '.' . $request->image->extension(); //change image name
+        //     $request->image->move(public_path('image/admin/staffs_info'), $image);//move img under this dir    
+        //     $staffupdate->image = $image;
+        //     $staffupdate->update();
+        // }
         return redirect()->route('StaffList')->with('success','Staff Updated Successfully');
     }
 

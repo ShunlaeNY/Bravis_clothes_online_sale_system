@@ -23,7 +23,7 @@
             @if (auth('admin')->user()->role_id === 1)
                 <a href="{{ route('SupplierCreate') }}">+ Add Supplier</a>
             @else
-                <a class="alert_btn">+ Add Supplier</a>
+                <a class="disable_btn">+ Add Supplier</a>
             @endif
         </div>
         <div class="session2">
@@ -38,51 +38,57 @@
             </form>
         </div>
         <div class="session3">
-            <div style="overflow-x: auto;">
-                <table class="supplier_table">
-                    <tr>
-                        <th class="first_title">Supplier Name</th>
-                        <th>Brand</th>
-                        <th class="last_title">Action</th>
-                    </tr>
-                    @foreach ($supplierlists as $supplierlist)
+            
+            <div>
+                @if ($supplierlists->isEmpty())
+                    <div class="flex_row" style="justify-content: center"><p>No supplier meets your requirements!</p></div>
+                @else
+                    <table class="supplier_table">
                         <tr>
-                            <td>{{ $supplierlist->name }}</td>
-                            <td>{{ $supplierlist->brand_name }}</td>
-                            <td>
-                                @if (auth('admin')->user()->role_id === 1)
-                                    <a href="{{ url('admin/dashboard/supplierlist/edit/' . $supplierlist->id) }}" class="btn edit-btn">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                    <button class="deleteBtn" data-supplier-id="{{ $supplierlist->id }}">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </button>
-                                @else
-                                    <button class="warningBtn" warn-supplier-id="{{ $supplierlist->id }}">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
-                                    <button class="warningBtn" warn-supplier-id="{{ $supplierlist->id }}">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </button>
-                                    @endif
-                            </td>
+                            <th class="first_title">ID</th>
+                            <th >Supplier Name</th>
+                            <th>Brand</th>
+                            <th class="last_title">Action</th>
                         </tr>
-                        {{-- Warning Modal for each supplier --}}
-                        <div id="warningModal_{{ $supplierlist->id }}" class="modal">
-                            <div class="modal-content">
-                                <div class="flex_row" style="justify-content: space-between;">
-                                    <h2>Warning</h2>
-                                    <span class="close">&times;</span>
+                        @foreach ($supplierlists as $supplierlist)
+                            <tr>
+                                <td>{{ $supplierlist->id }}</td>
+                                <td>{{ $supplierlist->name }}</td>
+                                <td>{{ $supplierlist->brand_name }}</td>
+                                <td>
+                                    @if (auth('admin')->user()->role_id === 1)
+                                        <a href="{{ url('admin/dashboard/supplierlist/edit/' . $supplierlist->id) }}" class="btn edit-btn">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <button class="deleteBtn" data-supplier-id="{{ $supplierlist->id }}">
+                                            <i class="fa-regular fa-trash-can"></i>
+                                        </button>
+                                    @else
+                                        <i class="fa-solid fa-pen-to-square disable_btn"></i>
+                                        <i class="fa-regular fa-trash-can disable_btn"></i> 
+                                    @endif
+                                </td>
+                            </tr>
+                            {{-- Warning Modal for each supplier --}}
+                            <div id="warningModal_{{ $supplierlist->id }}" class="modal">
+                                <div class="modal-content">
+                                    <div class="flex_row" style="justify-content: space-between;">
+                                        <h2>Warning</h2>
+                                        <span class="close">&times;</span>
+                                    </div>
+                                    <p>You don't have permission for this action.</p>
                                 </div>
-                                <p>You don't have permission for this action.</p>
                             </div>
-                        </div>
-                    @endforeach
-                </table>
+                        @endforeach
+                    </table>
+                @endif
             </div>
         </div>
-        <div class="Pagination">
+        {{-- <div class="Pagination">
             {{ $supplierlists->links('pagination::bootstrap-4') }}
+        </div> --}}
+        <div class="Pagination">
+            {{ $supplierlists->appends(['supplier_name' => request('supplier_name'), 'brand_name' => request('brand_name')])->links('pagination::bootstrap-4') }}
         </div>
 
         <!-- The Modal -->

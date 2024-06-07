@@ -7,17 +7,17 @@
 @endsection
 @section('main')
 {{-- alert --}}
-<div class="alert warning">
+{{-- <div class="alert warning">
     <span class="closebtn">&times;</span>  
     <strong>Warning!</strong> You don't have Permissions for this action!
-</div>
+</div> --}}
         <div class="main">
             <div class="session1 flex_row">
                 <h3>Category</h3>
                 @if (auth('admin')->user()->role_id === 1)
                     <a href="{{route('CategoryCreate')}}">+ Add Category</a>
                 @else
-                    <a class="alert_btn">+ Add Category</a>
+                    <a class="disable_btn">+ Add Category</a>
                 @endif
             </div>
             <div class="session2">
@@ -32,48 +32,50 @@
                 </form>
             </div>
             <div class="session3">
-                <table class="supplier_table">
-                        <tr>
-                            <th class="first_title">Category Name</th>
-                            <th>Admin Name</th>
-                            <th class="last_title">Action</th>
-                        </tr>
-                        @foreach ($categorylists as $categorylist)
+                @if ($categorylists->isEmpty())
+                    <div class="flex_row" style="justify-content: center"><p>No product meets your requirements!</p></div>
+                @else
+                    <table class="supplier_table">
                             <tr>
-                                <td>{{$categorylist->name}}</td>
-                                <td>{{$categorylist->admin_name}}</td>
-                                <td>
-                                    @if (auth('admin')->user()->role_id === 1)
-                                        <a href="{{url('admin/dashboard/categorylist/edit/'.$categorylist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <button class="deleteBtn" data-category-id="{{ $categorylist->id}}">
-                                            <i class="fa-regular fa-trash-can"></i>
-                                        </button> 
-                                    @else
-                                        <button class="warningBtn" warn-category-id="{{ $categorylist->id }}">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
-                                        <button class="warningBtn" warn-category-id="{{ $categorylist->id }}">
-                                            <i class="fa-regular fa-trash-can"></i>
-                                        </button>
-                                    @endif
-                                </td>
+                                <th class="first_title">ID</th>
+                                <th>Category Name</th>
+                                <th>Admin Name</th>
+                                <th class="last_title">Action</th>
                             </tr>
-                            {{-- Warning Modal for each category --}}
-                            <div id="warningModal_{{ $categorylist->id }}" class="modal">
-                                <div class="modal-content">
-                                    <div class="flex_row" style="justify-content: space-between;">
-                                        <h2>Warning</h2>
-                                        <span class="close_info">&times;</span>
+                            @foreach ($categorylists as $categorylist)
+                                <tr>
+                                    <td>{{$categorylist->id}}</td>
+                                    <td>{{$categorylist->name}}</td>
+                                    <td>{{$categorylist->admin_name}}</td>
+                                    <td>
+                                        @if (auth('admin')->user()->role_id === 1)
+                                            <a href="{{url('admin/dashboard/categorylist/edit/'.$categorylist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <button class="deleteBtn" data-category-id="{{ $categorylist->id}}">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </button> 
+                                        @else
+                                            <i class="fa-solid fa-pen-to-square disable_btn"></i>
+                                            <i class="fa-regular fa-trash-can disable_btn"></i> 
+                                        @endif
+                                    </td>
+                                </tr>
+                                {{-- Warning Modal for each category --}}
+                                <div id="warningModal_{{ $categorylist->id }}" class="modal">
+                                    <div class="modal-content">
+                                        <div class="flex_row" style="justify-content: space-between;">
+                                            <h2>Warning</h2>
+                                            <span class="close_info">&times;</span>
+                                        </div>
+                                        <p>You don't have permission for this action.</p>
                                     </div>
-                                    <p>You don't have permission for this action.</p>
                                 </div>
-                            </div>
-                        @endforeach     
-                </table>
+                            @endforeach     
+                    </table>
+                @endif
 
             </div>
             <div class="Pagination">
-                {{$categorylists->links('pagination::bootstrap-4')}}
+                {{ $categorylists->appends(['name' => request('name'), 'admin_name' => request('admin_name')])->links('pagination::bootstrap-4') }}
             </div>
 
             <!-- The Delete Modal -->
@@ -119,67 +121,67 @@
             </script> --}}
 
 
-{{-- JavaScript for Modals --}}
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // // Info Modals
-        // var infoButtons = document.querySelectorAll('.infoBtn');
-        // infoButtons.forEach(function (button) {
-        //     button.addEventListener('click', function () {
-        //         var productId = this.getAttribute('data-product-id');
-        //         var modal = document.getElementById("infoModal_" + productId);
-        //         modal.style.display = "block";
-        //     });
-        // });
+            {{-- JavaScript for Modals --}}
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // // Info Modals
+                    // var infoButtons = document.querySelectorAll('.infoBtn');
+                    // infoButtons.forEach(function (button) {
+                    //     button.addEventListener('click', function () {
+                    //         var productId = this.getAttribute('data-product-id');
+                    //         var modal = document.getElementById("infoModal_" + productId);
+                    //         modal.style.display = "block";
+                    //     });
+                    // });
 
-        // Warning Modals
-        var warningButtons = document.querySelectorAll('.warningBtn');
-        warningButtons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                var categoryId = this.getAttribute('warn-category-id');
-                var modal = document.getElementById("warningModal_" + categoryId);
-                modal.style.display = "block";
-            });
-        });
+                    // Warning Modals
+                    var warningButtons = document.querySelectorAll('.warningBtn');
+                    warningButtons.forEach(function (button) {
+                        button.addEventListener('click', function () {
+                            var categoryId = this.getAttribute('warn-category-id');
+                            var modal = document.getElementById("warningModal_" + categoryId);
+                            modal.style.display = "block";
+                        });
+                    });
 
-        // Close Modals
-        var closeInfoSpans = document.querySelectorAll('.close_info');
-        closeInfoSpans.forEach(function (span) {
-            span.addEventListener('click', function () {
-                var modal = this.closest('.modal');
-                modal.style.display = "none";
-            });
-        });
+                    // Close Modals
+                    var closeInfoSpans = document.querySelectorAll('.close_info');
+                    closeInfoSpans.forEach(function (span) {
+                        span.addEventListener('click', function () {
+                            var modal = this.closest('.modal');
+                            modal.style.display = "none";
+                        });
+                    });
 
-        // Window click to close modals
-        window.onclick = function (event) {
-            var modals = document.querySelectorAll('.modal');
-            modals.forEach(function (modal) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            });
-        }
+                    // Window click to close modals
+                    window.onclick = function (event) {
+                        var modals = document.querySelectorAll('.modal');
+                        modals.forEach(function (modal) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                            }
+                        });
+                    }
 
-        // Delete Modal
-        var deleteModal = document.getElementById("deleteModal");
-        var deleteButtons = document.querySelectorAll('.deleteBtn');
-        var categoryIdInput = document.getElementById('modal_category_id');
-        deleteButtons.forEach(function (button) {
-            button.addEventListener('click', function () {
-                var categoryId = this.getAttribute('data-category-id');
-                categoryIdInput.value = categoryId;
-                deleteModal.style.display = "block";
-            });
-        });
+                    // Delete Modal
+                    var deleteModal = document.getElementById("deleteModal");
+                    var deleteButtons = document.querySelectorAll('.deleteBtn');
+                    var categoryIdInput = document.getElementById('modal_category_id');
+                    deleteButtons.forEach(function (button) {
+                        button.addEventListener('click', function () {
+                            var categoryId = this.getAttribute('data-category-id');
+                            categoryIdInput.value = categoryId;
+                            deleteModal.style.display = "block";
+                        });
+                    });
 
-        // Close delete modal
-        var span = document.getElementsByClassName("close")[0];
-        span.onclick = function () {
-            deleteModal.style.display = "none";
-        }
-    });
-</script>
+                    // Close delete modal
+                    var span = document.getElementsByClassName("close")[0];
+                    span.onclick = function () {
+                        deleteModal.style.display = "none";
+                    }
+                });
+            </script>
 
 
 

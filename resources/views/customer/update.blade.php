@@ -32,7 +32,7 @@
                 <option value="Inactive">Inactive</option>
             </select>
             {{-- {{dd($customerdata)}} --}}
-            <button><a href="{{route('CustomerList')}}">Cancel</a></button>
+            <button class="buttons"><a href="{{route('CustomerList')}}" class="cancel">Cancel</a></button>
             <button type="submit">Update</button>
         </div>
     </form>

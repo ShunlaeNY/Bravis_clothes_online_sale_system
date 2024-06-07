@@ -69,7 +69,7 @@
             </div>
 
             <label for="rolename">Staff Position</label>
-            <select name="rolename" id="rolename" {{$updatestatus==true? "disabled" :''}}>
+            <select name="rolename" id="rolename">
                 <option value="roleid" selected>Choose ...</option>
                 @foreach ($roles as $role)
                     <option value="{{$role->id}}">{{$role->name}}</option>

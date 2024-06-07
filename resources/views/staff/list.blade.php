@@ -20,7 +20,7 @@
             @if (auth('admin')->user()->role_id === 1)
                 <a href="{{route('StaffCreate')}}">+ Add Staff</a>
             @else 
-                 <a class="alert_btn" >+ Add Staff</a>
+                 <a class="disable_btn" >+ Add Staff</a>
             @endif
         </div>
         <div class="session2">
@@ -41,60 +41,65 @@
             </form>
         </div>
         <div class="session3">
-            <table>
-                <tr>
-                    <th class="first_title">Name</th>
-                    <th class="email">Email</th>
-                    <th class="address">Address</th>
-                    <th class="phone">Phone Number</th>
-                    <th>Position</th>
-                    <th class="last_title">Action</th>
-                </tr>
+            @if ($stafflists->isEmpty())
+                    <div class="flex_row" style="justify-content: center"><p>No staff meets your requirements!</p></div>
+            @else
+                <table>
+                    <tr>
+                        <th class="first_title">ID</th>
+                        <th>Name</th>
+                        <th class="email">Email</th>
+                        <th class="address">Address</th>
+                        <th class="phone">Phone Number</th>
+                        <th>Position</th>
+                        <th class="last_title">Action</th>
+                    </tr>
 
-                    @foreach ($stafflists as $stafflist)
-                        <tr>
-                            <td>
-                                <div class="flex_row staff_img">
-                                    <img src="{{asset('image/admin/staffs_info/'.$stafflist->image)}}" alt="" width="35" height="35">
-                                    {{$stafflist->name}}
-                                </div>
-                            </td>
-                            <td class="email">{{$stafflist->email}}</td>
-                            <td class="address">{{$stafflist->address}}</td>
-                            <td class="phone">{{$stafflist->phonenumber}}</td>
-                            <td>{{$stafflist->rolename}}</td>
-                            <td>
-                                @if (auth('admin')->user()->role_id === 1)
-                                    <a href="{{url('admin/dashboard/stafflist/edit/'.$stafflist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <button class="deleteBtn" data-staff-id="{{ $stafflist->id }}">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </button>
+                        @foreach ($stafflists as $stafflist)
+                            <tr>
+                                <td>{{$stafflist->id}}</td>
+                                <td>
+                                    <div class="flex_row staff_img">
+                                        <img src="{{asset('image/admin/staffs_info/'.$stafflist->image)}}" alt="" width="35" height="35">
+                                        {{$stafflist->name}}
+                                    </div>
+                                </td>
+                                <td class="email">{{$stafflist->email}}</td>
+                                <td class="address">{{$stafflist->address}}</td>
+                                <td class="phone">{{$stafflist->phonenumber}}</td>
+                                <td>{{$stafflist->rolename}}</td>
+                                <td>
+                                    @if (auth('admin')->user()->role_id === 1)
+                                        <a href="{{url('admin/dashboard/stafflist/edit/'.$stafflist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <button class="deleteBtn" data-staff-id="{{ $stafflist->id }}">
+                                            <i class="fa-regular fa-trash-can"></i>
+                                        </button>
 
-                                @else
-                                    <button class="warningBtn" warn-staff-id="{{ $stafflist->id }}">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </button>
-                                    <button class="warningBtn" warn-staff-id="{{ $stafflist->id }}">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </button>
-                                 @endif
-                            </td>
-                        </tr>
-                        {{-- Warning Modal for each staff --}}
-                        <div id="warningModal_{{ $stafflist->id }}" class="modal">
-                            <div class="modal-content">
-                                <div class="flex_row" style="justify-content: space-between;">
-                                    <h2>Warning</h2>
-                                    <span class="close">&times;</span>
+                                    @else
+                                        <i class="fa-solid fa-pen-to-square disable_btn"></i>
+                                        <i class="fa-regular fa-trash-can disable_btn"></i> 
+                                    @endif
+                                </td>
+                            </tr>
+                            {{-- Warning Modal for each staff --}}
+                            <div id="warningModal_{{ $stafflist->id }}" class="modal">
+                                <div class="modal-content">
+                                    <div class="flex_row" style="justify-content: space-between;">
+                                        <h2>Warning</h2>
+                                        <span class="close">&times;</span>
+                                    </div>
+                                    <p>You don't have permission for this action.</p>
                                 </div>
-                                <p>You don't have permission for this action.</p>
                             </div>
-                        </div>
-                    @endforeach
-            </table>
+                        @endforeach
+                </table>
+            @endif
         </div>
-        <div class="Pagination">
+        {{-- <div class="Pagination">
             {{$stafflists->links('pagination::bootstrap-4')}}
+        </div> --}}
+        <div class="Pagination">
+            {{ $stafflists->appends(['search' => request('search'), 'role' => request('role')])->links('pagination::bootstrap-4') }}
         </div>
 
         <!-- The Modal -->

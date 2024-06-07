@@ -28,7 +28,7 @@ class CategoryRepository
        ->where($data)
        ->select('categories.*','admins.name as admin_name')
        ->orderBy('categories.id','desc')
-       ->paginate(10);
+       ->paginate(5);
        return view('category.list',compact('categorylists'));
         
         

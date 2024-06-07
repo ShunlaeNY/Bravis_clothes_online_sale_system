@@ -23,6 +23,9 @@
         </div>
         <div class="session3">
             <div>
+                @if ($customerlists->isEmpty())
+                    <div class="flex_row" style="justify-content: center"><p>No product meets your requirements!</p></div>
+                @else
                 <table>
                     <tr>
                         <th class="first_title">ID</th>
@@ -49,9 +52,7 @@
                                         <i class="fa-regular fa-trash-can"></i>
                                     </button>
                                 @else
-                                    <button class="warningBtn" warn-customer-id="{{ $customerlist->id }}">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </button>
+                                    <i class="fa-regular fa-trash-can disable_btn"></i> 
                                 @endif
                             </td>
                         </tr>
@@ -67,10 +68,14 @@
                         </div>
                     @endforeach
                 </table>
+                @endif
             </div>
         </div>
-        <div class="Pagination">
+        {{-- <div class="Pagination">
             {{$customerlists->links('pagination::bootstrap-4')}}
+        </div> --}}
+        <div class="Pagination">
+            {{ $customerlists->appends(['search' => request('name')])->links('pagination::bootstrap-4') }}
         </div>
 
         <!-- The Delete Modal -->

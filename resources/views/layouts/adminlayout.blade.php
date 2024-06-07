@@ -74,7 +74,7 @@
                     <p>({{$roles[0]->rolename}})</p>
                 </div>
                 <div class="user_profile">
-                    <img src="{{asset('image/admin/staffs_info/'.auth('admin')->user()->image)}}" alt="image of {{auth('admin')->user()->name}}" width="50" height="50" style="border-radius: 50%">
+                    <img src="{{asset('image/admin/staffs_info/'.auth('admin')->user()->image)}}" alt="image of {{auth('admin')->user()->name}}" style="border-radius: 50%">
                 </div>     
             </div>
             <!-- user Profile Info -->

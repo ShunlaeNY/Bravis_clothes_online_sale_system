@@ -7,17 +7,17 @@
 @endsection
 @section('main')
 {{-- alert --}}
-<div class="alert warning">
+{{-- <div class="alert warning">
     <span class="closebtn">&times;</span>  
     <strong>Warning!</strong> You don't have Permissions for this action!
-</div>
+</div> --}}
 <div class="main">
     <div class="session1 flex_row">
         <h3>Products</h3>
         @if (auth('admin')->user()->role_id === 1)
             <a href="{{route('ProductCreate')}}">+ Add Product</a>
         @else
-            <a class="alert_btn">+ Add Product</a>
+            <a class="disable_btn">+ Add Product</a>
         @endif
     </div>
     <div class="session2">
@@ -39,111 +39,114 @@
         </form>
     </div>
     <div class="session3">
-        <table>
-            <tr>
-                <th class="first_title">Product Name</th>
-                <th class="category">Category</th>
-                <th class="brand">Brand</th>
-                <th class="price">Price</th>
-                <th class="size">Sizes</th>
-                <th class="last_title">Action</th>
-            </tr>
-            @foreach ($productlists as $productlist)
+        @if ($productlists->isEmpty())
+            <div class="flex_row" style="justify-content: center"><p>No product meets your requirements!</p></div>
+        @else
+            <table>
                 <tr>
-                    <td>
-                        <div class="flex_row product_image">
-                            <img src="{{asset('image/admin/products_info/'.$productlist->image)}}" alt="photo of {{$productlist->name}}" width="35px" height="35px">
-                            <p>{{$productlist->name}}</p>
-                        </div>
-                    </td>
-                    <td class="category">{{$productlist->categoryname}}</td>
-                    <td class="brand">{{$productlist->brand}}</td>
-                    <td class="price">{{$productlist->price}}</td>
-                    <td class="size">
-                        <div class="flex_row sizes">
-                            <div class="qty_box">
-                                <p>S-{{$productlist->small_qty}}/{{$productlist->small_qty+$productlist->medium_qty+$productlist->large_qty}}</p>
-                            </div>
-                            <div class="qty_box">
-                                <p>M-{{$productlist->medium_qty}}/{{$productlist->small_qty+$productlist->medium_qty+$productlist->large_qty}}</p>
-                            </div>
-                            <div class="qty_box">
-                                <p>L-{{$productlist->large_qty}}/{{$productlist->small_qty+$productlist->medium_qty+$productlist->large_qty}}</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="btn-container">
-                            <button class="infoBtn" data-product-id="{{ $productlist->id }}">
-                                <i class="fa-solid fa-circle-info"></i>
-                            </button>
-                            @if (auth('admin')->user()->role_id === 1)
-                                <a href="{{url('admin/dashboard/productlist/edit/'.$productlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <button class="deleteBtn" data-product-id="{{ $productlist->id}}">
-                                    <i class="fa-regular fa-trash-can"></i>
-                                </button>  
-                            @else
-                                <button class="warningBtn" warn-product-id="{{ $productlist->id }}">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
-                                <button class="warningBtn" warn-product-id="{{ $productlist->id }}">
-                                    <i class="fa-regular fa-trash-can"></i>
-                                </button>
-                                
-                            @endif
-                        </div>
-                    </td>
+                    <th class="first_title">ID</th>
+                    <th >Product Name</th>
+                    <th class="category">Category</th>
+                    <th class="brand">Brand</th>
+                    <th class="price">Price</th>
+                    <th class="size">Sizes</th>
+                    <th class="last_title">Action</th>
                 </tr>
-                {{-- Info Modal for each product --}}
-                <div id="infoModal_{{ $productlist->id }}" class="modal">
-                    <div class="modal-content">
-                        <div class="flex_row" style="justify-content: space-between;">
-                            <h2>{{ $productlist->name }}</h2>
-                            <span class="close_info">&times;</span>
-                        </div>
-                        <div class="flex_col" style="margin-bottom: 30px">
-                            <div class="grid model-grid">
-                                <div>
-                                    <img src="{{ asset('image/admin/products_info/' . $productlist->image) }}" alt="photo of {{ $productlist->name }}" width="150px" height="auto" style="border: 1px solid rgba(100, 100, 100, 0.473);align-self:center">
+                @foreach ($productlists as $productlist)
+                    <tr>
+                        <td>{{$productlist->id}}</td>
+                        <td>
+                            <div class="flex_row product_image">
+                                <img src="{{asset('image/admin/products_info/'.$productlist->image)}}" alt="photo of {{$productlist->name}}" width="35px" height="35px">
+                                <p>{{$productlist->name}}</p>
+                            </div>
+                        </td>
+                        <td class="category">{{$productlist->categoryname}}</td>
+                        <td class="brand">{{$productlist->brand}}</td>
+                        <td class="price">{{$productlist->price}}</td>
+                        <td class="size">
+                            <div class="flex_row sizes">
+                                <div class="qty_box">
+                                    <p>S-{{$productlist->small_qty}}/{{$productlist->small_qty+$productlist->medium_qty+$productlist->large_qty}}</p>
                                 </div>
-                                <div>
-                                    <p>Category: {{ $productlist->categoryname }}</p>
-                                    <p>Uploaded By: {{ $productlist->adminname }}</p>
-                                    <p>Supplier: {{ $productlist->suppliername }}</p>
-                                    <p>Gender: {{ $productlist->gender }}</p>
+                                <div class="qty_box">
+                                    <p>M-{{$productlist->medium_qty}}/{{$productlist->small_qty+$productlist->medium_qty+$productlist->large_qty}}</p>
+                                </div>
+                                <div class="qty_box">
+                                    <p>L-{{$productlist->large_qty}}/{{$productlist->small_qty+$productlist->medium_qty+$productlist->large_qty}}</p>
                                 </div>
                             </div>
-                            <div>
-                                <p>Brand   : {{ $productlist->brand }}</p>
-                                <p>Price   : {{ $productlist->price }} MMK</p>
-                                <p>Sizes   :</p>
-                                <ul >
-                                    <li>S: {{ $productlist->small_qty }}</li>
-                                    <li>M: {{ $productlist->medium_qty }}</li>
-                                    <li>L: {{ $productlist->large_qty }}</li>
-                                </ul>
-                                <p>Description : </p>
-                                <small>{{$productlist->description}}</small>
+                        </td>
+                        <td>
+                            <div class="btn-container">
+                                <button class="infoBtn" data-product-id="{{ $productlist->id }}">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </button>
+                                @if (auth('admin')->user()->role_id === 1)
+                                    <a href="{{url('admin/dashboard/productlist/edit/'.$productlist->id)}}" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <button class="deleteBtn" data-product-id="{{ $productlist->id}}">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>  
+                                @else
+                                    <i class="fa-solid fa-pen-to-square disable_btn"></i>
+                                    <i class="fa-regular fa-trash-can disable_btn"></i>   
+                                @endif
+                            </div>
+                        </td>
+                    </tr>
+                    {{-- Info Modal for each product --}}
+                    <div id="infoModal_{{ $productlist->id }}" class="modal">
+                        <div class="modal-content">
+                            <div class="flex_row" style="justify-content: space-between;">
+                                <h2>{{ $productlist->name }}</h2>
+                                <span class="close_info">&times;</span>
+                            </div>
+                            <div class="scrolldetail">
+                                <div class="flex_col" style="margin-bottom: 30px">
+                                    <div class="grid model-grid">
+                                        <div>
+                                            <img src="{{ asset('image/admin/products_info/' . $productlist->image) }}" alt="photo of {{ $productlist->name }}" width="150px" height="auto" style="border: 1px solid rgba(100, 100, 100, 0.473);align-self:center">
+                                        </div>
+                                        <div>
+                                            <p>Category: {{ $productlist->categoryname }}</p>
+                                            <p>Uploaded By: {{ $productlist->adminname }}</p>
+                                            <p>Supplier: {{ $productlist->suppliername }}</p>
+                                            <p>Gender: {{ $productlist->gender }}</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p>Brand   : {{ $productlist->brand }}</p>
+                                        <p>Price   : {{ $productlist->price }} MMK</p>
+                                        <p>Sizes   :</p>
+                                        <ul >
+                                            <li>S: {{ $productlist->small_qty }}</li>
+                                            <li>M: {{ $productlist->medium_qty }}</li>
+                                            <li>L: {{ $productlist->large_qty }}</li>
+                                        </ul>
+                                        <p>Description : </p>
+                                        <small>{{$productlist->description}}</small>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                {{-- Warning Modal for each product --}}
-                <div id="warningModal_{{ $productlist->id }}" class="modal">
-                    <div class="modal-content">
-                        <div class="flex_row" style="justify-content: space-between;">
-                            <h2>Warning</h2>
-                            <span class="close_info">&times;</span>
+                    {{-- Warning Modal for each product --}}
+                    <div id="warningModal_{{ $productlist->id }}" class="modal">
+                        <div class="modal-content">
+                            <div class="flex_row" style="justify-content: space-between;">
+                                <h2>Warning</h2>
+                                <span class="close_info">&times;</span>
+                            </div>
+                            <p>You don't have permission for this action.</p>
                         </div>
-                        <p>You don't have permission for this action.</p>
                     </div>
-                </div>
-            @endforeach
-        </table>
+                @endforeach
+            </table>
+        @endif
     </div>
 
     <div class="Pagination">
-        {{$productlists->links('pagination::bootstrap-4')}}
+        {{ $productlists->appends(['name' => request('name'),'category'=>request('category'),'min_price'=>request('min_price'),'max_price'=>request('max_price')])->links('pagination::bootstrap-4') }}
     </div>
     <!-- The Modal for Delete-->
     <div id="deleteModal" class="modal">

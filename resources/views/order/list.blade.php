@@ -33,9 +33,12 @@
             </form>
         <div class="session3">
             <div>
+                @if ($orders->isEmpty())
+                    <div class="flex_row" style="justify-content: center"><p>No order meets your requirements!</p></div>
+                @else
                 <table>
                     <tr>
-                        <th class="first_title">Order ID</th>
+                        <th class="first_title">ID</th>
                         <th>Customer Name</th>
                         <th class="customer">Order Qty</th>
                         <th class="price">Total Price</th>
@@ -106,10 +109,15 @@
                         </div>
                     @endforeach   
                 </table>
+                @endif
+                
             </div>
         </div>
-        <div class="Pagination">
+        {{-- <div class="Pagination">
             {{$orders->links('pagination::bootstrap-4')}}
+        </div> --}}
+        <div class="Pagination">
+            {{ $orders->appends(['search' => request('search'), 'orderstartdate' => request('orderstartdate'),'orderenddate' => request('orderenddate')])->links('pagination::bootstrap-4') }}
         </div>
         <div id="myModal" class="modal">
             <div class="modal-content">
