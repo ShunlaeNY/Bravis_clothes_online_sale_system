@@ -30,7 +30,7 @@
             <div>
                 <input type="text" name="name" placeholder="Enter Supplier Name" value="{{$updatestatus == true ? $supplierdata->name : ''}}">
                 @error('name')
-                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                    <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                 @enderror
             </div>
             
@@ -38,12 +38,12 @@
             <div>
                 <input type="text" name="brand_name" placeholder="Enter Brand Name" value="{{$updatestatus == true ? $supplierdata->brand_name : ''}}">
                 @error('brand_name')
-                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                    <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                 @enderror
             </div>
             <input type="hidden" name="admin_id" value="{{auth('admin')->user()->id}}">
 
-            <button><a href="{{route('SupplierList')}}">Cancel</a></button>
+            <button class="buttons"><a href="{{route('SupplierList')}}" class="cancel">Cancel</a></button>
             <button type="submit">{{$updatestatus == true ? 'Update' : 'Add'}}</button>
         </div>
     </form>

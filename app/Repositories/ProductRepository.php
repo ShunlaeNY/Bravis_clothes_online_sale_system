@@ -46,7 +46,7 @@ class ProductRepository
        ->where($data)
        ->select('products.*','categories.name as categoryname','admins.name as adminname','suppliers.name as suppliername','suppliers.brand_name as brand')
        ->orderBy('products.id','desc')
-       ->paginate(10);
+       ->paginate(4);
 
         $categories = DB::table('categories')
                     ->where('status','=','Active')

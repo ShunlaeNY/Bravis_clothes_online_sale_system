@@ -24,21 +24,22 @@ class OrderController extends Controller
     public function orderlist()
     {
         //
-        $order_items = DB::table('order_products')
-                    ->join('orders', 'orders.id', '=', 'order_products.order_id')
-                    ->join('products', 'products.id', '=', 'order_products.product_id')
+        $orders = DB::table('orders')
                     ->join('customers', 'customers.id', '=', 'orders.customer_id')
-                    // ->where('order_products.status', '=', 'Active')
                     ->select(
-                        'order_products.*',
-                        'products.name as product_name',
+                        'orders.*',
                         'customers.fname as customer_fname',
-                        'customers.lname as customer_lname',
-                        'orders.paymentmethod as paymentmethod'
+                        'customers.lname as customer_lname'
                     )
-                    ->orderByDesc('order_products.id')
+                    ->orderByDesc('orders.id')
                     ->paginate(5);
-        return view('order.list',compact('order_items'));
+        // dd($orders);
+        $orderitems = DB::table('order_products')
+                    ->join('products', 'products.id', '=', 'order_products.product_id')
+                    ->join('orders', 'orders.id', '=', 'order_products.order_id')
+                    ->select('order_products.*','products.name as product_name','products.image as product_image')->get()->groupBy('order_id');
+                        // dd($orderitems);
+        return view('order.list',compact('orders','orderitems'));
     }
 
     /**
@@ -81,7 +82,7 @@ class OrderController extends Controller
      */
     public function updateOrderStatus(Request $request)
     {
-    $order = OrderProduct::find($request->input('order_id'));
+    $order = Order::find($request->input('order_id'));
     if ($order) {
         $order->status = $request->input('update_status');
         $order->update();
@@ -102,7 +103,43 @@ class OrderController extends Controller
 
     public function search(Request $request)
     {
-        $response = $this->OrderRepository->search($request);
-        return $response;
-    }
+        // $response = $this->OrderRepository->search($request);
+        // return $response;
+        $query = DB::table('orders')
+        ->join('customers', 'customers.id', '=', 'orders.customer_id')
+        ->select(
+            'orders.*',
+            'customers.fname as customer_fname',
+            'customers.lname as customer_lname'
+        );
+
+        if ($request->has('orderstartdate') && $request->orderstartdate) {
+        $query->where('orders.created_at', '>=', $request->orderstartdate);
+        }
+
+        if ($request->has('orderenddate') && $request->orderenddate) {
+        $query->where('orders.created_at', '<=', $request->orderenddate);
+        }
+
+        if ($request->has('search') && $request->search) {
+        $query->where(function ($q) use ($request) {
+            $q->where('orders.id', 'like', '%' . $request->search . '%')
+                ->orWhere('customers.fname', 'like', '%' . $request->search . '%')
+                ->orWhere('customers.lname', 'like', '%' . $request->search . '%')
+                ->orWhere('orders.total_qty', 'like', '%' . $request->search . '%')
+                ->orWhere('orders.total_price', 'like', '%' . $request->search . '%')
+                ->orWhere('orders.paymentmethod', 'like', '%' . $request->search . '%')
+                ->orWhere('orders.status', 'like', '%' . $request->search . '%');
+        });
+        }
+
+        $orders = $query->orderByDesc('orders.id')->paginate(5);
+
+        $orderitems = OrderProduct::join('products', 'products.id', '=', 'order_products.product_id')
+                ->select('order_products.*', 'products.name as product_name')
+                ->get()
+                ->groupBy('order_id');
+
+        return view('order.list', compact('orders', 'orderitems'));
+            }
 }

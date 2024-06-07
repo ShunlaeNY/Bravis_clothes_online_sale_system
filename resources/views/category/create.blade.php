@@ -41,7 +41,7 @@
             <div>
                 <input type="text" name="name" placeholder="Enter Category Name" value="{{$updatestatus == true ? $categorydata->name : ''}}" class="@error('name') is-invalid @enderror">
                 @error('name')
-                    <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                    <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                 @enderror
             </div>
             <input type="hidden" name="admin_id" value="{{auth('admin')->user()->id}}">

@@ -97,7 +97,7 @@
                     <a href="{{route('PrivacyPolicy')}}">Policy</a>
                 </div>
               </div>
-              <div class="flex_row" style="justify-content: space-between; align-items:center;padding:10px 0px;">
+              <div class="flex_row" style="justify-content: space-between; align-items:center;padding:5px 0px;">
                 <div class="sticky" style="font-size:30px;cursor:pointer" onclick="openNav()">
                     &#9776; Bravis
                 </div>

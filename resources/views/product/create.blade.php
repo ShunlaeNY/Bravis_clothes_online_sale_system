@@ -36,21 +36,21 @@
                 <div>
                     <input type="text" name="name" placeholder="Product Title/Name" value="{{$updatestatus == true ? $productdata->name :''}}">
                     @error('name')
-                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                     @enderror
                 </div>
                 <label for="description">Product Description</label>
                 <div>
                     <textarea name="description" id="" cols="30" rows="10" placeholder="Product Description">{{$updatestatus == true ? $productdata->description :''}}</textarea>
                     @error('description')
-                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                     @enderror
                 </div>
                 <label for="image">Product image</label>
                 <div>
                     <input type="file" name="image" value="{{$updatestatus == true ? $productdata->image :''}}">
                     @error('image')
-                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                     @enderror
                 </div>
                 <label for="supplier_id">Brand Name</label>
@@ -83,7 +83,7 @@
                         <input type="text" name="price" id="price" value="{{$updatestatus == true ? $productdata->price :''}}">
                     </div>
                     @error('price')
-                        <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                        <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                     @enderror
                 </div>
 
@@ -95,7 +95,7 @@
                             <input type="text" name="small" id="small" value="{{$updatestatus == true ? $productdata->small_qty :''}}">
                         </div>
                         @error('small')
-                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                            <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                         @enderror
                     </div>
                     <div>
@@ -104,7 +104,7 @@
                             <input type="text" name="medium" id="medium" value="{{$updatestatus == true ? $productdata->medium_qty :''}}">
                         </div>
                         @error('medium')
-                                <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                                <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                         @enderror
                     </div>
                     <div>
@@ -113,7 +113,7 @@
                             <input type="text" name="large" id="large" value="{{$updatestatus == true ? $productdata->large_qty :''}}">
                         </div>
                         @error('large')
-                            <div class="alert alert-danger error"><small><b>*{{$message}}*</b></small></div>
+                            <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                         @enderror
                     </div>
                 </div>

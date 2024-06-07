@@ -28,10 +28,10 @@ class AdminController extends Controller
         $supplierCount = count(Supplier::where('status' ,'=', 'Active')->get());
         $userCount = count(Customer::where('status' ,'=', 'Active')->get());
         
-        $TotalOrder = Order::sum('total_qty');
-        $TotalOrderPending = OrderProduct::where('status','=','Pending')->count('qty');
-        $TotalOrderProcessing = OrderProduct::where('status','=','Processing')->count('qty');
-        $TotalOrderDelivered = OrderProduct::where('status','=','Delivered')->count('qty');
+        $TotalOrder = Order::count('total_qty');
+        $TotalOrderPending = Order::where('status','=','Pending')->count('total_qty');
+        $TotalOrderProcessing = Order::where('status','=','Processing')->count('total_qty');
+        $TotalOrderDelivered = Order::where('status','=','Delivered')->count('total_qty');
 
         $women_fashion_order = DB::table('order_products')
                             ->join('products','products.id','order_products.product_id')

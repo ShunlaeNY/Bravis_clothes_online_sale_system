@@ -163,11 +163,11 @@
     height: 30px;
     border-radius: 5px;
   }
-  .editStatusBtn,.deleteBtn,.infoBtn{
+  .editStatusBtn,.deleteBtn,.infoBtn,.warningBtn{
     background-color: rgba(255, 255, 255, 0);
     border: none;
   }
-  .editStatusBtn:hover,.deleteBtn:hover,.infoBtn:hover{
+  .editStatusBtn:hover,.deleteBtn:hover,.infoBtn:hover,.warningBtn:hover{
     color: white;
     padding: 5px 6px;
     border-radius: 3px;
@@ -219,9 +219,19 @@
     color: black;
   }
 
-
-
-
+.supplier_table tr td{
+    padding-left: 100px;
+}
+.order-detail-grid{
+    align-items: center;
+    grid-template-columns:150px 1fr;
+}
+.scrolldetail{
+    overflow-y: auto;
+    height: 400px;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
 @media (max-width:1300px) and (min-width:768px){
     .size,.category,.brand,.orderdate,.paymentinfo,.address,.phone{
         display:none;
@@ -246,9 +256,13 @@
     .Pagination{
         margin: 0;
     }
+    .supplier_table tr td{
+        font-size: 14px;
+        padding-left: 50px;
+    }
 }
 
-@media (max-width:767px) and (min-width:320px){
+@media (max-width:768px) and (min-width:320px){
 
     .main .session1{
         font-size: 12px;
@@ -276,6 +290,10 @@
         font-size: 12px;
         text-align: left;
         padding-left: 10px;
+    }
+    .supplier_table tr td{
+        font-size: 12px;
+        padding-left: 20px;
     }
     .btn-container{
         display: flex;
@@ -308,5 +326,9 @@
     }
     .model-grid{
         grid-template-columns: 1fr;
+    }
+    .order-detail-grid{
+        grid-template-columns: 1fr;
+        font-size: 12px;
     }
 }

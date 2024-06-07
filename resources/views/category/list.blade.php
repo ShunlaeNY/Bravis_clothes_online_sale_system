@@ -6,18 +6,23 @@
     <link rel="stylesheet" href="{{asset('css/admin/pages/product/product.css')}}">
 @endsection
 @section('main')
+{{-- alert --}}
+<div class="alert warning">
+    <span class="closebtn">&times;</span>  
+    <strong>Warning!</strong> You don't have Permissions for this action!
+</div>
         <div class="main">
             <div class="session1 flex_row">
                 <h3>Category</h3>
                 @if (auth('admin')->user()->role_id === 1)
                     <a href="{{route('CategoryCreate')}}">+ Add Category</a>
                 @else
-                    <a href="{{route('CategoryCreate')}}" class="disable_btn">+ Add Category</a>
+                    <a class="alert_btn">+ Add Category</a>
                 @endif
             </div>
             <div class="session2">
-                <form action="{{route('SearchCategories')}}" method="post" class="grid">
-                    @csrf
+                <form action="{{route('SearchCategories')}}" method="get" class="grid">
+                    {{-- @csrf --}}
                     <input type="text" name="name" placeholder="Search by Category Name">
                     <input type="text" name="admin_name" placeholder="Search by Admin">
                     <div class="buttons flex_row">
@@ -27,7 +32,7 @@
                 </form>
             </div>
             <div class="session3">
-                <table>
+                <table class="supplier_table">
                         <tr>
                             <th class="first_title">Category Name</th>
                             <th>Admin Name</th>
@@ -44,11 +49,25 @@
                                             <i class="fa-regular fa-trash-can"></i>
                                         </button> 
                                     @else
-                                        <a href="{{url('admin/dashboard/categorylist/edit/'.$categorylist->id)}}" class="btn edit-btn disable_btn"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <i class="fa-regular fa-trash-can"></i>
+                                        <button class="warningBtn" warn-category-id="{{ $categorylist->id }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                        <button class="warningBtn" warn-category-id="{{ $categorylist->id }}">
+                                            <i class="fa-regular fa-trash-can"></i>
+                                        </button>
                                     @endif
                                 </td>
                             </tr>
+                            {{-- Warning Modal for each category --}}
+                            <div id="warningModal_{{ $categorylist->id }}" class="modal">
+                                <div class="modal-content">
+                                    <div class="flex_row" style="justify-content: space-between;">
+                                        <h2>Warning</h2>
+                                        <span class="close_info">&times;</span>
+                                    </div>
+                                    <p>You don't have permission for this action.</p>
+                                </div>
+                            </div>
                         @endforeach     
                 </table>
 
@@ -57,7 +76,7 @@
                 {{$categorylists->links('pagination::bootstrap-4')}}
             </div>
 
-            <!-- The Modal -->
+            <!-- The Delete Modal -->
             <div id="deleteModal" class="modal">
                 <div class="modal-content">
                     <div class="flex_row" style="justify-content: space-between;">
@@ -72,7 +91,7 @@
                     </form>
                 </div>
             </div>
-            <script>
+            {{-- <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     var modal = document.getElementById("deleteModal");
                     var span = document.getElementsByClassName("close")[0];
@@ -97,7 +116,72 @@
                         }
                     }
                 });
-            </script>
+            </script> --}}
+
+
+{{-- JavaScript for Modals --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // // Info Modals
+        // var infoButtons = document.querySelectorAll('.infoBtn');
+        // infoButtons.forEach(function (button) {
+        //     button.addEventListener('click', function () {
+        //         var productId = this.getAttribute('data-product-id');
+        //         var modal = document.getElementById("infoModal_" + productId);
+        //         modal.style.display = "block";
+        //     });
+        // });
+
+        // Warning Modals
+        var warningButtons = document.querySelectorAll('.warningBtn');
+        warningButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var categoryId = this.getAttribute('warn-category-id');
+                var modal = document.getElementById("warningModal_" + categoryId);
+                modal.style.display = "block";
+            });
+        });
+
+        // Close Modals
+        var closeInfoSpans = document.querySelectorAll('.close_info');
+        closeInfoSpans.forEach(function (span) {
+            span.addEventListener('click', function () {
+                var modal = this.closest('.modal');
+                modal.style.display = "none";
+            });
+        });
+
+        // Window click to close modals
+        window.onclick = function (event) {
+            var modals = document.querySelectorAll('.modal');
+            modals.forEach(function (modal) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
+        }
+
+        // Delete Modal
+        var deleteModal = document.getElementById("deleteModal");
+        var deleteButtons = document.querySelectorAll('.deleteBtn');
+        var categoryIdInput = document.getElementById('modal_category_id');
+        deleteButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var categoryId = this.getAttribute('data-category-id');
+                categoryIdInput.value = categoryId;
+                deleteModal.style.display = "block";
+            });
+        });
+
+        // Close delete modal
+        var span = document.getElementsByClassName("close")[0];
+        span.onclick = function () {
+            deleteModal.style.display = "none";
+        }
+    });
+</script>
+
+
 
 
         </div>

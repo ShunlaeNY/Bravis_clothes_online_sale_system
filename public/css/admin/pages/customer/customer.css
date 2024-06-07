@@ -97,11 +97,11 @@ td{
     height: 30px;
     border-radius: 5px;
   }
-  .editStatusBtn,.deleteBtn{
+  .editStatusBtn,.deleteBtn,.infoBtn,.warningBtn{
     background-color: rgba(255, 255, 255, 0);
     border: none;
   }
-  .editStatusBtn:hover,.deleteBtn:hover{
+  .editStatusBtn:hover,.deleteBtn:hover,.infoBtn:hover,.warningBtn:hover{
     color: white;
     padding: 5px 6px;
     border-radius: 3px;

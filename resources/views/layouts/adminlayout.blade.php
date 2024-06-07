@@ -23,10 +23,10 @@
         <div class="session grid">
             <div class="nav flex_col">
                 <a href="{{route('Dashboard')}}" target="_self">
-                    <h1 class="bravis_logo nav_text">Bravis</h1>
+                    <h1 class="bravis_logo nav_text ">Bravis</h1>
                     <div class="flex_row">
                         <div class="tooltip"><i class="fa-solid fa-house nav_logo"></i><span class="tooltiptext tooltiptext1">Dashboard</span></div>
-                        <p class="nav_text">Dashboard</p>
+                        <p class="nav_text ">Dashboard</p>
                     </div>
                 </a>    
                 <a href="{{route('ProductList')}}" target="_self">
@@ -98,6 +98,7 @@
     <!-- script-->
     <script src="{{asset('js/admin/user_profile_info_popup.js')}}"></script>
     <script src="{{asset('js/admin/alert.js')}}"></script>
+    
     @yield('js')
 
 </body>

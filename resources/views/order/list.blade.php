@@ -11,8 +11,8 @@
 
     <div class="main">
         <h3>Order</h3>
-            <form action="{{route('SearchOrders')}}" method="post" class="session2">
-                @csrf
+            <form action="{{route('SearchOrders')}}" method="get" class="session2">
+                {{-- @csrf --}}
                 <div class="grid order-grid">
                     <div class="flex_col">
                         <small>Order Start Date</small>
@@ -36,21 +36,21 @@
                 <table>
                     <tr>
                         <th class="first_title">Order ID</th>
-                        <th>Product</th>
-                        <th class="customer">Customer</th>
-                        <th class="price">Price</th>
+                        <th>Customer Name</th>
+                        <th class="customer">Order Qty</th>
+                        <th class="price">Total Price</th>
                         <th class="orderdate">Ordered Date</th>
                         <th class="paymentinfo">Payment info</th>
                         <th>Status</th>
                         <th class="last_title">Action</th>
                     </tr>
-                    {{-- {{dd($order_items)}} --}}
-                    @foreach ($order_items as $item)
+                    {{-- {{dd($orders)}} --}}
+                    @foreach ($orders as $item)
                         <tr>
-                            <td>{{$item->order_id}}</td>
-                            <td>{{$item->product_name}}</td>
-                            <td class="customer">{{$item->customer_fname}} {{$item->customer_lname}}</td>
-                            <td class="price">{{$item->price}}</td>
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->customer_fname}} {{$item->customer_lname}}</td>
+                            <td class="customer">{{$item->total_qty}}</td>
+                            <td class="price">{{$item->total_price}}</td>
                             <td class="orderdate">{{$item->created_at}}</td>
                             <td class="paymentinfo">{{$item->paymentmethod}}</td>
                             <td>
@@ -63,16 +63,53 @@
                                 @endif
                             </td>
                             <td>
+                                <button class="infoBtn" data-order-id="{{ $item->id }}">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </button>
                                 <button class="editStatusBtn" data-order-id="{{$item->id}}" data-order-status="{{$item->status}}"><i class="fa-solid fa-pen-to-square"></i></button>
                             </td>
                             
                         </tr>
+
+                        {{-- Info Modal for each product --}}
+                        <div id="infoModal_{{ $item->id }}" class="modal">
+                            <div class="modal-content">
+                                <div class="flex_row" style="justify-content: space-between;">
+                                    <h2>Order Details</h2>
+                                    <span class="close_info">&times;</span>
+                                </div>
+                                <div class="scrolldetail">
+                                    <div class="flex_col" style="margin-bottom: 30px">
+                                        @if (isset($orderitems[$item->id]))
+                                            <div class="order-detail-grid grid">
+                                                @foreach ($orderitems[$item->id] as $orderitem)
+                                                <div style="padding:10px 0px;">
+                                                    <img src="{{asset('image/admin/products_info/'.$orderitem->product_image)}}" alt="" width="100px" height="100px">
+                                                </div>
+                                                <div >
+                                                    
+                                                    <p>Product Name :{{$orderitem->product_name}}</p>
+                                                    <p>Quantity :{{$orderitem->qty}}</p>
+                                                    <p>Price :{{$orderitem->price}}</p>
+                                                    
+                                                </div>
+                                                {{-- <hr> --}}
+                                                @endforeach
+                                            </div>
+                                            
+                                        @else
+                                            
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endforeach   
                 </table>
             </div>
         </div>
         <div class="Pagination">
-            {{$order_items->links('pagination::bootstrap-4')}}
+            {{$orders->links('pagination::bootstrap-4')}}
         </div>
         <div id="myModal" class="modal">
             <div class="modal-content">
@@ -167,4 +204,43 @@
         }
     });
     </script>   
+
+
+{{-- info --}}
+    {{-- JavaScript for Info Modals --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var infoButtons = document.querySelectorAll('.infoBtn');
+
+            infoButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var orderId = this.getAttribute('data-order-id');
+                    var modal = document.getElementById("infoModal_" + orderId);
+                    modal.style.display = "block";
+                });
+            });
+
+            var closeInfoSpans = document.querySelectorAll('.close_info');
+            closeInfoSpans.forEach(function (span) {
+                span.addEventListener('click', function () {
+                    var modal = this.closest('.modal');
+                    modal.style.display = "none";
+                });
+            });
+
+            window.onclick = function (event) {
+                var modals = document.querySelectorAll('.modal');
+                modals.forEach(function (modal) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                });
+            }
+            // window.onclick = function(event) {
+            //         if (event.target == modal) {
+            //             modal.style.display = "none";
+            //         }
+            //     }
+        });
+    </script>
 @endsection

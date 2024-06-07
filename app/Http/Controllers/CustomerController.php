@@ -64,7 +64,8 @@ class CustomerController extends Controller
         $customerupdate->status = 'Active';
         if ($request->password == null && $request->image == null) {
             $customerupdate->update();
-        } else {
+        } 
+        else {
             if ($request->password != null) {
                 // Hash and update the password
                 $customerupdate->password = bcrypt($request->password);
@@ -94,7 +95,7 @@ class CustomerController extends Controller
         //
         $customerlists = DB::table('customers')
         ->orderBy('status','asc')
-        ->paginate(6);
+        ->paginate(5);
         // dd($customerlist);
         return view('customer.list',compact('customerlists'));
     }

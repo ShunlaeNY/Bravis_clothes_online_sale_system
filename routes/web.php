@@ -26,13 +26,13 @@ Route::middleware('admin')->group(function(){
         Route::get('/',[AdminController::class,'index'])->name('Dashboard');
 
         //search
-        Route::post('/productlist/search',[ProductController::class,'search'])->name('SearchProducts');
-        Route::post('/categorylist/search',[CategoryController::class,'search'])->name('SearchCategories');
-        Route::post('/customerlist/search',[CustomerController::class,'search'])->name('SearchCustomers');
-        Route::post('/stafflist/search',[StaffController::class,'search'])->name('SearchStaffs');
-        Route::post('/orderlist/search',[OrderController::class,'search'])->name('SearchOrders');
-        Route::post('/supplierlist/search',[SupplierController::class,'search'])->name('SearchSuppliers');
-        Route::post('/orderlist/search',[OrderController::class,'search'])->name('SearchOrders');
+        Route::get('/productlist/search',[ProductController::class,'search'])->name('SearchProducts');
+        Route::get('/categorylist/search',[CategoryController::class,'search'])->name('SearchCategories');
+        Route::get('/customerlist/search',[CustomerController::class,'search'])->name('SearchCustomers');
+        Route::get('/stafflist/search',[StaffController::class,'search'])->name('SearchStaffs');
+        Route::get('/orderlist/search',[OrderController::class,'search'])->name('SearchOrders');
+        Route::get('/supplierlist/search',[SupplierController::class,'search'])->name('SearchSuppliers');
+        Route::get('/orderlist/search',[OrderController::class,'search'])->name('SearchOrders');
 
         // product
         Route::get('/productlist',[ProductController::class,'productlist'])->name('ProductList');
