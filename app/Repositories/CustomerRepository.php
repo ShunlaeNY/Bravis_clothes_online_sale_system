@@ -73,7 +73,7 @@ class CustomerRepository
 
         $customerlists = $query
             ->select('customers.*')
-            ->orderBy('id', 'desc')
+            ->orderBy('status','asc')
             ->paginate(5);
 
         return view('customer.list', compact('customerlists'));

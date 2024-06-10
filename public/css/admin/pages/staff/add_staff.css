@@ -34,6 +34,9 @@
 }
 .cancel,.cancel:visited{
     color: white;
+    width: 100%;
+    display: block;
+    /* padding: 10px 30px; */
 }
 @media (max-width:1300px) and (min-width:768px){
     .main .add_staff_form h3{

@@ -72,7 +72,10 @@ body{
 }
 .container .flex_row form .sign_up{
     justify-content: center;
+    text-align: center;
+    gap: 30px;
 }
+
 .container .flex_row form .sign_up a{
 color: var(--third-color);
 }
@@ -91,6 +94,9 @@ color: var(--third-color);
     }
 }
 @media (max-width:767px) and (min-width:320px){
+    .container .flex_row form .sign_up{
+        gap: 0px;
+    }
     .container .flex_row form{
         width: 100%;
         padding: 30px;

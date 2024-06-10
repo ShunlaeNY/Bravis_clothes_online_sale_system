@@ -117,7 +117,7 @@
                         @enderror
                     </div>
                 </div>
-                <button class="buttons"><a href="{{route('ProductList')}}" class="cancel">Cancel</a></button>
+                <button class="buttons"><div style="width: 100%;"><a href="{{route('ProductList')}}" class="cancel">Cancel</a></div></button>
                 <button type="submit" class="buttons">{{$updatestatus == true ? 'Update' : 'Add'}}</button>
             </form>
             

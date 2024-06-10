@@ -20,7 +20,7 @@
 
 </head>
 <body>
-    <div class="section1">
+    <div class="section1 checkoutsession1">
         <div class="flex_row">
             <div>
                 <h1>Bravis</h1>

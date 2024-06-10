@@ -68,13 +68,53 @@
                 @enderror
             </div>
 
-            <label for="rolename">Staff Position</label>
-            <select name="rolename" id="rolename">
+            @if ($updatestatus == true)
+                @if (auth('admin')->user()->role_id == 2)
+                    @if ($staffdata->role_id === 1)
+                        <label for="rolename">Staff Position</label>
+                        <select name="rolename" id="rolename">
+                            <option value="roleid" selected>Choose ...</option>
+                            @foreach ($roles as $role)
+                                <option value="{{$role->id}}" @if ($staffdata->role_id == $role->id) selected @endif>{{$role->name}}</option>
+                            @endforeach
+                        </select>
+                    @else
+                        <label for="rolename">Staff Position</label>
+                        <select name="rolename" id="rolename" disabled>
+                            <option value="roleid" selected>Choose ...</option>
+                            @foreach ($roles as $role)
+                                <option value="{{$role->id}}" @if ($staffdata->role_id == $role->id) selected @endif>{{$role->name}}</option>
+                            @endforeach
+                        </select>
+                    @endif
+                @else
+                        <label for="rolename">Staff Position</label>
+                        <select name="rolename" id="rolename">
+                            <option value="roleid" selected>Choose ...</option>
+                            @foreach ($roles as $role)
+                                <option value="{{$role->id}}" @if ($staffdata->role_id == $role->id) selected @endif>{{$role->name}}</option>
+                            @endforeach
+                        </select>
+                @endif
+            @else
+                    <label for="rolename">Staff Position</label>
+                    <select name="rolename" id="rolename">
+                        <option value="roleid" selected>Choose ...</option>
+                        @foreach ($roles as $role)
+                            <option value="{{$role->id}}">{{$role->name}}</option>
+                        @endforeach
+                    </select>
+
+            @endif
+            {{-- <label for="rolename">Staff Position</label>
+            <select name="rolename" id="rolename" @if($updatestatus && auth('admin')->user()->role_id == 2 && $staffdata->role_id !== 1) disabled @endif>
                 <option value="roleid" selected>Choose ...</option>
                 @foreach ($roles as $role)
-                    <option value="{{$role->id}}">{{$role->name}}</option>
+                    <option value="{{$role->id}}" @if ($staffdata->role_id == $role->id) selected @endif>{{$role->name}}</option>
                 @endforeach
-            </select>
+            </select> --}}
+
+
 
             <label for="image">Profile Photo</label>
             <div>
@@ -83,7 +123,7 @@
                     <div class="alert alert-danger error"><small><i class="fa-solid fa-triangle-exclamation"></i> {{$message}}</small></div>
                 @enderror
             </div>
-            <button><a href="{{route('StaffList')}}" class="cancel">Cancel</a></button>
+            <button type="buttons"><a href="{{route('StaffList')}}" class="cancel">Cancel</a></button>
             <button type="submit">{{$updatestatus == true ? 'Update' : 'Add'}}</button>
         </div>
     </form>

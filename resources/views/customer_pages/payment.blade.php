@@ -12,7 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body style="background-color: var(--secondary-color);">
-    <div class="section1 col-lg-12" style="margin-bottom: 50px;">
+    <div class="section1 checkoutsession1 col-lg-12" style="margin-bottom: 50px;">
         <div class="flex_row">
             <div>
                 <h2>Bravis</h2>

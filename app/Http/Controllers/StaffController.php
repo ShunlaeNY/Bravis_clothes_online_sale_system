@@ -26,6 +26,7 @@ class StaffController extends Controller
                     ->join('roles','roles.id','=','admins.role_id')
                     ->where('admins.status','=','Active')
                     ->select('admins.*','roles.name as rolename')
+                    ->orderBy('id','desc')
                     ->paginate(5);
         $roles = DB::table('roles')
                     ->select('id','name')
@@ -132,7 +133,7 @@ class StaffController extends Controller
         $staffupdate->uuid = $uuid;
         $staffupdate->role_id = $request->rolename;
         $staffupdate->phonenumber = $request->phonenumber;
-        $staffupdate->password = bcrypt($request->password);
+        // $staffupdate->password = bcrypt($request->password);
         if ($request->password == null && $request->image == null) {
             $staffupdate->update();
         } 

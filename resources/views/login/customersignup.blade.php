@@ -115,7 +115,7 @@
                 </div>
                 <br>
                 <br>
-                <div class="sign_up flex_row" style="gap: 30px;">
+                <div class="sign_up flex_row">
                     @if ($updatestatus == true)
                         <a href="{{route('Home')}}" class="button2" >Cancel</a>
                 @endif
